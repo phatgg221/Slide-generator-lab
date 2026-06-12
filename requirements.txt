@@ -1,0 +1,4 @@
+python-pptx>=1.0
+openai>=1.40
+pillow>=10.0
+python-dotenv>=1.0
