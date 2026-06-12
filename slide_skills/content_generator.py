@@ -14,6 +14,7 @@ from typing import Callable
 
 from .config import get_client, TEXT_MODEL
 from .template_parser import TemplateSpec
+from .usage import tracker
 
 _SYSTEM_PROMPT = """\
 You are a presentation copywriter. You will receive:
@@ -127,10 +128,13 @@ def generate_content(
             {"role": "user", "content": user_prompt},
         ],
         stream=True,
+        stream_options={"include_usage": True},
     )
     parts: list[str] = []
     chars = last_report = 0
     for chunk in stream:
+        if getattr(chunk, "usage", None):
+            tracker.record_chat(chunk.usage)
         if not chunk.choices:
             continue
         delta = chunk.choices[0].delta.content or ""

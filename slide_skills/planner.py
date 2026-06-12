@@ -16,6 +16,7 @@ import re
 from .config import get_client, TEXT_MODEL
 from .template_parser import TemplateSpec
 from .theme import PRESETS
+from .usage import tracker
 
 # What each library slide type is for. Used both in the planner prompt and
 # in the docs given to the user preparing the Canva library.
@@ -92,6 +93,7 @@ def plan_deck(
         messages=[{"role": "system", "content": system},
                   {"role": "user", "content": user}],
     )
+    tracker.record_chat(response.usage)
     plan = json.loads(response.choices[0].message.content)
     return _validate_plan(plan, library_types)
 

@@ -25,16 +25,20 @@ from pathlib import Path
 from typing import Union
 
 from .config import get_client, TEXT_MODEL
+from .usage import tracker
 
-# Palettes from designer-curated combinations: (primary, secondary, accent)
+# Palettes as (primary=dark, secondary=light, accent=vivid). Role order
+# matters: auto_map_palette sends dark template colors to primary, pale ones
+# to secondary, saturated ones to accent — and then corrects lightness, so
+# text/background contrast survives any palette.
 PRESETS = {
-    "midnight":   ("1E2761", "CADCFC", "FFFFFF"),
-    "forest":     ("2C5F2D", "97BC62", "F5F5F5"),
-    "coral":      ("F96167", "F9E795", "2F3C7E"),
+    "midnight":   ("1E2761", "CADCFC", "4F6BD8"),
+    "forest":     ("2C5F2D", "EAF2E0", "97BC62"),
+    "coral":      ("2F3C7E", "F9E795", "F96167"),
     "terracotta": ("B85042", "E7E8D1", "A7BEAE"),
-    "ocean":      ("065A82", "1C7293", "21295C"),
-    "teal":       ("028090", "00A896", "02C39A"),
-    "berry":      ("6D2E46", "A26769", "ECE2D0"),
+    "ocean":      ("065A82", "D6EAF5", "1C7293"),
+    "teal":       ("028090", "E0F5F2", "02C39A"),
+    "berry":      ("6D2E46", "ECE2D0", "A26769"),
     "cherry":     ("990011", "FCF6F5", "2F3C7E"),
 }
 
@@ -62,6 +66,34 @@ def _luminance(hex_color: str) -> float:
 def _saturation(hex_color: str) -> float:
     r, g, b = (int(hex_color[i:i + 2], 16) / 255 for i in (0, 2, 4))
     return colorsys.rgb_to_hsv(r, g, b)[1]
+
+
+def _match_lightness(target_hex: str, reference_hex: str) -> str:
+    """Take target's hue/saturation, at the perceived luminance the
+    template's designer chose for that spot. Luminance grows monotonically
+    with HLS lightness, so binary-search the lightness."""
+    tr, tg, tb = (int(target_hex[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    h, _, s = colorsys.rgb_to_hls(tr, tg, tb)
+    ref_lum = _luminance(reference_hex)
+    lo, hi = 0.0, 1.0
+    r = g = b = 0.0
+    for _ in range(20):
+        mid = (lo + hi) / 2
+        r, g, b = colorsys.hls_to_rgb(h, mid, s)
+        if 0.2126 * r + 0.7152 * g + 0.0722 * b < ref_lum:
+            lo = mid
+        else:
+            hi = mid
+    return "%02X%02X%02X" % (round(r * 255), round(g * 255), round(b * 255))
+
+
+def _contrast_safe(new_hex: str, old_hex: str, max_drift: float = 0.18) -> str:
+    """If a replacement changes a color's luminance enough to break dark-on-
+    light relationships (titles vanishing into backgrounds), re-anchor the
+    replacement at the original lightness."""
+    if abs(_luminance(new_hex) - _luminance(old_hex)) > max_drift:
+        return _match_lightness(new_hex, old_hex)
+    return new_hex
 
 
 def extract_palette(pptx_path: Union[str, Path]) -> list[PaletteColor]:
@@ -93,13 +125,14 @@ def auto_map_palette(
         if color.hex in ("000000", "FFFFFF"):
             continue
         if color.saturation >= 0.6 and color.luminance >= 0.3:
-            mapping[color.hex] = accent
+            new = accent
         elif color.luminance < 0.45:
-            mapping[color.hex] = primary
+            new = primary
         elif color.luminance > 0.75:
-            mapping[color.hex] = secondary
+            new = secondary
         else:
-            mapping[color.hex] = accent
+            new = accent
+        mapping[color.hex] = _contrast_safe(new, color.hex)
     return {old: new for old, new in mapping.items() if old != new}
 
 
@@ -140,14 +173,16 @@ def propose_palette(
             )},
         ],
     )
+    tracker.record_chat(response.usage)
     payload = json.loads(response.choices[0].message.content)
     valid = {p.hex for p in palette}
-    return {
-        _norm(old): _norm(new)
-        for old, new in (payload.get("mapping") or {}).items()
-        if _norm(old) in valid and re.fullmatch(r"[0-9A-F]{6}", _norm(new))
-        and _norm(old) != _norm(new) and _norm(old) not in ("000000", "FFFFFF")
-    }
+    mapping = {}
+    for old, new in (payload.get("mapping") or {}).items():
+        old, new = _norm(old), _norm(new)
+        if (old in valid and re.fullmatch(r"[0-9A-F]{6}", new)
+                and old != new and old not in ("000000", "FFFFFF")):
+            mapping[old] = _contrast_safe(new, old)
+    return {o: n for o, n in mapping.items() if o != n}
 
 
 def apply_palette(

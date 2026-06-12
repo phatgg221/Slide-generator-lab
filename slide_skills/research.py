@@ -12,6 +12,7 @@ import json
 from dataclasses import dataclass
 
 from .config import get_client, TEXT_MODEL
+from .usage import tracker
 
 
 @dataclass
@@ -37,6 +38,7 @@ def extract_keywords(content: str, max_keywords: int = 10) -> list[str]:
             {"role": "user", "content": content[:8000]},
         ],
     )
+    tracker.record_chat(response.usage)
     payload = json.loads(response.choices[0].message.content)
     return [str(k) for k in payload.get("keywords", [])][:max_keywords]
 
@@ -63,6 +65,7 @@ def web_research(content: str, keywords: list[str]) -> ResearchResult:
                 tools=[{"type": tool_type}],
                 input=prompt,
             )
+            tracker.record_chat(getattr(response, "usage", None))
             return ResearchResult(summary=response.output_text, method=tool_type)
         except Exception:
             continue
@@ -79,6 +82,7 @@ def web_research(content: str, keywords: list[str]) -> ResearchResult:
             {"role": "user", "content": prompt},
         ],
     )
+    tracker.record_chat(response.usage)
     return ResearchResult(
         summary=response.choices[0].message.content,
         method="model-knowledge",

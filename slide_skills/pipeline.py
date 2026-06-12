@@ -27,6 +27,7 @@ from .planner import plan_deck
 from .research import ResearchResult, extract_keywords, web_research
 from .template_parser import parse_template
 from .theme import PRESETS, apply_palette, auto_map_palette, extract_palette
+from .usage import UsageSnapshot, tracker
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +40,7 @@ class PipelineResult:
     plan: dict
     images_generated: int
     warnings: list[str] = field(default_factory=list)
+    usage: UsageSnapshot = field(default_factory=UsageSnapshot)
 
 
 class CourseDeckPipeline:
@@ -67,9 +69,17 @@ class CourseDeckPipeline:
         language: str | None = None,
         theme_override: str | None = None,   # preset name; skips planner's choice
     ) -> PipelineResult:
+        run_start = tracker.snapshot()
+
+        def stage_usage(label: str, since: UsageSnapshot) -> UsageSnapshot:
+            now = tracker.snapshot()
+            self.on_progress(f"  [{label} usage] {(now - since).report()}")
+            return now
+
         self.on_progress("Extracting keywords…")
         keywords = extract_keywords(course_content)
         self.on_progress(f"Keywords: {', '.join(keywords)}")
+        mark = stage_usage("keywords", run_start)
 
         research = None
         research_summary = "(no research performed; rely on the course content)"
@@ -78,6 +88,7 @@ class CourseDeckPipeline:
             research = web_research(course_content, keywords)
             research_summary = research.summary
             self.on_progress(f"Research done (via {research.method}).")
+            mark = stage_usage("research", mark)
 
         self.on_progress("Planning the deck…")
         library_types, descriptions = load_library_meta(library_path)
@@ -89,6 +100,7 @@ class CourseDeckPipeline:
             f"Plan: {len(sequence)} slides ({', '.join(sequence)}); "
             f"theme {plan.get('theme') or 'unchanged'}"
         )
+        mark = stage_usage("planning", mark)
 
         with tempfile.TemporaryDirectory() as tmp:
             assembled = Path(tmp) / "assembled.pptx"
@@ -110,7 +122,9 @@ class CourseDeckPipeline:
                 out.parent.mkdir(parents=True, exist_ok=True)
                 out.write_bytes(filled.read_bytes())
 
+        total_usage = tracker.snapshot() - run_start
         self.on_progress(f"Done: {out}")
+        self.on_progress(f"TOTAL usage: {total_usage.report()}")
         return PipelineResult(
             output_path=out,
             keywords=keywords,
@@ -118,6 +132,7 @@ class CourseDeckPipeline:
             plan=plan,
             images_generated=gen.images_generated,
             warnings=gen.warnings,
+            usage=total_usage,
         )
 
     @staticmethod

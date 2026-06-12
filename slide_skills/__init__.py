@@ -21,6 +21,7 @@ from .planner import plan_deck, SLIDE_TYPE_DESCRIPTIONS
 from .assembler import build_deck_from_library, load_library_types, DEFAULT_LIBRARY_TYPES
 from .agent import SlideGeneratorAgent
 from .pipeline import CourseDeckPipeline
+from .usage import tracker as usage_tracker, UsageSnapshot
 
 __all__ = [
     "parse_template",
@@ -47,4 +48,6 @@ __all__ = [
     "DEFAULT_LIBRARY_TYPES",
     "SlideGeneratorAgent",
     "CourseDeckPipeline",
+    "usage_tracker",
+    "UsageSnapshot",
 ]

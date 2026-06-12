@@ -14,6 +14,7 @@ import io
 from PIL import Image
 
 from .config import get_client, IMAGE_MODEL
+from .usage import tracker
 
 _DALLE_SIZES = {
     "1024x1024": 1.0,
@@ -54,14 +55,16 @@ def generate_image(
     """Render an image with DALL-E and return PNG bytes cropped to
     aspect_ratio (width / height)."""
     client = get_client()
+    size = _nearest_size(aspect_ratio)
     response = client.images.generate(
         model=IMAGE_MODEL,
         prompt=prompt,
-        size=_nearest_size(aspect_ratio),
+        size=size,
         quality=quality,
         style=style,
         n=1,
         response_format="b64_json",
     )
+    tracker.record_image(size, quality)
     raw = base64.b64decode(response.data[0].b64_json)
     return _center_crop(raw, aspect_ratio)

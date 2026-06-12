@@ -24,6 +24,7 @@ from .content_generator import GeneratedDeckContent, generate_content
 from .image_generator import generate_image
 from .slide_filler import fill_template
 from .template_parser import TemplateSpec, parse_template
+from .usage import UsageSnapshot, tracker
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +36,7 @@ class GenerationResult:
     content: GeneratedDeckContent
     images_generated: int = 0
     warnings: list[str] = field(default_factory=list)
+    usage: UsageSnapshot = field(default_factory=UsageSnapshot)
 
 
 class SlideGeneratorAgent:
@@ -61,6 +63,7 @@ class SlideGeneratorAgent:
         *,
         language: str | None = None,
     ) -> GenerationResult:
+        usage_before = tracker.snapshot()
         self.on_progress("Parsing template…")
         spec = parse_template(template_path)
 
@@ -85,7 +88,9 @@ class SlideGeneratorAgent:
 
         self.on_progress("Filling template…")
         out = fill_template(template_path, content, output_path, images=images)
+        usage = tracker.snapshot() - usage_before
         self.on_progress(f"Done: {out}")
+        self.on_progress(f"Usage: {usage.report()}")
 
         return GenerationResult(
             output_path=out,
@@ -93,6 +98,7 @@ class SlideGeneratorAgent:
             content=content,
             images_generated=len(images),
             warnings=warnings,
+            usage=usage,
         )
 
     def _check_budgets(
