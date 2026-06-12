@@ -1,0 +1,697 @@
+{
+  "slides": [
+    {
+      "index": 0,
+      "type": "slide_0",
+      "file": "slide_00_slide_0.svg",
+      "texts": {
+        "body": {
+          "role": "body",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "SUBHEADLINE"
+        },
+        "title": {
+          "role": "title",
+          "max_chars": 20,
+          "paragraphs": 3,
+          "sample": "SERENE\nBLOOM\nTHEME"
+        },
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "DATE"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 1,
+      "type": "slide_1",
+      "file": "slide_01_slide_1.svg",
+      "texts": {
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "CONCISE DESCRIPTION"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "CONCISE DESCRIPTION"
+        },
+        "caption_3": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "DATE"
+        },
+        "caption_4": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        },
+        "title": {
+          "role": "title",
+          "max_chars": 27,
+          "paragraphs": 2,
+          "sample": "A TITLEWITH MULTIPLE\nLINES"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 2,
+      "type": "slide_2",
+      "file": "slide_02_slide_2.svg",
+      "texts": {
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "CONCISE DESCRIPTION"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "CONCISE DESCRIPTION"
+        },
+        "caption_3": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "DATE"
+        },
+        "caption_4": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        },
+        "body": {
+          "role": "body",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "SUBHEADLINE"
+        },
+        "title": {
+          "role": "title",
+          "max_chars": 27,
+          "paragraphs": 2,
+          "sample": "A TITLEWITH MULTIPLE\nLINES"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 3,
+      "type": "slide_3",
+      "file": "slide_03_slide_3.svg",
+      "texts": {
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "CONCISE DESCRIPTION"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "CONCISE DESCRIPTION"
+        },
+        "caption_3": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "DATE"
+        },
+        "caption_4": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        },
+        "title": {
+          "role": "title",
+          "max_chars": 27,
+          "paragraphs": 2,
+          "sample": "A TITLEWITH MULTIPLE\nLINES"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 4,
+      "type": "slide_4",
+      "file": "slide_04_slide_4.svg",
+      "texts": {
+        "body": {
+          "role": "body",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "SUBHEADLINE"
+        },
+        "title": {
+          "role": "title",
+          "max_chars": 27,
+          "paragraphs": 2,
+          "sample": "A TITLE WITH\nMULTIPLE LINES"
+        },
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "DATE"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 5,
+      "type": "slide_5",
+      "file": "slide_05_slide_5.svg",
+      "texts": {
+        "title": {
+          "role": "title",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "04"
+        },
+        "body": {
+          "role": "body",
+          "max_chars": 23,
+          "paragraphs": 1,
+          "sample": "Add a quick description"
+        },
+        "title_2": {
+          "role": "title",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "05"
+        },
+        "body_2": {
+          "role": "body",
+          "max_chars": 23,
+          "paragraphs": 1,
+          "sample": "Add a quick description"
+        },
+        "title_3": {
+          "role": "title",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "06"
+        },
+        "body_3": {
+          "role": "body",
+          "max_chars": 23,
+          "paragraphs": 1,
+          "sample": "Add a quick description"
+        },
+        "title_4": {
+          "role": "title",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "01"
+        },
+        "body_4": {
+          "role": "body",
+          "max_chars": 23,
+          "paragraphs": 1,
+          "sample": "Add a quick description"
+        },
+        "title_5": {
+          "role": "title",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "02"
+        },
+        "body_5": {
+          "role": "body",
+          "max_chars": 23,
+          "paragraphs": 1,
+          "sample": "Add a quick description"
+        },
+        "title_6": {
+          "role": "title",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "03"
+        },
+        "body_6": {
+          "role": "body",
+          "max_chars": 23,
+          "paragraphs": 1,
+          "sample": "Add a quick description"
+        },
+        "subtitle": {
+          "role": "subtitle",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "HEADLINE"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 6,
+      "type": "slide_6",
+      "file": "slide_06_slide_6.svg",
+      "texts": {
+        "body": {
+          "role": "body",
+          "max_chars": 83,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up."
+        },
+        "body_2": {
+          "role": "body",
+          "max_chars": 64,
+          "paragraphs": 1,
+          "sample": "Keep ‘em short and sweet, so they’re easy to scan and remember. "
+        },
+        "body_3": {
+          "role": "body",
+          "max_chars": 83,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up."
+        },
+        "body_4": {
+          "role": "body",
+          "max_chars": 64,
+          "paragraphs": 1,
+          "sample": "Keep ‘em short and sweet, so they’re easy to scan and remember. "
+        },
+        "body_5": {
+          "role": "body",
+          "max_chars": 83,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up."
+        },
+        "title": {
+          "role": "title",
+          "max_chars": 27,
+          "paragraphs": 2,
+          "sample": "A TITLE WITH\nMULTIPLE LINES"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 7,
+      "type": "slide_7",
+      "file": "slide_07_slide_7.svg",
+      "texts": {
+        "subtitle": {
+          "role": "subtitle",
+          "max_chars": 29,
+          "paragraphs": 1,
+          "sample": "A HEADING THATIS A FEW LINES"
+        },
+        "body": {
+          "role": "body",
+          "max_chars": 148,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up. Keep ‘em short a"
+        },
+        "subtitle_2": {
+          "role": "subtitle",
+          "max_chars": 29,
+          "paragraphs": 1,
+          "sample": "A HEADING THATIS A FEW LINES"
+        },
+        "body_2": {
+          "role": "body",
+          "max_chars": 148,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up. Keep ‘em short a"
+        },
+        "subtitle_3": {
+          "role": "subtitle",
+          "max_chars": 29,
+          "paragraphs": 1,
+          "sample": "A HEADING THATIS A FEW LINES"
+        },
+        "body_3": {
+          "role": "body",
+          "max_chars": 148,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up. Keep ‘em short a"
+        },
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "5"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 8,
+      "type": "slide_8",
+      "file": "slide_08_slide_8.svg",
+      "texts": {
+        "subtitle": {
+          "role": "subtitle",
+          "max_chars": 29,
+          "paragraphs": 1,
+          "sample": "A HEADING THATIS A FEW LINES"
+        },
+        "body": {
+          "role": "body",
+          "max_chars": 148,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up. Keep ‘em short a"
+        },
+        "subtitle_2": {
+          "role": "subtitle",
+          "max_chars": 29,
+          "paragraphs": 1,
+          "sample": "A HEADING THATIS A FEW LINES"
+        },
+        "body_2": {
+          "role": "body",
+          "max_chars": 148,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up. Keep ‘em short a"
+        },
+        "subtitle_3": {
+          "role": "subtitle",
+          "max_chars": 29,
+          "paragraphs": 1,
+          "sample": "A HEADING THATIS A FEW LINES"
+        },
+        "body_3": {
+          "role": "body",
+          "max_chars": 148,
+          "paragraphs": 1,
+          "sample": "Add a quick description of each thing, with enough context to understand what’s up. Keep ‘em short a"
+        },
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "5"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 9,
+      "type": "slide_9",
+      "file": "slide_09_slide_9.svg",
+      "texts": {
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "5"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        },
+        "title": {
+          "role": "title",
+          "max_chars": 148,
+          "paragraphs": 2,
+          "sample": "“Add a quote, mission statement,\nor customer testimonial here.This section works best for longerte"
+        },
+        "body": {
+          "role": "body",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "FIRSTNAME LASTNAME"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 10,
+      "type": "slide_10",
+      "file": "slide_10_slide_10.svg",
+      "texts": {
+        "title": {
+          "role": "title",
+          "max_chars": 135,
+          "paragraphs": 1,
+          "sample": "“Add a quote, mission statement, or customer testimonial here. This section works best for longer te"
+        },
+        "body": {
+          "role": "body",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "FIRSTNAME LASTNAME"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 11,
+      "type": "slide_11",
+      "file": "slide_11_slide_11.svg",
+      "texts": {},
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 12,
+      "type": "slide_12",
+      "file": "slide_12_slide_12.svg",
+      "texts": {
+        "body": {
+          "role": "body",
+          "max_chars": 42,
+          "paragraphs": 1,
+          "sample": "A CONCISE CAPTION SUPPLEMENTING THE VISUAL"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 13,
+      "type": "slide_13",
+      "file": "slide_13_slide_13.svg",
+      "texts": {
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "5"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        },
+        "subtitle": {
+          "role": "subtitle",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "THIS IS A HEADLINE"
+        },
+        "body": {
+          "role": "body",
+          "max_chars": 261,
+          "paragraphs": 1,
+          "sample": "Write a few sentences that set the scene and guide the viewer through the content. Describe what’s h"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 14,
+      "type": "slide_14",
+      "file": "slide_14_slide_14.svg",
+      "texts": {},
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 15,
+      "type": "slide_15",
+      "file": "slide_15_slide_15.svg",
+      "texts": {},
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 16,
+      "type": "slide_16",
+      "file": "slide_16_slide_16.svg",
+      "texts": {
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "5"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        },
+        "subtitle": {
+          "role": "subtitle",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "THIS IS A HEADLINE"
+        },
+        "body": {
+          "role": "body",
+          "max_chars": 87,
+          "paragraphs": 1,
+          "sample": "Add secondary and insightful text that may be supplemental to the overall main message "
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 17,
+      "type": "slide_17",
+      "file": "slide_17_slide_17.svg",
+      "texts": {
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "CONCISE DESCRIPTION"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "CONCISE DESCRIPTION"
+        },
+        "caption_3": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "DATE"
+        },
+        "caption_4": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "TOPIC"
+        },
+        "subtitle": {
+          "role": "subtitle",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "THIS IS A HEADLINE"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 18,
+      "type": "slide_18",
+      "file": "slide_18_slide_18.svg",
+      "texts": {
+        "body": {
+          "role": "body",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "SUBHEADLINE"
+        },
+        "subtitle": {
+          "role": "subtitle",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "THIS IS A HEADLINE"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    },
+    {
+      "index": 19,
+      "type": "slide_19",
+      "file": "slide_19_slide_19.svg",
+      "texts": {
+        "body": {
+          "role": "body",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "SUBHEADLINE"
+        },
+        "title": {
+          "role": "title",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "THIS IS A HEADLINE"
+        },
+        "caption": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "EMAIL@WEBSITE.COM"
+        },
+        "caption_2": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "1.234.5678"
+        },
+        "caption_3": {
+          "role": "caption",
+          "max_chars": 20,
+          "paragraphs": 1,
+          "sample": "WWW.WEBSITE.COM"
+        }
+      },
+      "width_pt": 720.0,
+      "height_pt": 405.0
+    }
+  ]
+}

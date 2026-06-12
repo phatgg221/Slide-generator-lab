@@ -23,6 +23,7 @@ from slide_skills.assembler import load_library_types
 from slide_skills.pipeline import CourseDeckPipeline
 from slide_skills.template_parser import parse_template
 from slide_skills.theme import PRESETS
+from slide_skills.animations import ENTRANCE_EFFECTS, add_animations
 from slide_skills.transitions import EFFECTS, apply_transitions
 
 
@@ -47,7 +48,14 @@ def main():
     ap.add_argument("--theme", choices=sorted(PRESETS), help="Force a theme preset")
     ap.add_argument("--transition", choices=sorted(EFFECTS),
                     help="Add a slide transition to every slide (e.g. fade)")
+    ap.add_argument("--animate", choices=sorted(ENTRANCE_EFFECTS),
+                    help="Add entrance animations to shapes (e.g. fade)")
+    ap.add_argument("--animate-on-click", action="store_true",
+                    help="Animations advance per click instead of automatically")
     ap.add_argument("--no-images", action="store_true")
+    ap.add_argument("--svg-images", action="store_true",
+                    help="GPT-4o draws flat vector illustrations instead of an "
+                         "image model (~5x cheaper, illustration style)")
     ap.add_argument("--no-research", action="store_true")
     ap.add_argument("--check", action="store_true", help="Validate the library and exit")
     args = ap.parse_args()
@@ -66,6 +74,7 @@ def main():
 
     pipeline = CourseDeckPipeline(
         generate_images=not args.no_images,
+        image_source="svg" if args.svg_images else "ai",
         do_research=not args.no_research,
         on_progress=lambda msg: print(f"  • {msg}"),
     )
@@ -77,6 +86,10 @@ def main():
     if args.transition:
         apply_transitions(result.output_path, result.output_path, effect=args.transition)
         print(f"  • Added '{args.transition}' transitions to all slides")
+    if args.animate:
+        add_animations(result.output_path, result.output_path, effect=args.animate,
+                       trigger="click" if args.animate_on_click else "auto")
+        print(f"  • Added '{args.animate}' entrance animations to shapes")
 
     for w in result.warnings:
         print(f"  ⚠ {w}")

@@ -14,6 +14,7 @@ Skills:
 from .template_parser import parse_template, TemplateSpec, SlideSpec, TextElement, ImageElement
 from .content_generator import generate_content, GeneratedDeckContent
 from .image_generator import generate_image
+from .svg_image_generator import generate_svg_image, generate_svg_markup
 from .slide_filler import fill_template
 from .theme import extract_palette, auto_map_palette, propose_palette, apply_palette, PRESETS
 from .research import extract_keywords, web_research, ResearchResult
@@ -23,10 +24,18 @@ from .agent import SlideGeneratorAgent
 from .pipeline import CourseDeckPipeline
 from .usage import tracker as usage_tracker, UsageSnapshot
 from .transitions import apply_transitions, EFFECTS as TRANSITION_EFFECTS
+from .animations import add_animations, ENTRANCE_EFFECTS
 from .template_maker import clean_template, auto_manifest, prepare_template, list_templates
 from .merge_template import (
     make_placeholder_template, render_placeholders, generate_merge_data, load_schema,
 )
+from .svg_template_maker import make_svg_templates
+from .svg_slide_renderer import render_svg_slide, render_svg_deck
+from .svg_collections import (
+    scan_collection, list_collections, fill_svg, retheme_svg,
+    generate_deck_content, generate_web_deck,
+)
+from .html_deck import build_html_deck
 
 __all__ = [
     "parse_template",
@@ -37,6 +46,8 @@ __all__ = [
     "generate_content",
     "GeneratedDeckContent",
     "generate_image",
+    "generate_svg_image",
+    "generate_svg_markup",
     "fill_template",
     "extract_palette",
     "auto_map_palette",
@@ -57,6 +68,8 @@ __all__ = [
     "UsageSnapshot",
     "apply_transitions",
     "TRANSITION_EFFECTS",
+    "add_animations",
+    "ENTRANCE_EFFECTS",
     "clean_template",
     "auto_manifest",
     "prepare_template",
@@ -65,4 +78,14 @@ __all__ = [
     "render_placeholders",
     "generate_merge_data",
     "load_schema",
+    "make_svg_templates",
+    "render_svg_slide",
+    "render_svg_deck",
+    "scan_collection",
+    "list_collections",
+    "fill_svg",
+    "retheme_svg",
+    "generate_deck_content",
+    "generate_web_deck",
+    "build_html_deck",
 ]

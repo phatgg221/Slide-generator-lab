@@ -46,11 +46,15 @@ class SlideGeneratorAgent:
         self,
         *,
         generate_images: bool = True,
+        image_source: str = "ai",     # "ai" (image model) | "svg" (GPT-4o vector, ~5x cheaper)
         image_quality: str = "standard",
         max_image_workers: int = 3,
         on_progress: Callable[[str], None] | None = None,
     ):
+        if image_source not in ("ai", "svg"):
+            raise ValueError("image_source must be 'ai' or 'svg'")
         self.generate_images = generate_images
+        self.image_source = image_source
         self.image_quality = image_quality
         self.max_image_workers = max_image_workers
         self.on_progress = on_progress or (lambda msg: logger.info(msg))
@@ -83,7 +87,8 @@ class SlideGeneratorAgent:
 
         images: dict[tuple[int, int], bytes] = {}
         if self.generate_images and n_images:
-            self.on_progress(f"Rendering {n_images} images with DALL-E…")
+            label = "GPT-4o SVG" if self.image_source == "svg" else "image model"
+            self.on_progress(f"Rendering {n_images} images ({label})…")
             images = self._render_images(spec, content, warnings)
 
         self.on_progress("Filling template…")
@@ -143,9 +148,14 @@ class SlideGeneratorAgent:
 
         results: dict[tuple[int, int], bytes] = {}
 
+        if self.image_source == "svg":
+            from .svg_image_generator import generate_svg_image as _render_fn
+        else:
+            _render_fn = generate_image
+
         def render(job):
             idx, shape_id, prompt, aspect = job
-            return (idx, shape_id), generate_image(
+            return (idx, shape_id), _render_fn(
                 prompt, aspect, quality=self.image_quality
             )
 

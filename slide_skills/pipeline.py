@@ -48,6 +48,7 @@ class CourseDeckPipeline:
         self,
         *,
         generate_images: bool = True,
+        image_source: str = "ai",     # "ai" | "svg" (GPT-4o vector, ~5x cheaper)
         do_research: bool = True,
         image_quality: str = "standard",
         on_progress: Callable[[str], None] | None = None,
@@ -56,6 +57,7 @@ class CourseDeckPipeline:
         self.on_progress = on_progress or (lambda msg: logger.info(msg))
         self._slide_agent = SlideGeneratorAgent(
             generate_images=generate_images,
+            image_source=image_source,
             image_quality=image_quality,
             on_progress=self.on_progress,
         )
