@@ -1,0 +1,35 @@
+{
+  "types": [
+    "title",
+    "agenda",
+    "problem",
+    "section_research",
+    "section_competitors",
+    "insight",
+    "highlights",
+    "segments",
+    "process",
+    "summary",
+    "gallery",
+    "_skip_moodboard",
+    "closing",
+    "_skip_whiteboard1",
+    "_skip_whiteboard2",
+    "_skip_resources1",
+    "_skip_resources2"
+  ],
+  "descriptions": {
+    "title": "Opening slide: big deck title, audio note line, prepared-for and prepared-by blocks",
+    "agenda": "Table of contents divider; only the heading is fillable (list items are fixed navigation links)",
+    "problem": "Problem statement: big heading plus a two-line statement of the problem",
+    "section_research": "Section divider announcing research findings",
+    "section_competitors": "Section divider announcing competitor/alternatives analysis",
+    "insight": "One key insight in depth: headline claim, 4-line analysis, 2-line caption, and one supporting image",
+    "highlights": "Two side-by-side highlight cards: short heading + 2-line quote/insight each",
+    "segments": "Three-column audience/segment breakdown: 3 short headers with a 1-3 line description under each",
+    "process": "Numbered 3-step process flow: 01/02/03 with a short title and 1-2 line description per step",
+    "summary": "Summary: big heading plus a 2-line recap",
+    "gallery": "Visual showcase: heading plus three image frames (good for examples, mockups, samples)",
+    "closing": "Closing Q&A slide with email/social/website contact lines"
+  }
+}

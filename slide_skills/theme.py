@@ -1,0 +1,184 @@
+"""Skill 5: color-theme extraction and replacement.
+
+Canva exports hardcode every color as <a:srgbClr val="RRGGBB"/> in the slide
+XML (no PowerPoint theme references), so re-theming is a palette remap:
+
+    extract_palette  -- census of every hardcoded color and how often it's used
+    auto_map_palette -- map template colors onto a preset (or any 3-color
+                        palette) by luminance, keeping black/white untouched
+    propose_palette  -- GPT-4o picks a content-appropriate mapping (agent-ready)
+    apply_palette    -- rewrite the colors into a new .pptx; layout untouched
+
+Only shape fills, lines, text colors, and gradient stops change. Colors baked
+into raster images (decorative PNG/JPEG) stay as they are; embedded SVGs are
+recolored too since they're text.
+"""
+
+from __future__ import annotations
+
+import colorsys
+import json
+import re
+import zipfile
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Union
+
+from .config import get_client, TEXT_MODEL
+
+# Palettes from designer-curated combinations: (primary, secondary, accent)
+PRESETS = {
+    "midnight":   ("1E2761", "CADCFC", "FFFFFF"),
+    "forest":     ("2C5F2D", "97BC62", "F5F5F5"),
+    "coral":      ("F96167", "F9E795", "2F3C7E"),
+    "terracotta": ("B85042", "E7E8D1", "A7BEAE"),
+    "ocean":      ("065A82", "1C7293", "21295C"),
+    "teal":       ("028090", "00A896", "02C39A"),
+    "berry":      ("6D2E46", "A26769", "ECE2D0"),
+    "cherry":     ("990011", "FCF6F5", "2F3C7E"),
+}
+
+_COLORABLE_PARTS = re.compile(r"ppt/(slides|slideLayouts|slideMasters)/[^/]+\.xml$")
+_SRGB = re.compile(r'srgbClr val="([0-9A-Fa-f]{6})"')
+
+
+@dataclass
+class PaletteColor:
+    hex: str
+    count: int
+    luminance: float    # 0 black .. 1 white
+    saturation: float   # 0 grey .. 1 vivid
+
+
+def _norm(hex_color: str) -> str:
+    return hex_color.upper().lstrip("#")
+
+
+def _luminance(hex_color: str) -> float:
+    r, g, b = (int(hex_color[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def _saturation(hex_color: str) -> float:
+    r, g, b = (int(hex_color[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    return colorsys.rgb_to_hsv(r, g, b)[1]
+
+
+def extract_palette(pptx_path: Union[str, Path]) -> list[PaletteColor]:
+    """Every hardcoded color in the deck, most used first."""
+    counts: dict[str, int] = {}
+    with zipfile.ZipFile(str(pptx_path)) as z:
+        for name in z.namelist():
+            if _COLORABLE_PARTS.match(name):
+                for match in _SRGB.findall(z.read(name).decode("utf-8", "ignore")):
+                    counts[_norm(match)] = counts.get(_norm(match), 0) + 1
+    return sorted(
+        (PaletteColor(c, n, round(_luminance(c), 3), round(_saturation(c), 3))
+         for c, n in counts.items()),
+        key=lambda p: -p.count,
+    )
+
+
+def auto_map_palette(
+    palette: list[PaletteColor],
+    target: tuple[str, str, str],
+) -> dict[str, str]:
+    """Map template colors onto (primary, secondary, accent): vivid mid/light
+    colors play the accent role, dark colors -> primary, pale -> secondary.
+    Pure black and white are left alone (they're usually text and must stay
+    readable)."""
+    primary, secondary, accent = (_norm(c) for c in target)
+    mapping: dict[str, str] = {}
+    for color in palette:
+        if color.hex in ("000000", "FFFFFF"):
+            continue
+        if color.saturation >= 0.6 and color.luminance >= 0.3:
+            mapping[color.hex] = accent
+        elif color.luminance < 0.45:
+            mapping[color.hex] = primary
+        elif color.luminance > 0.75:
+            mapping[color.hex] = secondary
+        else:
+            mapping[color.hex] = accent
+    return {old: new for old, new in mapping.items() if old != new}
+
+
+def propose_palette(
+    brief: str,
+    palette: list[PaletteColor],
+    *,
+    temperature: float = 0.7,
+) -> dict[str, str]:
+    """GPT-4o picks a content-appropriate palette and returns {old: new} hex
+    mapping. This is the piece a theming agent calls."""
+    client = get_client()
+    current = [
+        {"hex": p.hex, "uses": p.count, "luminance": p.luminance, "saturation": p.saturation}
+        for p in palette
+    ]
+    response = client.chat.completions.create(
+        model=TEXT_MODEL,
+        temperature=temperature,
+        response_format={"type": "json_object"},
+        messages=[
+            {"role": "system", "content": (
+                "You are a presentation art director. Given a brief and the "
+                "current color palette of a slide template, choose a new "
+                "palette that fits the brief's topic and mood.\n"
+                "Rules:\n"
+                "- Map every current color to a new hex color.\n"
+                "- Preserve each color's approximate luminance so text stays "
+                "readable on its background (dark stays dark, light stays light).\n"
+                "- Keep pure #000000 and #FFFFFF unchanged.\n"
+                "- One dominant hue family plus one accent; don't use more "
+                "distinct hues than the original.\n"
+                'Return ONLY JSON: {"mapping": {"RRGGBB": "RRGGBB", ...}, '
+                '"rationale": "one sentence"}'
+            )},
+            {"role": "user", "content": (
+                f"Brief:\n{brief}\n\nCurrent palette:\n{json.dumps(current)}"
+            )},
+        ],
+    )
+    payload = json.loads(response.choices[0].message.content)
+    valid = {p.hex for p in palette}
+    return {
+        _norm(old): _norm(new)
+        for old, new in (payload.get("mapping") or {}).items()
+        if _norm(old) in valid and re.fullmatch(r"[0-9A-F]{6}", _norm(new))
+        and _norm(old) != _norm(new) and _norm(old) not in ("000000", "FFFFFF")
+    }
+
+
+def apply_palette(
+    pptx_path: Union[str, Path],
+    mapping: dict[str, str],
+    output_path: Union[str, Path],
+    *,
+    recolor_svg: bool = True,
+) -> Path:
+    """Write a copy of the deck with colors remapped ({old_hex: new_hex}).
+    Only color values change — layout, text, and images are untouched."""
+    mapping = {_norm(k): _norm(v) for k, v in mapping.items()}
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with zipfile.ZipFile(str(pptx_path)) as zin, \
+         zipfile.ZipFile(str(output_path), "w", zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.infolist():
+            data = zin.read(item.filename)
+            if _COLORABLE_PARTS.match(item.filename):
+                text = data.decode("utf-8")
+                for old, new in mapping.items():
+                    text = re.sub(
+                        f'(srgbClr val=")({old})(")', rf"\g<1>{new}\g<3>",
+                        text, flags=re.IGNORECASE,
+                    )
+                data = text.encode("utf-8")
+            elif recolor_svg and item.filename.endswith(".svg"):
+                text = data.decode("utf-8", "ignore")
+                for old, new in mapping.items():
+                    text = re.sub(f"#{old}", f"#{new}", text, flags=re.IGNORECASE)
+                data = text.encode("utf-8")
+            zout.writestr(item, data)
+    return output_path

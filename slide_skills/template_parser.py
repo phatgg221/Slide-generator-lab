@@ -106,9 +106,14 @@ DEFAULT_EXCLUDE_PREFIXES = ("Mẹo:", "Tip:", "Tips:", "Consejo:", "Astuce :")
 
 def _is_navigation(text_frame) -> bool:
     """True when every run is a hyperlink — e.g. Canva's 'back to table of
-    contents' buttons. Rewriting those breaks deck navigation."""
+    contents' buttons. Rewriting those breaks deck navigation. Also matches
+    links whose target the assembler stripped (hlinkClick without r:id)."""
     runs = [r for p in text_frame.paragraphs for r in p.runs if r.text.strip()]
-    return bool(runs) and all(r.hyperlink.address for r in runs)
+    # hlinkClick presence checked first: resolving .address on a link whose
+    # target was stripped (no r:id) raises KeyError.
+    return bool(runs) and all(
+        "hlinkClick" in r._r.xml or r.hyperlink.address for r in runs
+    )
 
 
 def _classify_role(font_pt: float | None, top_in: float, slide_height_in: float,

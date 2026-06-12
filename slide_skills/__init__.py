@@ -15,7 +15,12 @@ from .template_parser import parse_template, TemplateSpec, SlideSpec, TextElemen
 from .content_generator import generate_content, GeneratedDeckContent
 from .image_generator import generate_image
 from .slide_filler import fill_template
+from .theme import extract_palette, auto_map_palette, propose_palette, apply_palette, PRESETS
+from .research import extract_keywords, web_research, ResearchResult
+from .planner import plan_deck, SLIDE_TYPE_DESCRIPTIONS
+from .assembler import build_deck_from_library, load_library_types, DEFAULT_LIBRARY_TYPES
 from .agent import SlideGeneratorAgent
+from .pipeline import CourseDeckPipeline
 
 __all__ = [
     "parse_template",
@@ -27,5 +32,19 @@ __all__ = [
     "GeneratedDeckContent",
     "generate_image",
     "fill_template",
+    "extract_palette",
+    "auto_map_palette",
+    "propose_palette",
+    "apply_palette",
+    "PRESETS",
+    "extract_keywords",
+    "web_research",
+    "ResearchResult",
+    "plan_deck",
+    "SLIDE_TYPE_DESCRIPTIONS",
+    "build_deck_from_library",
+    "load_library_types",
+    "DEFAULT_LIBRARY_TYPES",
     "SlideGeneratorAgent",
+    "CourseDeckPipeline",
 ]

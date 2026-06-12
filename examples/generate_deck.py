@@ -30,6 +30,10 @@ def main():
     ap.add_argument("--inspect", action="store_true", help="Print the template spec and exit")
     args = ap.parse_args()
 
+    if not Path(args.template).is_file():
+        ap.error(f"template not found: {args.template}\n"
+                 "(check the path — and keep it in quotes if it contains spaces)")
+
     if args.inspect:
         print(parse_template(args.template).to_json(indent=2))
         return
