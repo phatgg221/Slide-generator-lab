@@ -19,9 +19,12 @@ from typing import Union
 
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
+from pptx.util import Pt
 
 from .content_generator import GeneratedDeckContent
-from .template_parser import iter_leaf_shapes
+from .template_parser import TemplateSpec, iter_leaf_shapes
+
+_MIN_FONT_SCALE = 0.55   # never shrink below 55% of the designed size
 
 
 def _set_paragraph_text(paragraph, text: str) -> None:
@@ -54,6 +57,20 @@ def set_text_preserving_format(text_frame, new_text: str) -> None:
         para._p.getparent().remove(para._p)
 
 
+def shrink_to_fit(text_frame, new_len: int, budget: int) -> float:
+    """When text exceeds its budget, scale every explicit font size down so
+    the longer text occupies roughly the designed area (text fills space in
+    two dimensions, hence the square root). Returns the factor applied."""
+    if new_len <= budget * 1.05:
+        return 1.0
+    factor = max(_MIN_FONT_SCALE, (budget / new_len) ** 0.5)
+    for paragraph in text_frame.paragraphs:
+        for run in paragraph.runs:
+            if run.font.size is not None:
+                run.font.size = Pt(round(run.font.size.pt * factor, 1))
+    return factor
+
+
 def replace_picture_image(picture, image_bytes: bytes) -> None:
     """Swap the bitmap behind a picture shape without touching its geometry,
     crop, or effects."""
@@ -66,6 +83,7 @@ def fill_template(
     content: GeneratedDeckContent,
     output_path: Union[str, Path],
     images: dict[tuple[int, int], bytes] | None = None,
+    spec: TemplateSpec | None = None,
 ) -> Path:
     """Apply generated content to a template and save the result.
 
@@ -75,19 +93,27 @@ def fill_template(
         output_path: where to save the filled deck.
         images: optional {(slide_index, shape_id): png_bytes} from the
             image_generator skill.
+        spec: when given, text exceeding its budget gets its font shrunk
+            proportionally so it stays inside the designed box.
 
     Returns the output path.
     """
     images = images or {}
+    budgets = {}
+    if spec is not None:
+        budgets = {(s.index, t.shape_id): t.max_chars
+                   for s in spec.slides for t in s.texts}
     prs = Presentation(str(template_path))
 
     for idx, slide in enumerate(prs.slides):
         slide_content = content.slide(idx)
         for shape in iter_leaf_shapes(slide.shapes):
             if slide_content and shape.has_text_frame and shape.shape_id in slide_content.texts:
-                set_text_preserving_format(
-                    shape.text_frame, slide_content.texts[shape.shape_id]
-                )
+                text = slide_content.texts[shape.shape_id]
+                set_text_preserving_format(shape.text_frame, text)
+                budget = budgets.get((idx, shape.shape_id))
+                if budget:
+                    shrink_to_fit(shape.text_frame, len(text), budget)
             elif shape.shape_type == MSO_SHAPE_TYPE.PICTURE and (idx, shape.shape_id) in images:
                 replace_picture_image(shape, images[(idx, shape.shape_id)])
 

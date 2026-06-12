@@ -1,0 +1,1699 @@
+{
+  "text": {
+    "title.subtitle": {
+      "slide": 0,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "title.title": {
+      "slide": 0,
+      "shape_id": 9,
+      "role": "title",
+      "max_chars": 28,
+      "paragraphs": 1,
+      "sample": "Mục tiêu phát triển bền vững"
+    },
+    "title.subtitle_2": {
+      "slide": 0,
+      "shape_id": 10,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Báo cáo tiến độ về"
+    },
+    "title.body": {
+      "slide": 0,
+      "shape_id": 11,
+      "role": "body",
+      "max_chars": 25,
+      "paragraphs": 2,
+      "sample": "Trình bày bởi\nMinh Phương"
+    },
+    "title.body_2": {
+      "slide": 0,
+      "shape_id": 12,
+      "role": "body",
+      "max_chars": 25,
+      "paragraphs": 2,
+      "sample": "Ngày:\n20 tháng 3 năm 2030"
+    },
+    "agenda.title": {
+      "slide": 1,
+      "shape_id": 2,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Nội dung"
+    },
+    "agenda.title_2": {
+      "slide": 1,
+      "shape_id": 4,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "01"
+    },
+    "agenda.subtitle": {
+      "slide": 1,
+      "shape_id": 5,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Hiểu biết"
+    },
+    "agenda.title_3": {
+      "slide": 1,
+      "shape_id": 7,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "02"
+    },
+    "agenda.subtitle_2": {
+      "slide": 1,
+      "shape_id": 8,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Ưu tiên"
+    },
+    "agenda.title_4": {
+      "slide": 1,
+      "shape_id": 10,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "03"
+    },
+    "agenda.subtitle_3": {
+      "slide": 1,
+      "shape_id": 11,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Đo lường"
+    },
+    "agenda.subtitle_4": {
+      "slide": 1,
+      "shape_id": 12,
+      "role": "subtitle",
+      "max_chars": 26,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nMục tiêu tác động"
+    },
+    "agenda.subtitle_5": {
+      "slide": 1,
+      "shape_id": 13,
+      "role": "subtitle",
+      "max_chars": 33,
+      "paragraphs": 2,
+      "sample": "Mục tiêu ưu tiên\nPhương pháp luận"
+    },
+    "agenda.subtitle_6": {
+      "slide": 1,
+      "shape_id": 14,
+      "role": "subtitle",
+      "max_chars": 53,
+      "paragraphs": 3,
+      "sample": "Cập nhật tiến độ\nPhân tích dữ liệu\nCác bước tiếp theo"
+    },
+    "agenda.body": {
+      "slide": 1,
+      "shape_id": 16,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "agenda.subtitle_7": {
+      "slide": 1,
+      "shape_id": 17,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "2"
+    },
+    "section_divider.title": {
+      "slide": 2,
+      "shape_id": 6,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Hiểu biết"
+    },
+    "section_divider.subtitle": {
+      "slide": 2,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Phần 1:"
+    },
+    "section_divider.body": {
+      "slide": 2,
+      "shape_id": 8,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "bullets.title": {
+      "slide": 3,
+      "shape_id": 2,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Mục tiêu"
+    },
+    "bullets.title_2": {
+      "slide": 3,
+      "shape_id": 4,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "01"
+    },
+    "bullets.body": {
+      "slide": 3,
+      "shape_id": 5,
+      "role": "body",
+      "max_chars": 210,
+      "paragraphs": 1,
+      "sample": "Tại sao bộ phận hoặc cơ quan của bạn lại tích cực làm việc để thực hiện 17 Mục tiêu Phát triển Bền vững (SDGs)? Việc chứ"
+    },
+    "bullets.title_3": {
+      "slide": 3,
+      "shape_id": 8,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "02"
+    },
+    "bullets.body_2": {
+      "slide": 3,
+      "shape_id": 9,
+      "role": "body",
+      "max_chars": 210,
+      "paragraphs": 1,
+      "sample": "Tại sao bộ phận hoặc cơ quan của bạn lại tích cực làm việc để thực hiện 17 Mục tiêu Phát triển Bền vững (SDGs)? Việc chứ"
+    },
+    "bullets.title_4": {
+      "slide": 3,
+      "shape_id": 12,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "03"
+    },
+    "bullets.body_3": {
+      "slide": 3,
+      "shape_id": 13,
+      "role": "body",
+      "max_chars": 210,
+      "paragraphs": 1,
+      "sample": "Tại sao bộ phận hoặc cơ quan của bạn lại tích cực làm việc để thực hiện 17 Mục tiêu Phát triển Bền vững (SDGs)? Việc chứ"
+    },
+    "bullets.body_4": {
+      "slide": 3,
+      "shape_id": 21,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "bullets.subtitle": {
+      "slide": 3,
+      "shape_id": 22,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "4"
+    },
+    "bullets_2.title": {
+      "slide": 4,
+      "shape_id": 2,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Mục tiêu tác động"
+    },
+    "bullets_2.title_2": {
+      "slide": 4,
+      "shape_id": 4,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Tác động #1"
+    },
+    "bullets_2.body": {
+      "slide": 4,
+      "shape_id": 5,
+      "role": "body",
+      "max_chars": 167,
+      "paragraphs": 2,
+      "sample": "Hãy giữ sự cân bằng! Xã hội đang đóng góp như thế nào vào những vấn đề Mục tiêu Phát triển Bền vững (SDGs) cần\ngiải quyế"
+    },
+    "bullets_2.title_3": {
+      "slide": 4,
+      "shape_id": 7,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Tác động #2"
+    },
+    "bullets_2.body_2": {
+      "slide": 4,
+      "shape_id": 8,
+      "role": "body",
+      "max_chars": 167,
+      "paragraphs": 2,
+      "sample": "Hãy giữ sự cân bằng! Xã hội đang đóng góp như thế nào vào những vấn đề Mục tiêu Phát triển Bền vững (SDGs) cần\ngiải quyế"
+    },
+    "bullets_2.title_4": {
+      "slide": 4,
+      "shape_id": 10,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Tác động # 3"
+    },
+    "bullets_2.body_3": {
+      "slide": 4,
+      "shape_id": 11,
+      "role": "body",
+      "max_chars": 167,
+      "paragraphs": 2,
+      "sample": "Hãy giữ sự cân bằng! Xã hội đang đóng góp như thế nào vào những vấn đề Mục tiêu Phát triển Bền vững (SDGs) cần\ngiải quyế"
+    },
+    "bullets_2.body_4": {
+      "slide": 4,
+      "shape_id": 14,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "bullets_2.subtitle": {
+      "slide": 4,
+      "shape_id": 17,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "bullets_2.subtitle_2": {
+      "slide": 4,
+      "shape_id": 18,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "5"
+    },
+    "concept.title": {
+      "slide": 5,
+      "shape_id": 4,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Tác động #1"
+    },
+    "concept.subtitle": {
+      "slide": 5,
+      "shape_id": 5,
+      "role": "subtitle",
+      "max_chars": 284,
+      "paragraphs": 5,
+      "sample": "Hãy giữ sự cân bằng! Xã hội đang\nđóng góp như thế nào vào những vấn đề Mục tiêu Phát triển Bền vững (SDGs) cần giải quyế"
+    },
+    "concept.body": {
+      "slide": 5,
+      "shape_id": 6,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "concept.subtitle_2": {
+      "slide": 5,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "6"
+    },
+    "concept.subtitle_3": {
+      "slide": 5,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "concept_2.body": {
+      "slide": 6,
+      "shape_id": 2,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 1,
+      "sample": "Mục tiêu phát triển bền vững"
+    },
+    "concept_2.title": {
+      "slide": 6,
+      "shape_id": 3,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Tác động #2"
+    },
+    "concept_2.subtitle": {
+      "slide": 6,
+      "shape_id": 4,
+      "role": "subtitle",
+      "max_chars": 284,
+      "paragraphs": 4,
+      "sample": "Hãy giữ sự cân bằng! Xã hội đang đóng góp như thế nào vào những vấn đề Mục tiêu Phát triển\nBền vững (SDGs) cần giải quyế"
+    },
+    "concept_2.subtitle_2": {
+      "slide": 6,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "concept_2.subtitle_3": {
+      "slide": 6,
+      "shape_id": 10,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "7"
+    },
+    "concept_3.title": {
+      "slide": 7,
+      "shape_id": 2,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Tác động #3"
+    },
+    "concept_3.subtitle": {
+      "slide": 7,
+      "shape_id": 5,
+      "role": "subtitle",
+      "max_chars": 284,
+      "paragraphs": 2,
+      "sample": "Hãy giữ sự cân bằng! Xã hội đang đóng góp như thế nào vào những vấn đề Mục tiêu Phát triển Bền vững (SDGs) cần giải quyế"
+    },
+    "concept_3.subtitle_2": {
+      "slide": 7,
+      "shape_id": 8,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "concept_3.subtitle_3": {
+      "slide": 7,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "8"
+    },
+    "section_divider_2.title": {
+      "slide": 8,
+      "shape_id": 6,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Ưu tiên"
+    },
+    "section_divider_2.subtitle": {
+      "slide": 8,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Phần 2:"
+    },
+    "section_divider_2.body": {
+      "slide": 8,
+      "shape_id": 8,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "section_divider_2.subtitle_2": {
+      "slide": 8,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "9"
+    },
+    "bullets_3.title": {
+      "slide": 9,
+      "shape_id": 5,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Các SDGs ưu tiên"
+    },
+    "bullets_3.subtitle": {
+      "slide": 9,
+      "shape_id": 6,
+      "role": "subtitle",
+      "max_chars": 225,
+      "paragraphs": 2,
+      "sample": "Có 17 Mục tiêu Phát triển Bền vững (SDGs) và 169 chỉ tiêu. Tất cả đều quan trọng, nhưng một số sẽ có mức độ liên quan ca"
+    },
+    "bullets_3.body": {
+      "slide": 9,
+      "shape_id": 7,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "bullets_3.subtitle_2": {
+      "slide": 9,
+      "shape_id": 10,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "10"
+    },
+    "concept_4.subtitle": {
+      "slide": 10,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 372,
+      "paragraphs": 4,
+      "sample": "Giải thích tại sao mục tiêu này là ưu tiên hàng đầu. Liệt kê các mục tiêu cụ thể do Liên Hợp Quốc đề ra mà chính phủ muố"
+    },
+    "concept_4.title": {
+      "slide": 10,
+      "shape_id": 8,
+      "role": "title",
+      "max_chars": 53,
+      "paragraphs": 1,
+      "sample": "\"Xóa bỏ nghèo đói dưới mọi hình thức ở khắp mọi nơi”."
+    },
+    "concept_4.subtitle_2": {
+      "slide": 10,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Mục tiêu ưu tiên #1:"
+    },
+    "concept_4.body": {
+      "slide": 10,
+      "shape_id": 10,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "concept_4.subtitle_3": {
+      "slide": 10,
+      "shape_id": 11,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "11"
+    },
+    "concept_5.subtitle": {
+      "slide": 11,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 191,
+      "paragraphs": 4,
+      "sample": "Giải thích tại sao mục tiêu này lại là ưu tiên hàng đầu. Liệt kê các mục tiêu cụ thể do\nLiên Hợp Quốc đề ra mà chính phủ"
+    },
+    "concept_5.title": {
+      "slide": 11,
+      "shape_id": 8,
+      "role": "title",
+      "max_chars": 101,
+      "paragraphs": 3,
+      "sample": "\"Đảm bảo nguồn nước sạch và vệ sinh môi trường sẵn có\nvà được quản lý\nbền vững cho tất cả mọi người”."
+    },
+    "concept_5.subtitle_2": {
+      "slide": 11,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Mục tiêu ưu tiên #2:"
+    },
+    "concept_5.body": {
+      "slide": 11,
+      "shape_id": 10,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "concept_5.subtitle_3": {
+      "slide": 11,
+      "shape_id": 11,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "12"
+    },
+    "concept_6.subtitle": {
+      "slide": 12,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 372,
+      "paragraphs": 6,
+      "sample": "Giải thích tại sao mục tiêu này là ưu tiên\nhàng đầu. Liệt kê các mục tiêu cụ thể do\nLiên Hợp Quốc đề ra mà chính phủ muố"
+    },
+    "concept_6.title": {
+      "slide": 12,
+      "shape_id": 8,
+      "role": "title",
+      "max_chars": 59,
+      "paragraphs": 3,
+      "sample": "\"Nhằm giảm thiểu bất bình đẳng\ntrong và giữa\ncác quốc gia”."
+    },
+    "concept_6.subtitle_2": {
+      "slide": 12,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 22,
+      "paragraphs": 1,
+      "sample": "Mục tiêu ưu tiên số 3:"
+    },
+    "concept_6.body": {
+      "slide": 12,
+      "shape_id": 10,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "concept_6.subtitle_3": {
+      "slide": 12,
+      "shape_id": 11,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "13"
+    },
+    "process.title": {
+      "slide": 13,
+      "shape_id": 3,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Phương pháp"
+    },
+    "process.body": {
+      "slide": 13,
+      "shape_id": 4,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "process.subtitle": {
+      "slide": 13,
+      "shape_id": 5,
+      "role": "subtitle",
+      "max_chars": 208,
+      "paragraphs": 3,
+      "sample": "Hãy sử dụng phần này để thảo luận về cách chính phủ sẽ\nđạt được các mục tiêu và chỉ tiêu đã cam kết.\n\nCung cấp một mô tả"
+    },
+    "process.subtitle_2": {
+      "slide": 13,
+      "shape_id": 6,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "14"
+    },
+    "section_divider_3.title": {
+      "slide": 14,
+      "shape_id": 6,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Đo lường"
+    },
+    "section_divider_3.subtitle": {
+      "slide": 14,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Phần 3:"
+    },
+    "section_divider_3.body": {
+      "slide": 14,
+      "shape_id": 8,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "section_divider_3.subtitle_2": {
+      "slide": 14,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "15"
+    },
+    "bullets_4.title": {
+      "slide": 15,
+      "shape_id": 2,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "Cập nhật\ntiến độ"
+    },
+    "bullets_4.body": {
+      "slide": 15,
+      "shape_id": 3,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "bullets_4.title_2": {
+      "slide": 15,
+      "shape_id": 4,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Cập nhật chính 2"
+    },
+    "bullets_4.title_3": {
+      "slide": 15,
+      "shape_id": 5,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Cập nhật chính 1"
+    },
+    "bullets_4.title_4": {
+      "slide": 15,
+      "shape_id": 6,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Cập nhật chính 3"
+    },
+    "bullets_4.subtitle": {
+      "slide": 15,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 105,
+      "paragraphs": 1,
+      "sample": "Hãy trình bày thông tin cập nhật quan trọng dưới dạng các tiêu đề ngắn gọn, súc tích để dễ dàng đọc lướt."
+    },
+    "bullets_4.subtitle_2": {
+      "slide": 15,
+      "shape_id": 8,
+      "role": "subtitle",
+      "max_chars": 105,
+      "paragraphs": 1,
+      "sample": "Hãy trình bày thông tin cập nhật quan trọng dưới dạng các tiêu đề ngắn gọn, súc tích để dễ dàng đọc lướt."
+    },
+    "bullets_4.subtitle_3": {
+      "slide": 15,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 105,
+      "paragraphs": 1,
+      "sample": "Hãy trình bày thông tin cập nhật quan trọng dưới dạng các tiêu đề ngắn gọn, súc tích để dễ dàng đọc lướt."
+    },
+    "bullets_4.subtitle_4": {
+      "slide": 15,
+      "shape_id": 12,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "16"
+    },
+    "bullets_4.subtitle_5": {
+      "slide": 15,
+      "shape_id": 15,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "statistic.body": {
+      "slide": 16,
+      "shape_id": 2,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "statistic.title": {
+      "slide": 16,
+      "shape_id": 4,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "87%"
+    },
+    "statistic.title_2": {
+      "slide": 16,
+      "shape_id": 5,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "1 trên 5"
+    },
+    "statistic.title_3": {
+      "slide": 16,
+      "shape_id": 6,
+      "role": "title",
+      "max_chars": 75,
+      "paragraphs": 1,
+      "sample": "Đưa ra một số liệu thống kê đáng chú ý và cung cấp lời giải thích ngắn gọn."
+    },
+    "statistic.title_4": {
+      "slide": 16,
+      "shape_id": 7,
+      "role": "title",
+      "max_chars": 75,
+      "paragraphs": 1,
+      "sample": "Đưa ra một số liệu thống kê đáng chú ý và cung cấp lời giải thích ngắn gọn."
+    },
+    "statistic.subtitle": {
+      "slide": 16,
+      "shape_id": 11,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "statistic.subtitle_2": {
+      "slide": 16,
+      "shape_id": 12,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "17"
+    },
+    "statistic_2.subtitle": {
+      "slide": 17,
+      "shape_id": 4,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "statistic_2.title": {
+      "slide": 17,
+      "shape_id": 6,
+      "role": "title",
+      "max_chars": 79,
+      "paragraphs": 1,
+      "sample": "Tính đến quý 1 năm 2031, các chương trình đã tiếp cận được 16.800 bên thụ hưởng"
+    },
+    "statistic_2.subtitle_2": {
+      "slide": 17,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 233,
+      "paragraphs": 2,
+      "sample": "Việc tích hợp các Mục tiêu Phát triển Bền vững (SDG) xuyên suốt giúp đẩy nhanh tác động, với các\nchương trình toàn diện "
+    },
+    "statistic_2.body": {
+      "slide": 17,
+      "shape_id": 8,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "statistic_2.body_2": {
+      "slide": 17,
+      "shape_id": 12,
+      "role": "body",
+      "max_chars": 124,
+      "paragraphs": 1,
+      "sample": "Mẹo Canva: Biểu đồ này được liên kết với trang tính trên trang này. Chọn biểu đồ để thay đổi vùng chọn dữ liệu hoặc cài "
+    },
+    "statistic_2.subtitle_3": {
+      "slide": 17,
+      "shape_id": 13,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "18"
+    },
+    "statistic_3.subtitle": {
+      "slide": 18,
+      "shape_id": 4,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "statistic_3.title": {
+      "slide": 18,
+      "shape_id": 7,
+      "role": "title",
+      "max_chars": 134,
+      "paragraphs": 3,
+      "sample": "Tất cả các Mục tiêu Phát triển Bền vững ưu tiên đều cho thấy sự tăng trưởng mạnh mẽ;\ncác chương trình xóa đói\ngiảm nghèo"
+    },
+    "statistic_3.subtitle_2": {
+      "slide": 18,
+      "shape_id": 8,
+      "role": "subtitle",
+      "max_chars": 211,
+      "paragraphs": 2,
+      "sample": "Các chương trình xóa đói giảm nghèo (đường màu xanh lá nhạt) dẫn đầu về tăng trưởng với\n48 chương trình đang hoạt động, "
+    },
+    "statistic_3.body": {
+      "slide": 18,
+      "shape_id": 9,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 1,
+      "sample": "Mục tiêu phát triển bền vững"
+    },
+    "statistic_3.body_2": {
+      "slide": 18,
+      "shape_id": 13,
+      "role": "body",
+      "max_chars": 124,
+      "paragraphs": 1,
+      "sample": "Mẹo Canva: Biểu đồ này được liên kết với trang tính trên trang này. Chọn biểu đồ để thay đổi vùng chọn dữ liệu hoặc cài "
+    },
+    "statistic_3.subtitle_3": {
+      "slide": 18,
+      "shape_id": 14,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "19"
+    },
+    "statistic_4.subtitle": {
+      "slide": 19,
+      "shape_id": 3,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "statistic_4.title": {
+      "slide": 19,
+      "shape_id": 5,
+      "role": "title",
+      "max_chars": 83,
+      "paragraphs": 2,
+      "sample": "75% nguồn lực của chúng tôi tập trung vào\nxóa đói giảm nghèo và cung cấp nước sạch."
+    },
+    "statistic_4.subtitle_2": {
+      "slide": 19,
+      "shape_id": 6,
+      "role": "subtitle",
+      "max_chars": 168,
+      "paragraphs": 2,
+      "sample": "Phân bổ nguồn lực chiến lược ưu tiên xóa đói giảm nghèo (40%) và cung cấp nước sạch (35%) đồng thời duy trì hoạt động hi"
+    },
+    "statistic_4.body": {
+      "slide": 19,
+      "shape_id": 7,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "statistic_4.body_2": {
+      "slide": 19,
+      "shape_id": 11,
+      "role": "body",
+      "max_chars": 124,
+      "paragraphs": 1,
+      "sample": "Mẹo Canva: Biểu đồ này được liên kết với trang tính trên trang này. Chọn biểu đồ để thay đổi vùng chọn dữ liệu hoặc cài "
+    },
+    "statistic_4.subtitle_3": {
+      "slide": 19,
+      "shape_id": 12,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "20"
+    },
+    "quote.title": {
+      "slide": 20,
+      "shape_id": 2,
+      "role": "title",
+      "max_chars": 21,
+      "paragraphs": 2,
+      "sample": "Tiến bộ\nvề chất lượng"
+    },
+    "quote.subtitle": {
+      "slide": 20,
+      "shape_id": 3,
+      "role": "subtitle",
+      "max_chars": 187,
+      "paragraphs": 1,
+      "sample": "Dữ liệu định tính có thể làm cho báo cáo tiến độ mạnh mẽ hơn. Hãy sử dụng trang này để hiển thị những trích dẫn đáng chú"
+    },
+    "quote.body": {
+      "slide": 20,
+      "shape_id": 4,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "quote.subtitle_2": {
+      "slide": 20,
+      "shape_id": 6,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Phương Hà"
+    },
+    "quote.subtitle_3": {
+      "slide": 20,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 56,
+      "paragraphs": 1,
+      "sample": "Hãy viết câu nói đáng nhớ hoặc kết quả khảo sát vào đây."
+    },
+    "quote.subtitle_4": {
+      "slide": 20,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Ý An"
+    },
+    "quote.subtitle_5": {
+      "slide": 20,
+      "shape_id": 10,
+      "role": "subtitle",
+      "max_chars": 56,
+      "paragraphs": 1,
+      "sample": "Hãy viết câu nói đáng nhớ hoặc kết quả khảo sát vào đây."
+    },
+    "quote.subtitle_6": {
+      "slide": 20,
+      "shape_id": 12,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Hoàng Oanh"
+    },
+    "quote.subtitle_7": {
+      "slide": 20,
+      "shape_id": 13,
+      "role": "subtitle",
+      "max_chars": 56,
+      "paragraphs": 1,
+      "sample": "Hãy viết câu nói đáng nhớ hoặc kết quả khảo sát vào đây."
+    },
+    "quote.subtitle_8": {
+      "slide": 20,
+      "shape_id": 20,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "21"
+    },
+    "summary.title": {
+      "slide": 22,
+      "shape_id": 4,
+      "role": "title",
+      "max_chars": 29,
+      "paragraphs": 1,
+      "sample": "Phân tích các phát hiện chính"
+    },
+    "summary.subtitle": {
+      "slide": 22,
+      "shape_id": 5,
+      "role": "subtitle",
+      "max_chars": 165,
+      "paragraphs": 3,
+      "sample": "Hãy thảo luận về các xu hướng được phát hiện từ các bản cập nhật tiến độ. Bạn có thể chọn sử dụng tiêu đề và\nđể phần phâ"
+    },
+    "summary.body": {
+      "slide": 22,
+      "shape_id": 6,
+      "role": "body",
+      "max_chars": 28,
+      "paragraphs": 2,
+      "sample": "Mục tiêu\nphát triển bền vững"
+    },
+    "summary.subtitle_2": {
+      "slide": 22,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "summary.subtitle_3": {
+      "slide": 22,
+      "shape_id": 10,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "23"
+    },
+    "summary_2.title": {
+      "slide": 23,
+      "shape_id": 11,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Các bước tiếp theo"
+    },
+    "summary_2.subtitle": {
+      "slide": 23,
+      "shape_id": 13,
+      "role": "subtitle",
+      "max_chars": 54,
+      "paragraphs": 1,
+      "sample": "Hãy diễn đạt chi tiết bước hành động đó trong một câu."
+    },
+    "summary_2.subtitle_2": {
+      "slide": 23,
+      "shape_id": 14,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Bước hành động 1"
+    },
+    "summary_2.subtitle_3": {
+      "slide": 23,
+      "shape_id": 17,
+      "role": "subtitle",
+      "max_chars": 54,
+      "paragraphs": 1,
+      "sample": "Hãy diễn đạt chi tiết bước hành động đó trong một câu."
+    },
+    "summary_2.subtitle_4": {
+      "slide": 23,
+      "shape_id": 18,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Bước hành động 2"
+    },
+    "summary_2.subtitle_5": {
+      "slide": 23,
+      "shape_id": 21,
+      "role": "subtitle",
+      "max_chars": 54,
+      "paragraphs": 1,
+      "sample": "Hãy diễn đạt chi tiết bước hành động đó trong một câu."
+    },
+    "summary_2.subtitle_6": {
+      "slide": 23,
+      "shape_id": 22,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Bước hành động 3"
+    },
+    "summary_2.subtitle_7": {
+      "slide": 23,
+      "shape_id": 24,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "24"
+    },
+    "closing.title": {
+      "slide": 24,
+      "shape_id": 2,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Liên hệ chúng tôi"
+    },
+    "closing.subtitle": {
+      "slide": 24,
+      "shape_id": 3,
+      "role": "subtitle",
+      "max_chars": 43,
+      "paragraphs": 2,
+      "sample": "Nếu bạn có câu hỏi\nhoặc thắc mắc về báo cáo"
+    },
+    "closing.subtitle_2": {
+      "slide": 24,
+      "shape_id": 5,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "www.trangwebhay.vn"
+    },
+    "closing.subtitle_3": {
+      "slide": 24,
+      "shape_id": 6,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Trang web"
+    },
+    "closing.subtitle_4": {
+      "slide": 24,
+      "shape_id": 7,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "+84 123 456 789"
+    },
+    "closing.subtitle_5": {
+      "slide": 24,
+      "shape_id": 8,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Điện thoại"
+    },
+    "closing.subtitle_6": {
+      "slide": 24,
+      "shape_id": 9,
+      "role": "subtitle",
+      "max_chars": 22,
+      "paragraphs": 1,
+      "sample": "xinchao@trangwebhay.vn"
+    },
+    "closing.subtitle_7": {
+      "slide": 24,
+      "shape_id": 10,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Email"
+    },
+    "closing.subtitle_8": {
+      "slide": 24,
+      "shape_id": 15,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "closing.subtitle_9": {
+      "slide": 24,
+      "shape_id": 16,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "25"
+    },
+    "closing_2.title": {
+      "slide": 25,
+      "shape_id": 14,
+      "role": "title",
+      "max_chars": 23,
+      "paragraphs": 2,
+      "sample": "Lời cảm ơn\nvà nguồn lực"
+    },
+    "closing_2.subtitle": {
+      "slide": 25,
+      "shape_id": 15,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Nhóm dự án"
+    },
+    "closing_2.subtitle_2": {
+      "slide": 25,
+      "shape_id": 16,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Nhóm nguồn lực"
+    },
+    "closing_2.body": {
+      "slide": 25,
+      "shape_id": 18,
+      "role": "body",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Vai trò/Chức vụ"
+    },
+    "closing_2.subtitle_3": {
+      "slide": 25,
+      "shape_id": 19,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "NGUYỄN\nVÂN ANH "
+    },
+    "closing_2.body_2": {
+      "slide": 25,
+      "shape_id": 20,
+      "role": "body",
+      "max_chars": 56,
+      "paragraphs": 2,
+      "sample": "Hãy mô tả những\nđóng góp chính của họ trong báo cáo này."
+    },
+    "closing_2.body_3": {
+      "slide": 25,
+      "shape_id": 22,
+      "role": "body",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Vai trò/Chức vụ"
+    },
+    "closing_2.subtitle_4": {
+      "slide": 25,
+      "shape_id": 23,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "NGUYỄN\nKIỀU OANH"
+    },
+    "closing_2.body_4": {
+      "slide": 25,
+      "shape_id": 24,
+      "role": "body",
+      "max_chars": 56,
+      "paragraphs": 2,
+      "sample": "Hãy mô tả những\nđóng góp chính của họ trong báo cáo này."
+    },
+    "closing_2.body_5": {
+      "slide": 25,
+      "shape_id": 26,
+      "role": "body",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Vai trò/Chức vụ"
+    },
+    "closing_2.subtitle_5": {
+      "slide": 25,
+      "shape_id": 27,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "HOÀNG\nTRỌNG KHÔI"
+    },
+    "closing_2.body_6": {
+      "slide": 25,
+      "shape_id": 28,
+      "role": "body",
+      "max_chars": 56,
+      "paragraphs": 2,
+      "sample": "Hãy mô tả những\nđóng góp chính của họ trong báo cáo này."
+    },
+    "closing_2.body_7": {
+      "slide": 25,
+      "shape_id": 30,
+      "role": "body",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Vai trò/Chức vụ"
+    },
+    "closing_2.subtitle_6": {
+      "slide": 25,
+      "shape_id": 31,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "LÊ PHAN\nQUỲNH ANH"
+    },
+    "closing_2.body_8": {
+      "slide": 25,
+      "shape_id": 32,
+      "role": "body",
+      "max_chars": 56,
+      "paragraphs": 2,
+      "sample": "Hãy mô tả những\nđóng góp chính của họ trong báo cáo này."
+    },
+    "closing_2.body_9": {
+      "slide": 25,
+      "shape_id": 34,
+      "role": "body",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Vai trò/Chức vụ"
+    },
+    "closing_2.subtitle_7": {
+      "slide": 25,
+      "shape_id": 35,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "PHAN\nDUY MINH"
+    },
+    "closing_2.body_10": {
+      "slide": 25,
+      "shape_id": 36,
+      "role": "body",
+      "max_chars": 56,
+      "paragraphs": 2,
+      "sample": "Hãy mô tả những\nđóng góp chính của họ trong báo cáo này."
+    },
+    "closing_2.body_11": {
+      "slide": 25,
+      "shape_id": 38,
+      "role": "body",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Vai trò/Chức vụ"
+    },
+    "closing_2.subtitle_8": {
+      "slide": 25,
+      "shape_id": 39,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "TRẦN LÊ\nLAN ANH"
+    },
+    "closing_2.body_12": {
+      "slide": 25,
+      "shape_id": 40,
+      "role": "body",
+      "max_chars": 56,
+      "paragraphs": 2,
+      "sample": "Hãy mô tả những\nđóng góp chính của họ trong báo cáo này."
+    },
+    "closing_2.subtitle_9": {
+      "slide": 25,
+      "shape_id": 45,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Quỹ Vì Ngày Mai"
+    },
+    "closing_2.subtitle_10": {
+      "slide": 25,
+      "shape_id": 46,
+      "role": "subtitle",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "26"
+    },
+    "s26.title": {
+      "slide": 26,
+      "shape_id": 19,
+      "role": "title",
+      "max_chars": 25,
+      "paragraphs": 1,
+      "sample": "Trang tài nguyên miễn phí"
+    },
+    "s26.subtitle": {
+      "slide": 26,
+      "shape_id": 20,
+      "role": "subtitle",
+      "max_chars": 112,
+      "paragraphs": 2,
+      "sample": "Hãy sử dụng các thành phần\nchính thức của Mục tiêu Phát triển Bền vững này trong bài thuyết trình Canva của bạn."
+    },
+    "s26.title_2": {
+      "slide": 26,
+      "shape_id": 22,
+      "role": "title",
+      "max_chars": 21,
+      "paragraphs": 1,
+      "sample": "CÁC MỤC TIÊU TOÀN CẦU"
+    },
+    "s27.title": {
+      "slide": 27,
+      "shape_id": 19,
+      "role": "title",
+      "max_chars": 25,
+      "paragraphs": 1,
+      "sample": "Trang tài nguyên miễn phí"
+    },
+    "s27.subtitle": {
+      "slide": 27,
+      "shape_id": 20,
+      "role": "subtitle",
+      "max_chars": 112,
+      "paragraphs": 2,
+      "sample": "Hãy sử dụng các thành phần\nchính thức của Mục tiêu Phát triển Bền vững này trong bài thuyết trình Canva của bạn."
+    },
+    "s28.title": {
+      "slide": 28,
+      "shape_id": 70,
+      "role": "title",
+      "max_chars": 25,
+      "paragraphs": 1,
+      "sample": "Trang tài nguyên miễn phí"
+    },
+    "s28.subtitle": {
+      "slide": 28,
+      "shape_id": 71,
+      "role": "subtitle",
+      "max_chars": 112,
+      "paragraphs": 2,
+      "sample": "Hãy sử dụng các thành phần\nchính thức của Mục tiêu Phát triển Bền vững này trong bài thuyết trình Canva của bạn."
+    },
+    "s29.title": {
+      "slide": 29,
+      "shape_id": 19,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 1,
+      "sample": "Trang tài nguyên"
+    },
+    "s29.subtitle": {
+      "slide": 29,
+      "shape_id": 20,
+      "role": "subtitle",
+      "max_chars": 112,
+      "paragraphs": 2,
+      "sample": "Hãy sử dụng các thành phần\nchính thức của Mục tiêu Phát triển Bền vững này trong bài thuyết trình Canva của bạn."
+    },
+    "s30.title": {
+      "slide": 30,
+      "shape_id": 3,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "Trang\ntài nguyên"
+    },
+    "s30.subtitle": {
+      "slide": 30,
+      "shape_id": 4,
+      "role": "subtitle",
+      "max_chars": 136,
+      "paragraphs": 3,
+      "sample": "Khám phá sự kỳ diệu trong thuyết trình. Chọn các\nphím này khi đang ở chế độ Thuyết trình!\n\nXóa hoặc ẩn trang này trước k"
+    },
+    "s31.title": {
+      "slide": 31,
+      "shape_id": 3,
+      "role": "title",
+      "max_chars": 20,
+      "paragraphs": 2,
+      "sample": "Trang\ntài nguyên"
+    },
+    "s31.subtitle": {
+      "slide": 31,
+      "shape_id": 4,
+      "role": "subtitle",
+      "max_chars": 221,
+      "paragraphs": 2,
+      "sample": "Bạn muốn linh hoạt hơn khi thuyết trình? Hãy ghi hình bài thuyết trình của bạn để thu hút người nghe theo cách phù hợp v"
+    }
+  },
+  "images": {
+    "bullets.image_1": {
+      "slide": 3,
+      "shape_id": 16,
+      "aspect_ratio": 2.022,
+      "width_px": 548,
+      "height_px": 271
+    },
+    "bullets.image_2": {
+      "slide": 3,
+      "shape_id": 18,
+      "aspect_ratio": 2.022,
+      "width_px": 548,
+      "height_px": 271
+    },
+    "bullets.image_3": {
+      "slide": 3,
+      "shape_id": 20,
+      "aspect_ratio": 2.022,
+      "width_px": 548,
+      "height_px": 271
+    },
+    "concept.image": {
+      "slide": 5,
+      "shape_id": 3,
+      "aspect_ratio": 0.61,
+      "width_px": 879,
+      "height_px": 1440
+    },
+    "concept_2.image": {
+      "slide": 6,
+      "shape_id": 6,
+      "aspect_ratio": 0.94,
+      "width_px": 1354,
+      "height_px": 1440
+    },
+    "concept_3.image": {
+      "slide": 7,
+      "shape_id": 4,
+      "aspect_ratio": 3.559,
+      "width_px": 2577,
+      "height_px": 724
+    },
+    "bullets_3.image": {
+      "slide": 9,
+      "shape_id": 3,
+      "aspect_ratio": 6.214,
+      "width_px": 2560,
+      "height_px": 412
+    },
+    "statistic.image_1": {
+      "slide": 16,
+      "shape_id": 3,
+      "aspect_ratio": 1.0,
+      "width_px": 356,
+      "height_px": 356
+    },
+    "statistic.image_2": {
+      "slide": 16,
+      "shape_id": 8,
+      "aspect_ratio": 2.643,
+      "width_px": 526,
+      "height_px": 199
+    },
+    "statistic_2.image": {
+      "slide": 17,
+      "shape_id": 9,
+      "aspect_ratio": 1.582,
+      "width_px": 989,
+      "height_px": 625
+    },
+    "statistic_3.image": {
+      "slide": 18,
+      "shape_id": 10,
+      "aspect_ratio": 1.824,
+      "width_px": 1036,
+      "height_px": 568
+    },
+    "statistic_4.image": {
+      "slide": 19,
+      "shape_id": 8,
+      "aspect_ratio": 1.32,
+      "width_px": 919,
+      "height_px": 696
+    },
+    "quote.image_1": {
+      "slide": 20,
+      "shape_id": 15,
+      "aspect_ratio": 1.598,
+      "width_px": 548,
+      "height_px": 343
+    },
+    "quote.image_2": {
+      "slide": 20,
+      "shape_id": 17,
+      "aspect_ratio": 1.598,
+      "width_px": 548,
+      "height_px": 343
+    },
+    "quote.image_3": {
+      "slide": 20,
+      "shape_id": 19,
+      "aspect_ratio": 1.598,
+      "width_px": 548,
+      "height_px": 343
+    },
+    "s21.image_1": {
+      "slide": 21,
+      "shape_id": 3,
+      "aspect_ratio": 0.881,
+      "width_px": 1085,
+      "height_px": 1231
+    },
+    "s21.image_2": {
+      "slide": 21,
+      "shape_id": 4,
+      "aspect_ratio": 1.92,
+      "width_px": 1085,
+      "height_px": 565
+    },
+    "s21.image_3": {
+      "slide": 21,
+      "shape_id": 5,
+      "aspect_ratio": 1.92,
+      "width_px": 1085,
+      "height_px": 565
+    },
+    "summary_2.image_1": {
+      "slide": 23,
+      "shape_id": 3,
+      "aspect_ratio": 0.976,
+      "width_px": 613,
+      "height_px": 628
+    },
+    "summary_2.image_2": {
+      "slide": 23,
+      "shape_id": 5,
+      "aspect_ratio": 0.978,
+      "width_px": 614,
+      "height_px": 628
+    },
+    "summary_2.image_3": {
+      "slide": 23,
+      "shape_id": 7,
+      "aspect_ratio": 0.976,
+      "width_px": 613,
+      "height_px": 628
+    },
+    "closing_2.image_1": {
+      "slide": 25,
+      "shape_id": 3,
+      "aspect_ratio": 0.976,
+      "width_px": 282,
+      "height_px": 289
+    },
+    "closing_2.image_2": {
+      "slide": 25,
+      "shape_id": 5,
+      "aspect_ratio": 0.976,
+      "width_px": 282,
+      "height_px": 289
+    },
+    "closing_2.image_3": {
+      "slide": 25,
+      "shape_id": 7,
+      "aspect_ratio": 0.976,
+      "width_px": 282,
+      "height_px": 289
+    },
+    "closing_2.image_4": {
+      "slide": 25,
+      "shape_id": 9,
+      "aspect_ratio": 0.976,
+      "width_px": 282,
+      "height_px": 289
+    },
+    "closing_2.image_5": {
+      "slide": 25,
+      "shape_id": 11,
+      "aspect_ratio": 0.976,
+      "width_px": 282,
+      "height_px": 289
+    },
+    "closing_2.image_6": {
+      "slide": 25,
+      "shape_id": 13,
+      "aspect_ratio": 0.976,
+      "width_px": 282,
+      "height_px": 289
+    }
+  }
+}

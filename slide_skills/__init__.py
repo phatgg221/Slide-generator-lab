@@ -22,6 +22,11 @@ from .assembler import build_deck_from_library, load_library_types, DEFAULT_LIBR
 from .agent import SlideGeneratorAgent
 from .pipeline import CourseDeckPipeline
 from .usage import tracker as usage_tracker, UsageSnapshot
+from .transitions import apply_transitions, EFFECTS as TRANSITION_EFFECTS
+from .template_maker import clean_template, auto_manifest, prepare_template, list_templates
+from .merge_template import (
+    make_placeholder_template, render_placeholders, generate_merge_data, load_schema,
+)
 
 __all__ = [
     "parse_template",
@@ -50,4 +55,14 @@ __all__ = [
     "CourseDeckPipeline",
     "usage_tracker",
     "UsageSnapshot",
+    "apply_transitions",
+    "TRANSITION_EFFECTS",
+    "clean_template",
+    "auto_manifest",
+    "prepare_template",
+    "list_templates",
+    "make_placeholder_template",
+    "render_placeholders",
+    "generate_merge_data",
+    "load_schema",
 ]

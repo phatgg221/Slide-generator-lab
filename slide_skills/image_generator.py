@@ -56,15 +56,26 @@ def generate_image(
     aspect_ratio (width / height)."""
     client = get_client()
     size = _nearest_size(aspect_ratio)
-    response = client.images.generate(
-        model=IMAGE_MODEL,
-        prompt=prompt,
-        size=size,
-        quality=quality,
-        style=style,
-        n=1,
-        response_format="b64_json",
-    )
+
+    kwargs = dict(model=IMAGE_MODEL, prompt=prompt, size=size, n=1)
+    if IMAGE_MODEL.startswith("dall-e"):
+        kwargs.update(quality=quality, style=style, response_format="b64_json")
+    try:
+        response = client.images.generate(**kwargs)
+    except Exception as exc:
+        # Newer OpenAI API versions reject response_format (images are
+        # returned base64 by default) — retry without it.
+        if "response_format" in str(exc) and "response_format" in kwargs:
+            kwargs.pop("response_format")
+            response = client.images.generate(**kwargs)
+        else:
+            raise
     tracker.record_image(size, quality)
-    raw = base64.b64decode(response.data[0].b64_json)
+
+    data = response.data[0]
+    if getattr(data, "b64_json", None):
+        raw = base64.b64decode(data.b64_json)
+    else:  # URL response shape
+        import httpx
+        raw = httpx.get(data.url, timeout=60).content
     return _center_crop(raw, aspect_ratio)

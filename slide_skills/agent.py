@@ -87,7 +87,7 @@ class SlideGeneratorAgent:
             images = self._render_images(spec, content, warnings)
 
         self.on_progress("Filling template…")
-        out = fill_template(template_path, content, output_path, images=images)
+        out = fill_template(template_path, content, output_path, images=images, spec=spec)
         usage = tracker.snapshot() - usage_before
         self.on_progress(f"Done: {out}")
         self.on_progress(f"Usage: {usage.report()}")
@@ -117,10 +117,11 @@ class SlideGeneratorAgent:
                         f"Slide {slide_spec.index}, shape {t.shape_id} ({t.role}): "
                         "no text generated, template text kept."
                     )
-                elif len(text) > t.max_chars * 1.25:
+                elif len(text) > t.max_chars * 1.05:
                     warnings.append(
                         f"Slide {slide_spec.index}, shape {t.shape_id} ({t.role}): "
-                        f"text is {len(text)} chars vs budget {t.max_chars} — may overflow."
+                        f"text is {len(text)} chars vs budget {t.max_chars} — "
+                        "font auto-shrunk to fit."
                     )
         return warnings
 

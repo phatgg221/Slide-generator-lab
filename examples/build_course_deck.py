@@ -23,6 +23,7 @@ from slide_skills.assembler import load_library_types
 from slide_skills.pipeline import CourseDeckPipeline
 from slide_skills.template_parser import parse_template
 from slide_skills.theme import PRESETS
+from slide_skills.transitions import EFFECTS, apply_transitions
 
 
 def check_library(path: str) -> None:
@@ -44,6 +45,8 @@ def main():
     ap.add_argument("-o", "--output", default="out/course_deck.pptx")
     ap.add_argument("--language", default=None)
     ap.add_argument("--theme", choices=sorted(PRESETS), help="Force a theme preset")
+    ap.add_argument("--transition", choices=sorted(EFFECTS),
+                    help="Add a slide transition to every slide (e.g. fade)")
     ap.add_argument("--no-images", action="store_true")
     ap.add_argument("--no-research", action="store_true")
     ap.add_argument("--check", action="store_true", help="Validate the library and exit")
@@ -70,6 +73,10 @@ def main():
         content, args.library, args.output,
         language=args.language, theme_override=args.theme,
     )
+
+    if args.transition:
+        apply_transitions(result.output_path, result.output_path, effect=args.transition)
+        print(f"  • Added '{args.transition}' transitions to all slides")
 
     for w in result.warnings:
         print(f"  ⚠ {w}")

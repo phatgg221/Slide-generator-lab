@@ -1,0 +1,32 @@
+{
+  "types": [
+    "title",
+    "agenda",
+    "concept",
+    "section_divider",
+    "section_divider_2",
+    "comparison",
+    "bullets",
+    "bullets_2",
+    "process",
+    "summary",
+    "gallery",
+    "section_divider_3",
+    "closing"
+  ],
+  "descriptions": {
+    "title": "Use this slide as the opening title page for the presentation, containing five text boxes for the main title, company name, subtitle, and preparation details.",
+    "agenda": "This slide serves as the agenda or table of contents, with one text box for the title.",
+    "concept": "Use this slide to introduce the main problem being addressed, with two text boxes for the title and problem description.",
+    "section_divider": "This slide acts as a section divider for research results, with one text box for the title.",
+    "section_divider_2": "This slide serves as a section divider for competitive analysis, with one text box for the title.",
+    "comparison": "Use this slide to compare competitors, featuring three text boxes for titles and subtitles, and one image placeholder for visual data.",
+    "bullets": "This slide highlights interview insights, with five text boxes for titles and subtitles.",
+    "bullets_2": "Use this slide to describe the target market, with seven subtitle text boxes for different market segments.",
+    "process": "This slide outlines the user flow, with multiple text boxes for titles and subtitles describing the process steps.",
+    "summary": "Use this slide to summarize key learnings, with two text boxes for the title and summary content.",
+    "gallery": "This slide showcases advertising and product samples, with one title text box and three image placeholders.",
+    "section_divider_3": "This slide acts as a section divider for the completed moodboard, with one text box for the title.",
+    "closing": "Use this slide for closing with contact information, featuring two text boxes for the title and contact details."
+  }
+}
