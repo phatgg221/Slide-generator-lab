@@ -2,13 +2,17 @@
 
 extract_keywords  -- GPT-4o pulls the key topics out of raw course content
 web_research      -- searches the web for facts/stats/sources on those topics
-                     (OpenAI web-search tool when the account has it, with a
-                     model-knowledge fallback so the pipeline never blocks)
+
+Search backend priority (first available wins):
+  1. Tavily        -- if TAVILY_API_KEY is set (LLM-grade search, any account)
+  2. OpenAI web_search / web_search_preview -- if the account has the tool
+  3. model-knowledge -- GPT-4o's own knowledge, so the pipeline never blocks
 """
 
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 
 from .config import get_client, TEXT_MODEL
@@ -18,7 +22,8 @@ from .usage import tracker
 @dataclass
 class ResearchResult:
     summary: str
-    method: str   # "web_search" | "web_search_preview" | "model-knowledge"
+    method: str   # "tavily" | "web_search" | "web_search_preview" | "model-knowledge"
+    sources: list = None   # [{title, url}] when the backend provides them
 
 
 def extract_keywords(content: str, max_keywords: int = 10) -> list[str]:
@@ -43,11 +48,61 @@ def extract_keywords(content: str, max_keywords: int = 10) -> list[str]:
     return [str(k) for k in payload.get("keywords", [])][:max_keywords]
 
 
+def _tavily_research(content: str, keywords: list[str], prompt: str) -> ResearchResult | None:
+    """Search with Tavily, then have GPT-4o synthesize the results into a
+    structured brief. Returns None if Tavily isn't available."""
+    api_key = os.getenv("TAVILY_API_KEY")
+    if not api_key:
+        return None
+    try:
+        from tavily import TavilyClient
+    except ImportError:
+        return None
+
+    try:
+        tv = TavilyClient(api_key=api_key)
+        query = ", ".join(keywords) if keywords else content[:380]
+        res = tv.search(query=query, max_results=6, include_answer=True,
+                        search_depth="advanced")
+    except Exception:
+        return None
+
+    results = res.get("results", [])
+    sources = [{"title": r.get("title", ""), "url": r.get("url", "")} for r in results]
+    context = ""
+    if res.get("answer"):
+        context += f"Search answer: {res['answer']}\n\n"
+    for r in results:
+        context += f"- {r.get('title','')} ({r.get('url','')}): {r.get('content','')}\n"
+
+    # synthesize grounded brief with GPT-4o (token usage tracked here)
+    client = get_client()
+    response = client.chat.completions.create(
+        model=TEXT_MODEL,
+        temperature=0.3,
+        messages=[
+            {"role": "system", "content": (
+                "You are a research assistant. Using ONLY the supplied web "
+                "search results, write a structured research brief: key facts, "
+                "definitions, recent statistics WITH numbers, notable examples. "
+                "Cite sources inline by title. Write in the context's language.")},
+            {"role": "user", "content": f"{prompt}\n\nWeb search results:\n{context}"},
+        ],
+    )
+    tracker.record_chat(response.usage)
+    return ResearchResult(
+        summary=response.choices[0].message.content,
+        method="tavily",
+        sources=sources,
+    )
+
+
 def web_research(content: str, keywords: list[str]) -> ResearchResult:
     """Gather facts, statistics, definitions, and sources for the keywords.
 
-    Tries OpenAI's web-search tool (Responses API); if the account/model
-    doesn't support it, falls back to GPT-4o's own knowledge and says so."""
+    Backend priority: Tavily (TAVILY_API_KEY) -> OpenAI web-search tool ->
+    GPT-4o's own knowledge. Always returns a ResearchResult; the .method field
+    says which backend was used."""
     client = get_client()
     prompt = (
         "Research the following topics to prepare a presentation.\n"
@@ -57,6 +112,10 @@ def web_research(content: str, keywords: list[str]) -> ResearchResult:
         "statistics WITH their numbers, notable examples, and a short list of "
         "sources. Write it in the same language as the context."
     )
+
+    tavily = _tavily_research(content, keywords, prompt)
+    if tavily is not None:
+        return tavily
 
     for tool_type in ("web_search", "web_search_preview"):
         try:

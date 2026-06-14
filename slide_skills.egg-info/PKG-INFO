@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: slide-skills
-Version: 0.2.2
+Version: 0.2.3
 Summary: AI slide generation skills — fill .pptx/SVG templates with AI text, images, themes, and animations
 Author: Phat Huynh
 Requires-Python: >=3.9
@@ -11,12 +11,15 @@ Requires-Dist: pillow>=10.0
 Requires-Dist: python-dotenv>=1.0
 Requires-Dist: lxml>=4.9
 Requires-Dist: resvg-py>=0.1
+Provides-Extra: search
+Requires-Dist: tavily-python>=0.5; extra == "search"
 Provides-Extra: svg-convert
 Requires-Dist: pymupdf>=1.24; extra == "svg-convert"
 Provides-Extra: svg-fallback
 Requires-Dist: svglib>=1.5; extra == "svg-fallback"
 Requires-Dist: reportlab>=4.0; extra == "svg-fallback"
 Provides-Extra: all
+Requires-Dist: tavily-python>=0.5; extra == "all"
 Requires-Dist: pymupdf>=1.24; extra == "all"
 Requires-Dist: svglib>=1.5; extra == "all"
 Requires-Dist: reportlab>=4.0; extra == "all"
@@ -63,6 +66,7 @@ pip install "slide-skills[all]"          # everything optional
 | **`OPENAI_API_KEY`** | any AI step (text, images, planning) | put in env or a `.env` file |
 | Python ≥ 3.9 | everything | |
 | `resvg-py` (auto-installed) | rendering SVG/web decks | bundled, no system deps |
+| `TAVILY_API_KEY` + `pip install "slide-skills[search]"` | live web research | optional; without it, research falls back to OpenAI web-search then model knowledge |
 | **LibreOffice** | `svg_template_maker` only (.pptx → SVG) | `brew install --cask libreoffice`; optional |
 
 Environment variables (all optional):
@@ -70,6 +74,7 @@ Environment variables (all optional):
 OPENAI_API_KEY=sk-...            # required for AI calls
 OPENAI_TEXT_MODEL=gpt-4o         # default
 OPENAI_IMAGE_MODEL=gpt-image-1   # skip image-model auto-detection
+TAVILY_API_KEY=tvly-...          # enables Tavily web search (pip install "slide-skills[search]")
 SLIDE_TEMPLATES_DIR=/path/to/svg/templates   # where your SVG collections/categories live
 SLIDE_LIBRARY_DIR=/path/to/pptx/templates    # where your .pptx templates live
 ```

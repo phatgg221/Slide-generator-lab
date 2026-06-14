@@ -40,6 +40,7 @@ pip install "slide-skills[all]"          # everything optional
 | **`OPENAI_API_KEY`** | any AI step (text, images, planning) | put in env or a `.env` file |
 | Python ≥ 3.9 | everything | |
 | `resvg-py` (auto-installed) | rendering SVG/web decks | bundled, no system deps |
+| `TAVILY_API_KEY` + `pip install "slide-skills[search]"` | live web research | optional; without it, research falls back to OpenAI web-search then model knowledge |
 | **LibreOffice** | `svg_template_maker` only (.pptx → SVG) | `brew install --cask libreoffice`; optional |
 
 Environment variables (all optional):
@@ -47,6 +48,7 @@ Environment variables (all optional):
 OPENAI_API_KEY=sk-...            # required for AI calls
 OPENAI_TEXT_MODEL=gpt-4o         # default
 OPENAI_IMAGE_MODEL=gpt-image-1   # skip image-model auto-detection
+TAVILY_API_KEY=tvly-...          # enables Tavily web search (pip install "slide-skills[search]")
 SLIDE_TEMPLATES_DIR=/path/to/svg/templates   # where your SVG collections/categories live
 SLIDE_LIBRARY_DIR=/path/to/pptx/templates    # where your .pptx templates live
 ```

@@ -4,6 +4,7 @@ Reads from environment (a local .env is loaded automatically):
     OPENAI_API_KEY        -- required
     OPENAI_TEXT_MODEL     -- default "gpt-4o"
     OPENAI_IMAGE_MODEL    -- default "dall-e-3"
+    TAVILY_API_KEY        -- optional; enables Tavily web search in research.py
     SLIDE_TEMPLATES_DIR   -- where SVG collections live (default "svg_templates")
     SLIDE_LIBRARY_DIR     -- where .pptx templates live (default "library")
 """

@@ -6,9 +6,13 @@ lxml>=4.9
 resvg-py>=0.1
 
 [all]
+tavily-python>=0.5
 pymupdf>=1.24
 svglib>=1.5
 reportlab>=4.0
+
+[search]
+tavily-python>=0.5
 
 [svg-convert]
 pymupdf>=1.24
