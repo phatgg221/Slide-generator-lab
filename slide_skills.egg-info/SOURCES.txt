@@ -13,6 +13,7 @@ slide_skills/pipeline.py
 slide_skills/planner.py
 slide_skills/research.py
 slide_skills/slide_filler.py
+slide_skills/svg_categories.py
 slide_skills/svg_collections.py
 slide_skills/svg_image_generator.py
 slide_skills/svg_slide_renderer.py

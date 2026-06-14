@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: slide-skills
-Version: 0.1.0
+Version: 0.2.1
 Summary: AI slide generation skills — fill .pptx/SVG templates with AI text, images, themes, and animations
 Author: Phat Huynh
 Requires-Python: >=3.9
@@ -29,6 +29,53 @@ colors, images, and animations** are produced by AI to fit a topic — while the
 **layout stays exactly as designed**.
 
 Built as composable skills so the whole thing can be wired into a FastAPI app.
+Published on PyPI as [`slide-skills`](https://pypi.org/project/slide-skills/).
+
+---
+
+## Install
+
+**As a library (use in any project):**
+```bash
+pip install slide-skills                 # latest release from PyPI
+# or, the bleeding edge straight from source:
+pip install "git+https://github.com/phatgg221/Slide-generator-lab.git"
+```
+
+**For development (edit the code, changes apply instantly):**
+```bash
+git clone https://github.com/phatgg221/Slide-generator-lab.git
+cd Slide-generator-lab
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e .                         # editable install
+```
+
+Optional extras:
+```bash
+pip install "slide-skills[svg-convert]"  # PyMuPDF, for .pptx -> SVG conversion
+pip install "slide-skills[all]"          # everything optional
+```
+
+## Requirements
+
+| What | Needed for | Notes |
+|---|---|---|
+| **`OPENAI_API_KEY`** | any AI step (text, images, planning) | put in env or a `.env` file |
+| Python ≥ 3.9 | everything | |
+| `resvg-py` (auto-installed) | rendering SVG/web decks | bundled, no system deps |
+| **LibreOffice** | `svg_template_maker` only (.pptx → SVG) | `brew install --cask libreoffice`; optional |
+
+Environment variables (all optional):
+```bash
+OPENAI_API_KEY=sk-...            # required for AI calls
+OPENAI_TEXT_MODEL=gpt-4o         # default
+OPENAI_IMAGE_MODEL=gpt-image-1   # skip image-model auto-detection
+SLIDE_TEMPLATES_DIR=/path/to/svg/templates   # where your SVG collections/categories live
+SLIDE_LIBRARY_DIR=/path/to/pptx/templates    # where your .pptx templates live
+```
+The two `*_DIR` vars are the key to using this as an installed package: set
+them once and the library finds your templates wherever you keep them — your
+designs live outside the code package.
 
 ---
 
@@ -48,22 +95,75 @@ and animations playable in the browser — and it needs no desktop renderer.
 
 ---
 
-## Setup
+## Use as a Python library
 
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-cp .env.example .env          # paste your OPENAI_API_KEY
+Once installed, import the skills from anywhere:
+
+```python
+from slide_skills import generate_web_deck
+
+# Topic -> animated HTML deck (writes the file, returns a summary dict)
+result = generate_web_deck(
+    collection="starter",                 # folder under SLIDE_TEMPLATES_DIR
+    brief="Khóa học nhập môn Machine Learning",
+    output_path="out/deck.html",
+    palette="teal",                       # "auto" | preset name | (primary, secondary, accent) | None
+    language="Vietnamese",
+    animation="rise",                     # rise | fade | scale | none
+)
+print(result["output_path"], result["slides"])
 ```
 
-Optional in `.env`:
+**Category library + variant-selecting agent** (your plan names categories; the
+agent picks the best design variant per slide):
+```python
+from slide_skills import generate_deck_from_plan, scan_template_library
+
+lib = scan_template_library("templates")     # discover categories + variants
+print(lib.category_map())                     # registry for a UI / planner
+
+plan = {"title": "ML 101", "slides": [
+    {"category": "Title Slide", "topic": "Intro to Machine Learning"},
+    {"category": "KPI & Big Numbers", "talking_points": ["78%", "3x", "12M"]},
+    {"category": "Conclusion & Summary", "talking_points": ["Recap", "Next steps"]},
+]}
+generate_deck_from_plan(plan, "templates", "out/deck.html", palette="auto", language="Vietnamese")
 ```
-OPENAI_IMAGE_MODEL=gpt-image-1   # set to skip image-model auto-detection
+
+**Add a collection at runtime** (e.g. a user uploads a Figma export):
+```python
+from slide_skills import import_collection
+import_collection("/path/to/figma_export_folder", "my_style")   # copies + validates
 ```
+
+**Track cost of any run:**
+```python
+from slide_skills import usage_tracker
+before = usage_tracker.snapshot()
+# ... generate ...
+print((usage_tracker.snapshot() - before).report())
+```
+
+In a **FastAPI** app, wrap blocking calls in a thread:
+```python
+import asyncio
+from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from slide_skills import generate_web_deck
+
+app = FastAPI()
+
+@app.post("/generate")
+async def generate(topic: str, collection: str = "starter"):
+    out = "out/deck.html"
+    await asyncio.to_thread(generate_web_deck, collection, topic, out)
+    return FileResponse(out, media_type="text/html")
+```
+(Set `SLIDE_TEMPLATES_DIR` so the app finds your collections.)
 
 ---
 
-## Quick start — Web deck from an SVG collection
+## Quick start (CLI) — Web deck from an SVG collection
 
 ```bash
 # 1. See available collections
@@ -112,6 +212,51 @@ Rules (see `svg_templates/README.md` for the full guide):
 - Name files by function (`title`, `statistic`, `quote`…); use common fonts.
 
 Then `web_deck.py check` / `demo` your folder before spending on generation.
+
+---
+
+## Category library + variant-selecting agent
+
+For richer decks, organize templates into **categories**, each holding several
+**variant** designs for the same layout function. The user's plan names a
+category per slide; an agent picks the best-fitting variant for the data.
+
+```
+templates/
+  TITLE_SLIDE/
+    category.json        # optional: descriptions guiding variant choice
+    centered.svg         # variants — multiple designs, same purpose
+    left_aligned.svg
+  KPI_BIG_NUMBERS/
+    category.json
+    three_stats.svg
+    list_style.svg
+```
+
+`category.json` (optional but recommended — it's the "map" the agent reads):
+```json
+{
+  "description": "Highlight key metrics with large, scannable numbers.",
+  "variants": {
+    "three_stats": "Three stat callouts — use for 2-3 key numbers.",
+    "list_style":  "A vertical list — use for 4+ numbers or rankings."
+  }
+}
+```
+
+How a variant gets chosen, per slide:
+1. **schema-fit shortlist** (code) — keep variants whose slot count fits the data
+2. **AI tiebreak** (GPT-4o) — read each finalist's description + slots and the
+   slide content, pick the best, and write its text
+
+Adding designs is pure data:
+- **New variant** → drop a `.svg` in the category folder (instantly usable;
+  add a `category.json` line so the agent knows when to choose it).
+- **New category** → make a new folder; it appears in `category_map()` automatically.
+
+Category names match plan labels ignoring case/spaces/`&`/`-`/`_`
+(`"KPI & Big Numbers"` → `KPI_BIG_NUMBERS`), but not plurals — name folders to
+match your plan labels.
 
 ---
 
@@ -168,7 +313,10 @@ illustrations instead of AI photos).
 - `animations.py` — PowerPoint element entrance animations
 
 **Web decks**
-- `svg_collections.py` — scan collections, fill placeholders, retheme
+- `svg_collections.py` — scan collections, fill placeholders, retheme,
+  `import_collection`, `generate_web_deck`
+- `svg_categories.py` — category library + variant-selecting agent:
+  `scan_template_library`, `select_and_fill_slide`, `generate_deck_from_plan`
 - `html_deck.py` — build a self-contained animated HTML presentation
 - `svg_slide_renderer.py` — filled SVGs → PNG → `.pptx` export
 
@@ -218,3 +366,17 @@ Fixed by design: your layout, and (for now) fonts.
 - **Charts aren't data-driven yet.** Chart-style slides render as designed art,
   not recomputed from numbers.
 - **FastAPI app** is a later milestone; all skills are import-ready for it.
+
+---
+
+## Releasing a new version (maintainers)
+
+```bash
+# 1. bump version in BOTH pyproject.toml and slide_skills/__init__.py
+# 2. rebuild fresh and publish
+rm -rf dist && python -m build
+twine upload dist/*          # username: __token__   password: your pypi-... token
+# 3. tag it
+git tag v0.2.1 && git push origin main --tags
+```
+PyPI versions are permanent — never reuse a number; bump to the next one.
