@@ -37,10 +37,11 @@ from .slide_filler import set_text_preserving_format
 
 _APPLESCRIPT = '''
 tell application "Microsoft PowerPoint"
-    open (POSIX file "{src}")
+    activate
+    set thePres to open (POSIX file "{src}")
     delay 1
-    set thePres to presentation "{name}"
     save thePres in (POSIX file "{dst}") as save as PDF
+    delay 1
     close thePres saving no
 end tell
 '''
@@ -68,7 +69,7 @@ def _pptx_to_pdf(src: Path, dst: Path) -> None:
         if produced != dst:
             produced.rename(dst)
         return
-    script = _APPLESCRIPT.format(src=src, dst=dst, name=src.name)
+    script = _APPLESCRIPT.format(src=src, dst=dst)
     result = subprocess.run(["osascript", "-e", script],
                             capture_output=True, text=True, timeout=300)
     if result.returncode != 0 or not dst.exists():

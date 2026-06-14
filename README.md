@@ -1,115 +1,197 @@
 # Slide Generator Lab
 
-Agentic Python skills that take a **Canva-exported .pptx template** and fill it
-with AI-generated content — text written by **GPT-4o**, images rendered by
-**DALL·E 3** — while preserving the template's fonts, colors, layout, bullets,
-and image frames.
+AI slide generation in Python. Take a template (a Canva/PowerPoint `.pptx`, or
+a hand-designed SVG collection), and generate a finished deck whose **text,
+colors, images, and animations** are produced by AI to fit a topic — while the
+**layout stays exactly as designed**.
 
-## How it works
+Built as composable skills so the whole thing can be wired into a FastAPI app.
 
-Canva's "Download → Microsoft PowerPoint" export turns each slide into plain
-text boxes and pictures. The pipeline is four composable skills:
+---
 
-| Skill | Module | What it does |
+## Two paths
+
+The project supports two delivery targets that share most of the same skills:
+
+| | **PPTX path** | **Web path** (current focus) |
 |---|---|---|
-| `parse_template` | `template_parser.py` | Walks the .pptx, classifies each text box (title/subtitle/body/caption) by font size & position, records char budgets, paragraph counts, and picture aspect ratios. Output is JSON-serializable. |
-| `generate_content` | `content_generator.py` | Sends the spec + your brief to GPT-4o (JSON mode). Returns replacement text per text box and a DALL·E prompt per picture, respecting char budgets and bullet counts. |
-| `generate_image` | `image_generator.py` | Calls DALL·E 3 at the nearest supported size, then center-crops to the placeholder's exact aspect ratio so nothing distorts. |
-| `fill_template` | `slide_filler.py` | Writes text back keeping each paragraph's original formatting (extra bullets are XML-cloned from the last one), and swaps picture bitmaps in place — geometry, crop, and effects untouched. |
+| Output | Downloadable PowerPoint file | Self-contained animated HTML for your website |
+| Template source | Canva/PowerPoint `.pptx` | Hand-designed SVG collections (Figma/Inkscape) |
+| Animation | PowerPoint transitions + entrance effects | Native SVG/CSS animation (Canva-like) |
+| Main CLI | `examples/build_course_deck.py` | `examples/web_deck.py` |
 
-`SlideGeneratorAgent` (`agent.py`) chains them: parse → write → render images
-in parallel → fill, with progress callbacks and per-shape warnings (e.g. text
-over budget, image generation failed).
+The web path is preferred because SVG keeps text editable, colors remappable,
+and animations playable in the browser — and it needs no desktop renderer.
+
+---
 
 ## Setup
 
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-cp .env.example .env   # then paste your OpenAI API key
+cp .env.example .env          # paste your OPENAI_API_KEY
 ```
 
-## Usage
+Optional in `.env`:
+```
+OPENAI_IMAGE_MODEL=gpt-image-1   # set to skip image-model auto-detection
+```
+
+---
+
+## Quick start — Web deck from an SVG collection
 
 ```bash
-# Inspect what the parser sees in your template (no API key needed)
-.venv/bin/python examples/generate_deck.py my_canva_template.pptx --inspect
+# 1. See available collections
+.venv/bin/python examples/web_deck.py list
 
-# Generate a full deck
-.venv/bin/python examples/generate_deck.py my_canva_template.pptx \
-  "A 5-slide pitch deck for an AI tutoring startup aimed at investors" \
-  -o out/deck.pptx
+# 2. Validate a collection — what placeholders did it find? (free, offline)
+.venv/bin/python examples/web_deck.py check starter
 
-# Skip DALL·E (keep template images), or write in another language
-.venv/bin/python examples/generate_deck.py template.pptx "..." --no-images --language Vietnamese
+# 3. Visual preview with stub text (free, offline)
+.venv/bin/python examples/web_deck.py demo starter
+open out/starter_demo.html
+
+# 4. Generate a real deck from a topic (~$0.02)
+.venv/bin/python examples/web_deck.py generate starter \
+    "Khóa học nhập môn Machine Learning" -o out/ml_deck.html --language Vietnamese
+open out/ml_deck.html
 ```
 
-Or from Python:
+In the browser deck: **→/←** to navigate, **f** for fullscreen, elements
+animate in as each slide appears.
 
-```python
-from slide_skills import SlideGeneratorAgent
+Options: `--palette teal` (force a theme), `--animation rise|fade|scale|none`,
+`--pptx` (also export a PowerPoint copy).
 
-agent = SlideGeneratorAgent(generate_images=True, image_quality="standard")
-result = agent.generate(
-    template_path="my_canva_template.pptx",
-    brief="A pitch deck about smart farming drones",
-    output_path="out/deck.pptx",
-)
-print(result.output_path, result.warnings)
+---
+
+## Designing your own SVG collections
+
+You design collections once in Figma/Inkscape; every generated deck reuses
+them. A collection is a folder of slide-type SVGs sharing one visual style:
+
+```
+svg_templates/<collection>/
+  collection.json     # optional: description, palette, fonts, tags
+  title.svg           # filename = slide type the planner picks from
+  statistic.svg
+  comparison.svg ...
 ```
 
-## Using in FastAPI (later)
+Rules (see `svg_templates/README.md` for the full guide):
 
-The skills are blocking (OpenAI sync client), so run them in a thread:
+- **Export SVG with "Outline Text" UNCHECKED** — text must stay live `<text>`.
+- Placeholders are the text content: `{{title}}`, `{{quote|120}}` (120-char
+  budget), `{{body.1}}` / `{{body.2}}` (multi-line).
+- One uniform style per placeholder (don't bold half a word — it splits the text).
+- Name files by function (`title`, `statistic`, `quote`…); use common fonts.
 
-```python
-import asyncio, tempfile, uuid
-from pathlib import Path
-from fastapi import FastAPI, UploadFile, Form
-from fastapi.responses import FileResponse
-from slide_skills import SlideGeneratorAgent
+Then `web_deck.py check` / `demo` your folder before spending on generation.
 
-app = FastAPI()
-agent = SlideGeneratorAgent()  # stateless — safe to share across requests
+---
 
-@app.post("/generate")
-async def generate(template: UploadFile, brief: str = Form(...)):
-    workdir = Path(tempfile.mkdtemp())
-    template_path = workdir / "template.pptx"
-    template_path.write_bytes(await template.read())
-    output_path = workdir / f"deck-{uuid.uuid4().hex[:8]}.pptx"
-
-    result = await asyncio.to_thread(
-        agent.generate, template_path, brief, output_path
-    )
-    return FileResponse(
-        result.output_path,
-        media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
-        filename="deck.pptx",
-    )
-```
-
-For production: push `agent.generate` to a background worker (Celery/RQ/ARQ)
-and poll for the file — a deck with several DALL·E images takes 30–90 s.
-
-## Testing without an API key
+## Quick start — PowerPoint deck from a .pptx template
 
 ```bash
-.venv/bin/python tests/test_offline_pipeline.py
+# Ingest any .pptx into the reusable template library (cleans junk, classifies slides)
+.venv/bin/python examples/prepare_template.py "~/Downloads/My Design.pptx" my_template
+
+# See what's editable (free, offline)
+.venv/bin/python examples/test_template.py my_template
+
+# Full pipeline: research -> plan -> write -> images -> theme -> animate
+.venv/bin/python examples/build_course_deck.py library/my_template.pptx \
+    "your topic" --transition fade --animate fade -o out/deck.pptx
 ```
 
-Builds a fake template, then verifies parsing, format-preserving text
-replacement, bullet cloning, and in-place image swapping.
+Cost controls: `--no-research`, `--no-images`, `--svg-images` (cheap vector
+illustrations instead of AI photos).
 
-## Notes & limits
+---
 
-- **Char budgets are derived from the template's sample text** — pick a Canva
-  template whose sample text resembles your target length. The agent warns
-  when GPT-4o exceeds a budget by >25%.
-- Pictures placed by Canva as *slide backgrounds* (XML background fills, not
-  picture shapes) are not detected; regular image placeholders are.
-- Grouped shapes are skipped; ungroup decorative groups in Canva before
-  exporting if their text should be replaced.
-- DALL·E 3 renders 1024×1024, 1792×1024, or 1024×1792; the skill crops to the
-  placeholder aspect, so extreme aspect ratios (very wide banners) lose more
-  of the image to the crop.
+## Skills reference (`slide_skills/`)
+
+**Foundation**
+- `config.py` — OpenAI client + model config from `.env`
+- `usage.py` — token & cost tracking across all AI calls (`usage_tracker`)
+- `template_parser.py` — parse a `.pptx` into a fill-spec; classify text roles,
+  char budgets; skip tip-bubbles & navigation buttons
+
+**Research → Plan → Write**
+- `research.py` — `extract_keywords`, `web_research`
+- `planner.py` — `plan_deck`: AI picks slide count, types, order, theme
+- `content_generator.py` — `generate_content`: AI writes budget-aware text
+- `agent.py` — `SlideGeneratorAgent`: fill one template from a brief
+- `pipeline.py` — `CourseDeckPipeline`: the full chained pipeline
+
+**Images**
+- `image_generator.py` — `generate_image`: AI photos, auto-detects account's model
+- `svg_image_generator.py` — `generate_svg_image`: GPT-4o vector art (~5× cheaper)
+
+**Filling & assembly**
+- `slide_filler.py` — write text keeping formatting, auto-shrink overflow, swap images
+- `assembler.py` — build a deck by picking/reordering/repeating library slides
+
+**Templating**
+- `template_maker.py` — `prepare_template`: ingest + clean + AI-classify a `.pptx`
+- `merge_template.py` — `{{placeholder}}` form + schema; AI fills; render
+- `svg_template_maker.py` — `.pptx` → folder of live-text SVGs *(needs LibreOffice/PowerPoint)*
+
+**Theme & motion**
+- `theme.py` — contrast-safe recoloring, 8 presets, `propose_palette`
+- `transitions.py` — PowerPoint slide transitions
+- `animations.py` — PowerPoint element entrance animations
+
+**Web decks**
+- `svg_collections.py` — scan collections, fill placeholders, retheme
+- `html_deck.py` — build a self-contained animated HTML presentation
+- `svg_slide_renderer.py` — filled SVGs → PNG → `.pptx` export
+
+---
+
+## Command-line tools (`examples/`)
+
+| Command | Purpose |
+|---|---|
+| `web_deck.py` | SVG collections → animated web deck (`list`/`check`/`demo`/`generate`) |
+| `build_course_deck.py` | Full pipeline → `.pptx` |
+| `generate_deck.py` | Fill one template from a brief |
+| `prepare_template.py` | Ingest a `.pptx` into the template library |
+| `test_template.py` | Dry-run marker fill — see what's editable (free) |
+| `recolor_deck.py` | Re-theme an existing deck's colors |
+| `merge_deck.py` | `{{placeholder}}` workflow (make/render/generate) |
+
+---
+
+## What can be customized per deck
+
+- **Words** — every `{{placeholder}}` is AI-written, any language
+- **Colors** — preset, AI-picked, or custom; always contrast-safe
+- **Animation** — rise / fade / scale / none (web) or PowerPoint effects (pptx)
+- **Slides** — the planner chooses which template types to use, and their order
+
+Fixed by design: your layout, and (for now) fonts.
+
+---
+
+## Tests (offline, no API key)
+
+```bash
+.venv/bin/python tests/test_offline_pipeline.py   # parse / fill / image swap
+.venv/bin/python tests/test_assembler.py          # library assembly
+```
+
+---
+
+## Known limits
+
+- **Canva exports lose animation and live text.** `.pptx` from Canva is static;
+  Canva SVG outlines all text. Design real SVG templates in Figma/Inkscape.
+- **`svg_template_maker.py` needs a renderer.** Install LibreOffice
+  (`brew install --cask libreoffice`) for headless, server-ready conversion;
+  the desktop-PowerPoint fallback is fragile.
+- **Charts aren't data-driven yet.** Chart-style slides render as designed art,
+  not recomputed from numbers.
+- **FastAPI app** is a later milestone; all skills are import-ready for it.
