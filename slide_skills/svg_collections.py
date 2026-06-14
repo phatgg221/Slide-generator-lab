@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Union
@@ -36,7 +37,7 @@ from .theme import (
 )
 from .usage import tracker
 
-DEFAULT_COLLECTIONS_DIR = Path("svg_templates")
+from .config import collections_dir as _collections_dir
 
 _PLACEHOLDER_RE = re.compile(r"\{\{\s*([A-Za-z0-9_]+(?:\.\d+)?)\s*(?:\|\s*(\d+))?\s*\}\}")
 _HEX_RE = re.compile(r"#([0-9A-Fa-f]{6})\b")
@@ -126,9 +127,62 @@ def scan_collection(collection_dir: Union[str, Path]) -> CollectionSchema:
     return schema
 
 
-def list_collections(base_dir: Union[str, Path] = DEFAULT_COLLECTIONS_DIR) -> list[dict]:
+def import_collection(
+    src: Union[str, Path],
+    name: str | None = None,
+    *,
+    base_dir: Union[str, Path, None] = None,
+    overwrite: bool = False,
+) -> dict:
+    """Add a template collection to the library: copy a folder of .svg files
+    (and optional collection.json) into the collections dir, then validate it.
+
+    src   -- a folder of SVGs, OR a single .svg (becomes a 1-slide collection)
+    name  -- collection name (defaults to the source folder/file stem)
+    Returns the scanned schema summary; raises ValueError if no placeholders
+    are found (likely outlined text instead of live <text>)."""
+    src = Path(src)
+    base = Path(base_dir) if base_dir is not None else _collections_dir()
+    name = name or src.stem
+    dest = base / name
+
+    if dest.exists():
+        if not overwrite:
+            raise FileExistsError(
+                f"Collection {name!r} already exists at {dest}. "
+                "Pass overwrite=True to replace it.")
+        shutil.rmtree(dest)
+    dest.mkdir(parents=True, exist_ok=True)
+
+    if src.is_dir():
+        svgs = sorted(src.glob("*.svg"))
+        if not svgs:
+            raise ValueError(f"No .svg files in {src}")
+        for f in svgs:
+            shutil.copy2(f, dest / f.name)
+        manifest = src / "collection.json"
+        if manifest.exists():
+            shutil.copy2(manifest, dest / "collection.json")
+        for font in list(src.glob("*.ttf")) + list(src.glob("*.otf")):
+            shutil.copy2(font, dest / font.name)
+    elif src.suffix.lower() == ".svg":
+        shutil.copy2(src, dest / src.name)
+    else:
+        raise ValueError(f"{src} is neither an .svg nor a folder of .svg files")
+
+    schema = scan_collection(dest)   # raises if no live-text placeholders found
+    total_ph = sum(len(s.placeholders) for s in schema.slides.values())
+    return {
+        "name": schema.name,
+        "path": str(dest),
+        "slide_types": list(schema.slides.keys()),
+        "placeholders": total_ph,
+    }
+
+
+def list_collections(base_dir: Union[str, Path, None] = None) -> list[dict]:
     out = []
-    base = Path(base_dir)
+    base = Path(base_dir) if base_dir is not None else _collections_dir()
     if not base.is_dir():
         return out
     for child in sorted(base.iterdir()):
@@ -293,15 +347,16 @@ def generate_web_deck(
     palette: Union[str, tuple, None] = "auto",
     language: str | None = None,
     animation: str = "rise",
-    base_dir: Union[str, Path] = DEFAULT_COLLECTIONS_DIR,
+    base_dir: Union[str, Path, None] = None,
 ) -> dict:
     """brief -> animated self-contained deck.html. palette: preset name,
     (primary, secondary, accent) tuple, "auto" (AI decides), or None."""
     from .html_deck import build_html_deck
 
+    base = Path(base_dir) if base_dir is not None else _collections_dir()
     collection_dir = Path(collection)
     if not collection_dir.is_dir():
-        collection_dir = Path(base_dir) / str(collection)
+        collection_dir = base / str(collection)
     schema = scan_collection(collection_dir)
 
     content = generate_deck_content(schema, brief, language=language)

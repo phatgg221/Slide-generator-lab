@@ -24,7 +24,7 @@ from typing import Union
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 
-from .config import get_client, TEXT_MODEL
+from .config import get_client, TEXT_MODEL, library_dir as _library_dir
 from .template_parser import (
     DEFAULT_EXCLUDE_PREFIXES, _is_navigation, parse_template,
 )
@@ -156,14 +156,15 @@ def prepare_template(
     src: Union[str, Path],
     name: str,
     *,
-    library_dir: Union[str, Path] = DEFAULT_LIBRARY_DIR,
+    library_dir: Union[str, Path, None] = None,
     drop_slides: list[int] | None = None,
     classify: bool = True,
 ) -> dict:
     """Full ingestion: clean the deck, classify its slides, and register it
     in the library. Returns {"pptx", "manifest", "types"}."""
     name = re.sub(r"[^A-Za-z0-9_-]", "_", name)
-    library_dir = Path(library_dir)
+    library_dir = Path(library_dir) if library_dir is not None else _library_dir()
+    library_dir.mkdir(parents=True, exist_ok=True)
     pptx_path = library_dir / f"{name}.pptx"
     manifest_path = library_dir / f"{name}.json"
 
@@ -181,8 +182,9 @@ def prepare_template(
             "types": manifest["types"]}
 
 
-def list_templates(library_dir: Union[str, Path] = DEFAULT_LIBRARY_DIR) -> list[dict]:
+def list_templates(library_dir: Union[str, Path, None] = None) -> list[dict]:
     """Registry of ready-to-use templates (for an API/chatbot to offer)."""
+    library_dir = Path(library_dir) if library_dir is not None else _library_dir()
     out = []
     for pptx in sorted(Path(library_dir).glob("*.pptx")):
         manifest = pptx.with_suffix(".json")

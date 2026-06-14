@@ -34,10 +34,14 @@ from .merge_template import (
 from .svg_template_maker import make_svg_templates
 from .svg_slide_renderer import render_svg_slide, render_svg_deck
 from .svg_collections import (
-    scan_collection, list_collections, fill_svg, retheme_svg,
+    scan_collection, list_collections, import_collection, fill_svg, retheme_svg,
     generate_deck_content, generate_web_deck,
 )
 from .html_deck import build_html_deck
+from .svg_categories import (
+    scan_template_library, shortlist_variants, select_and_fill_slide,
+    generate_deck_from_plan,
+)
 
 __all__ = [
     "parse_template",
@@ -85,9 +89,14 @@ __all__ = [
     "render_svg_deck",
     "scan_collection",
     "list_collections",
+    "import_collection",
     "fill_svg",
     "retheme_svg",
     "generate_deck_content",
     "generate_web_deck",
     "build_html_deck",
+    "scan_template_library",
+    "shortlist_variants",
+    "select_and_fill_slide",
+    "generate_deck_from_plan",
 ]
