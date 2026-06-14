@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: slide-skills
-Version: 0.2.3
+Version: 0.2.4
 Summary: AI slide generation skills — fill .pptx/SVG templates with AI text, images, themes, and animations
 Author: Phat Huynh
 Requires-Python: >=3.9
@@ -97,6 +97,69 @@ The project supports two delivery targets that share most of the same skills:
 
 The web path is preferred because SVG keeps text editable, colors remappable,
 and animations playable in the browser — and it needs no desktop renderer.
+
+---
+
+## How it works (agent flow)
+
+A deck is produced by a chain of focused agent steps. You can run the whole
+chain (topic → deck) or jump in at any stage (e.g. supply your own plan).
+
+```
+  topic / brief                          templates on disk (SVG collections
+       │                                  or category folders + category.json)
+       ▼                                            │
+  ┌─────────────┐                                   │
+  │ 1. Keywords │  GPT-4o pulls the core topics     │
+  └─────────────┘                                   │
+       ▼                                             │
+  ┌─────────────┐  Tavily → OpenAI web_search →     │
+  │ 2. Research │  model-knowledge. Facts, stats,   │
+  └─────────────┘  sources (grounded brief)         │
+       ▼                                             │
+  ┌─────────────┐  GPT-4o decides slide count,      │
+  │ 3. Plan     │  categories/types, order, theme ◄─┘ (knows what templates exist)
+  └─────────────┘
+       ▼
+  ┌──────────────────┐  per slide: schema-fit shortlist + GPT-4o
+  │ 4. Pick variant  │  tiebreak → best design for the data
+  └──────────────────┘  (category library only)
+       ▼
+  ┌─────────────┐  GPT-4o writes each {{placeholder}} within its
+  │ 5. Write    │  character budget (lists for multi-line slots)
+  └─────────────┘
+       ▼
+  ┌─────────────┐  contrast-safe recolor to the chosen palette
+  │ 6. Theme    │  (AI-picked, preset, custom, or keep original)
+  └─────────────┘
+       ▼
+  ┌─────────────┐  optional: gpt-image-1 photos OR GPT-4o SVG
+  │ 7. Images   │  vector art (~5× cheaper) into image slots
+  └─────────────┘
+       ▼
+  ┌─────────────┐  fill SVGs → self-contained animated HTML deck
+  │ 8. Assemble │  (or .pptx). Returns output path + usage (tokens/$)
+  └─────────────┘
+```
+
+| Step | Agent / skill | Model / backend | Optional? |
+|---|---|---|---|
+| 1 Keywords | `extract_keywords` | GPT-4o | no |
+| 2 Research | `web_research` | Tavily › OpenAI web_search › model | yes (`research`) |
+| 3 Plan | `plan_deck` | GPT-4o | skip if you pass a plan |
+| 4 Pick variant | `select_and_fill_slide` | schema-fit + GPT-4o | category libraries only |
+| 5 Write | `generate_deck_content` | GPT-4o | no |
+| 6 Theme | `theme.py` | pure code (+ optional GPT-4o palette) | yes |
+| 7 Images | `generate_image` / `generate_svg_image` | gpt-image-1 / GPT-4o | yes |
+| 8 Assemble | `html_deck` / `svg_slide_renderer` | pure code | no |
+
+Two ready-made entry points bundle these steps:
+- **`generate_web_deck(collection, brief, …)`** — steps 3·5·6·(7)·8 over one
+  collection (the library plans + writes from your brief).
+- **`generate_deck_from_plan(plan, library_dir, …)`** — steps 4·5·6·8 where
+  your plan already names a category per slide and the agent picks the variant.
+
+Every entry point returns a `usage` block (tokens + estimated USD) for the run.
 
 ---
 
@@ -389,6 +452,6 @@ Fixed by design: your layout, and (for now) fonts.
 rm -rf dist && python -m build
 twine upload dist/*          # username: __token__   password: your pypi-... token
 # 3. tag it
-git tag v0.2.2 && git push origin main --tags
+git tag v0.2.4 && git push origin main --tags
 ```
 PyPI versions are permanent — never reuse a number; bump to the next one.
