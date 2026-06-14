@@ -89,6 +89,13 @@ result = generate_web_deck(
     animation="rise",                     # rise | fade | scale | none
 )
 print(result["output_path"], result["slides"])
+print(result["usage"]["report"])          # tokens + estimated USD for this call
+```
+
+Every `generate_*` call returns a `usage` block with the total cost of that run:
+```python
+result["usage"]   # {input_tokens, output_tokens, total_tokens, requests,
+                  #  estimated_cost_usd, report}
 ```
 
 **Category library + variant-selecting agent** (your plan names categories; the
@@ -354,6 +361,6 @@ Fixed by design: your layout, and (for now) fonts.
 rm -rf dist && python -m build
 twine upload dist/*          # username: __token__   password: your pypi-... token
 # 3. tag it
-git tag v0.2.1 && git push origin main --tags
+git tag v0.2.2 && git push origin main --tags
 ```
 PyPI versions are permanent — never reuse a number; bump to the next one.

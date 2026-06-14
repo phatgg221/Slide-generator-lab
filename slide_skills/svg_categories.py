@@ -260,6 +260,7 @@ def generate_deck_from_plan(
     """
     from .html_deck import build_html_deck
 
+    usage_before = tracker.snapshot()
     if isinstance(plan, dict):
         title = title or plan.get("title") or plan.get("deck_title")
         slides = plan.get("slides", [])
@@ -299,4 +300,17 @@ def generate_deck_from_plan(
 
     out = build_html_deck(filled_svgs, output_path,
                           title=title or "Presentation", animation=animation)
-    return {"output_path": str(out), "slides": chosen, "warnings": warnings}
+    usage = tracker.snapshot() - usage_before
+    return {
+        "output_path": str(out),
+        "slides": chosen,
+        "warnings": warnings,
+        "usage": {
+            "input_tokens": usage.input_tokens,
+            "output_tokens": usage.output_tokens,
+            "total_tokens": usage.total_tokens,
+            "requests": usage.requests,
+            "estimated_cost_usd": round(usage.estimated_cost, 4),
+            "report": usage.report(),
+        },
+    }

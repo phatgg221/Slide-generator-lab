@@ -350,9 +350,13 @@ def generate_web_deck(
     base_dir: Union[str, Path, None] = None,
 ) -> dict:
     """brief -> animated self-contained deck.html. palette: preset name,
-    (primary, secondary, accent) tuple, "auto" (AI decides), or None."""
+    (primary, secondary, accent) tuple, "auto" (AI decides), or None.
+
+    The returned dict includes a "usage" summary (tokens + estimated cost)
+    for this call."""
     from .html_deck import build_html_deck
 
+    usage_before = tracker.snapshot()
     base = Path(base_dir) if base_dir is not None else _collections_dir()
     collection_dir = Path(collection)
     if not collection_dir.is_dir():
@@ -377,10 +381,19 @@ def generate_web_deck(
     out = build_html_deck(filled, output_path,
                           title=content["deck_title"] or schema.name,
                           animation=animation)
+    usage = tracker.snapshot() - usage_before
     return {
         "output_path": str(out),
         "deck_title": content["deck_title"],
         "slides": [e["type"] for e in content["slides"]],
         "theme": (target if isinstance(target, str) else
                   "custom" if target else "collection default"),
+        "usage": {
+            "input_tokens": usage.input_tokens,
+            "output_tokens": usage.output_tokens,
+            "total_tokens": usage.total_tokens,
+            "requests": usage.requests,
+            "estimated_cost_usd": round(usage.estimated_cost, 4),
+            "report": usage.report(),
+        },
     }
