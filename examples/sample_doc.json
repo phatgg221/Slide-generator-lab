@@ -1,0 +1,58 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": { "level": 1 },
+      "content": [{ "type": "text", "text": "Introduction to Machine Learning" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "A beginner-friendly course for second-year students on how machines learn from data, and where it is used in Vietnam today." }]
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "What You Will Learn" }]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Supervised vs unsupervised learning" }]}]},
+        { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Linear regression and classification" }]}]},
+        { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Overfitting and how to prevent it" }]}]}
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Why It Matters Now" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Adoption of AI tools in Vietnamese fintech and agriculture has grown sharply, with thousands of new jobs requiring basic ML literacy by 2026." }]
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "A Voice from the Field" }]
+    },
+    {
+      "type": "blockquote",
+      "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Understanding data is the new literacy for every graduate, not just engineers." }]}]
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Key Takeaways" }]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "ML learns patterns from examples, not rules" }]}]},
+        { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Good data beats clever algorithms" }]}]},
+        { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Start with simple models, then iterate" }]}]}
+      ]
+    }
+  ]
+}

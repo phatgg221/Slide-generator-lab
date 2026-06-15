@@ -11,7 +11,7 @@ Skills:
     SlideGeneratorAgent -- orchestrates the four skills end to end
 """
 
-__version__ = "0.2.6"
+__version__ = "0.2.8"
 
 from .template_parser import parse_template, TemplateSpec, SlideSpec, TextElement, ImageElement
 from .content_generator import generate_content, GeneratedDeckContent
@@ -42,6 +42,9 @@ from .html_deck import build_html_deck
 from .svg_categories import (
     scan_template_library, shortlist_variants, select_and_fill_slide,
     generate_deck_from_plan,
+)
+from .document_deck import (
+    parse_document, map_document_to_plan, generate_deck_from_document,
 )
 
 __all__ = [
@@ -101,4 +104,7 @@ __all__ = [
     "shortlist_variants",
     "select_and_fill_slide",
     "generate_deck_from_plan",
+    "parse_document",
+    "map_document_to_plan",
+    "generate_deck_from_document",
 ]

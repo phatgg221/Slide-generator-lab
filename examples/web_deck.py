@@ -13,23 +13,23 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from slide_skills.config import collections_dir
 from slide_skills.html_deck import ANIMATIONS, build_html_deck
 from slide_skills.svg_collections import (
-    DEFAULT_COLLECTIONS_DIR, fill_svg, generate_web_deck, list_collections,
-    scan_collection,
+    fill_svg, generate_web_deck, list_collections, scan_collection,
 )
 from slide_skills.theme import PRESETS
 
 
 def _resolve(name: str) -> Path:
     p = Path(name)
-    return p if p.is_dir() else DEFAULT_COLLECTIONS_DIR / name
+    return p if p.is_dir() else collections_dir() / name
 
 
 def cmd_list(args):
     collections = list_collections()
     if not collections:
-        print(f"No collections in {DEFAULT_COLLECTIONS_DIR}/. See svg_templates/README.md")
+        print(f"No collections in {collections_dir()}/. See svg_templates/README.md")
     for c in collections:
         print(f"{c['name']}: {', '.join(c['slide_types'])}")
         if c["description"]:
@@ -71,11 +71,13 @@ def cmd_generate(args):
     result = generate_web_deck(
         args.collection, args.brief, args.output,
         palette=palette, language=args.language, animation=args.animation,
+        research=args.research,
     )
     print(f"Deck: {result['output_path']}")
     print(f"  title:  {result['deck_title']}")
     print(f"  slides: {result['slides']}")
     print(f"  theme:  {result['theme']}")
+    print(f"  usage:  {result['usage']['report']}")
 
     if args.pptx:
         print("PPTX export not wired for collections yet — open the HTML deck "
@@ -106,6 +108,8 @@ def main():
                    help="Force a theme (default: AI picks or keeps collection colors)")
     p.add_argument("--language", default=None)
     p.add_argument("--animation", choices=sorted(ANIMATIONS), default="rise")
+    p.add_argument("--research", action="store_true",
+                   help="Run keyword extraction + web search before writing (full flow)")
     p.add_argument("--pptx", action="store_true")
     p.set_defaults(func=cmd_generate)
 

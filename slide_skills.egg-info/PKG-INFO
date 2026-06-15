@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: slide-skills
-Version: 0.2.6
+Version: 0.2.8
 Summary: AI slide generation skills — fill .pptx/SVG templates with AI text, images, themes, and animations
 Author: Phat Huynh
 Requires-Python: >=3.9
@@ -155,12 +155,16 @@ chain (topic → deck) or jump in at any stage (e.g. supply your own plan).
 | 8 Assemble | `html_deck` / `svg_slide_renderer` | pure code | no |
 
 Two ready-made entry points bundle these steps:
-- **`generate_web_deck(collection, brief, …)`** — steps 3·5·6·(7)·8 over one
-  collection (the library plans + writes from your brief).
+- **`generate_web_deck(collection, brief, …, research=True)`** — the full
+  flow over one collection: (1·2 with `research=True`) ·3·5·6·(7)·8.
 - **`generate_deck_from_plan(plan, library_dir, …)`** — steps 4·5·6·8 where
   your plan already names a category per slide and the agent picks the variant.
 
 Every entry point returns a `usage` block (tokens + estimated USD) for the run.
+
+**Per-agent docs:** each step has an "agent card" in [`agents/`](agents/) —
+role, input/output, model/backend, and decision logic (e.g. how the researcher
+searches the web, how the category→variant mapper picks a design).
 
 ---
 
@@ -204,6 +208,23 @@ plan = {"title": "ML 101", "slides": [
     {"category": "Conclusion & Summary", "talking_points": ["Recap", "Next steps"]},
 ]}
 generate_deck_from_plan(plan, "templates", "out/deck.html", palette="auto", language="Vietnamese")
+```
+
+**From an editor document** (ProseMirror/TipTap JSON) — parse → infer a
+category per section → optionally research → theme → variant-fill → deck:
+```python
+from slide_skills import generate_deck_from_document
+
+result = generate_deck_from_document(
+    editor_doc,                 # {"type":"doc","content":[heading, paragraph, bulletList, ...]}
+    "templates",                # your category library
+    "out/deck.html",
+    palette="auto",             # agent picks the theme from the content
+    research=True,              # enrich sections with web facts first
+    language="Vietnamese",
+)
+print(result["plan"])           # the inferred category-per-slide plan
+print(result["usage"]["report"])
 ```
 
 **Add a collection at runtime** (e.g. a user uploads a Figma export):
@@ -276,7 +297,8 @@ In the browser deck: **→/←** to navigate, **f** for fullscreen, elements
 animate in as each slide appears.
 
 Options: `--palette teal` (force a theme), `--animation rise|fade|scale|none`,
-`--pptx` (also export a PowerPoint copy).
+`--research` (run keyword extraction + web search first — the full flow),
+`--language Vietnamese`.
 
 ---
 
@@ -489,6 +511,6 @@ Fixed by design: your layout, and (for now) fonts.
 rm -rf dist && python -m build
 twine upload dist/*          # username: __token__   password: your pypi-... token
 # 3. tag it
-git tag v0.2.6 && git push origin main --tags
+git tag v0.2.8 && git push origin main --tags
 ```
 PyPI versions are permanent — never reuse a number; bump to the next one.

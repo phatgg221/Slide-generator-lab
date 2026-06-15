@@ -6,6 +6,7 @@ slide_skills/animations.py
 slide_skills/assembler.py
 slide_skills/config.py
 slide_skills/content_generator.py
+slide_skills/document_deck.py
 slide_skills/html_deck.py
 slide_skills/image_generator.py
 slide_skills/merge_template.py

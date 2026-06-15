@@ -285,11 +285,23 @@ def generate_deck_content(
     brief: str,
     *,
     language: str | None = None,
+    research: bool = False,
     temperature: float = 0.6,
 ) -> dict:
     """One GPT-4o call: plans the slide sequence and writes every
-    placeholder. Returns {"deck_title", "theme_preset", "slides": [...]}."""
+    placeholder. Returns {"deck_title", "theme_preset", "slides": [...]}.
+
+    research=True first runs keyword extraction + web research (Tavily ->
+    OpenAI web_search -> model knowledge) and grounds the content in the
+    findings."""
     client = get_client()
+
+    research_brief = ""
+    if research:
+        from .research import extract_keywords, web_research
+        keywords = extract_keywords(brief)
+        result = web_research(brief, keywords)
+        research_brief = f"\n\nResearch findings (ground the content in these):\n{result.summary[:4000]}"
 
     catalog = {}
     for t, slide in schema.slides.items():
@@ -301,7 +313,8 @@ def generate_deck_content(
             },
         }
 
-    user = (f"Brief:\n{brief}\n\nCollection: {schema.name} — {schema.description}\n"
+    user = (f"Brief:\n{brief}{research_brief}\n\n"
+            f"Collection: {schema.name} — {schema.description}\n"
             f"Available slide types:\n{json.dumps(catalog, ensure_ascii=False)}")
     if language:
         user += f"\n\nWrite all content in {language}."
@@ -347,10 +360,12 @@ def generate_web_deck(
     palette: Union[str, tuple, None] = "auto",
     language: str | None = None,
     animation: str = "rise",
+    research: bool = False,
     base_dir: Union[str, Path, None] = None,
 ) -> dict:
     """brief -> animated self-contained deck.html. palette: preset name,
     (primary, secondary, accent) tuple, "auto" (AI decides), or None.
+    research=True runs keyword extraction + web search first (the full flow).
 
     The returned dict includes a "usage" summary (tokens + estimated cost)
     for this call."""
@@ -363,7 +378,7 @@ def generate_web_deck(
         collection_dir = base / str(collection)
     schema = scan_collection(collection_dir)
 
-    content = generate_deck_content(schema, brief, language=language)
+    content = generate_deck_content(schema, brief, language=language, research=research)
 
     target = palette
     if palette == "auto":

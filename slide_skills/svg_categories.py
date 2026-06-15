@@ -269,10 +269,11 @@ def generate_deck_from_plan(
 
     lib = scan_template_library(library_dir)
 
-    # color mapping computed once from the whole library's palette
+    # color mapping computed once from the whole library's palette.
+    # Unknown preset names (incl. "auto") are ignored -> keep template colors.
     mapping = {}
-    if palette is not None:
-        target = PRESETS[palette] if isinstance(palette, str) else palette
+    target = PRESETS.get(palette) if isinstance(palette, str) else palette
+    if target is not None:
         mapping = auto_map_palette(_library_palette(lib), target)
 
     filled_svgs, chosen, warnings = [], [], []
