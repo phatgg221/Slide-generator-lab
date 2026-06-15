@@ -12,10 +12,9 @@ Search backend priority (first available wins):
 from __future__ import annotations
 
 import json
-import os
 from dataclasses import dataclass
 
-from .config import get_client, TEXT_MODEL
+from .config import get_client, TEXT_MODEL, resolve_tavily_key
 from .usage import tracker
 
 
@@ -51,7 +50,7 @@ def extract_keywords(content: str, max_keywords: int = 10) -> list[str]:
 def _tavily_research(content: str, keywords: list[str], prompt: str) -> ResearchResult | None:
     """Search with Tavily, then have GPT-4o synthesize the results into a
     structured brief. Returns None if Tavily isn't available."""
-    api_key = os.getenv("TAVILY_API_KEY")
+    api_key = resolve_tavily_key()
     if not api_key:
         return None
     try:

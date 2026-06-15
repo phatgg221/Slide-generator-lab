@@ -29,7 +29,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Union
 
-from .config import get_client, TEXT_MODEL
+from .config import get_client, TEXT_MODEL, load_guide
 from .planner import MAX_SLIDES, MIN_SLIDES, SLIDE_TYPE_DESCRIPTIONS
 from .theme import (
     PRESETS, PaletteColor, _contrast_safe, _luminance, _norm, _saturation,
@@ -313,7 +313,7 @@ def generate_deck_content(
         messages=[
             {"role": "system", "content": _FILL_SYSTEM.format(
                 min_slides=MIN_SLIDES, max_slides=min(MAX_SLIDES, 15),
-                presets=sorted(PRESETS))},
+                presets=sorted(PRESETS)) + load_guide("style") + load_guide("color_theme")},
             {"role": "user", "content": user},
         ],
     )

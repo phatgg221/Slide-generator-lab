@@ -32,7 +32,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Union
 
-from .config import get_client, TEXT_MODEL
+from .config import get_client, TEXT_MODEL, load_guide
 from .svg_collections import _scan_svg, fill_svg, retheme_svg
 from .theme import (
     PRESETS, PaletteColor, _luminance, _norm, _saturation, auto_map_palette,
@@ -226,7 +226,7 @@ def select_and_fill_slide(variants: list[Variant], slide_content: dict,
         model=TEXT_MODEL,
         temperature=0.6,
         response_format={"type": "json_object"},
-        messages=[{"role": "system", "content": _SELECT_SYSTEM},
+        messages=[{"role": "system", "content": _SELECT_SYSTEM + load_guide("style")},
                   {"role": "user", "content": user}],
     )
     tracker.record_chat(response.usage)

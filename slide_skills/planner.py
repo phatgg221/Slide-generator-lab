@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 import re
 
-from .config import get_client, TEXT_MODEL
+from .config import get_client, TEXT_MODEL, load_guide
 from .template_parser import TemplateSpec
 from .theme import PRESETS
 from .usage import tracker
@@ -79,6 +79,7 @@ def plan_deck(
         '"secondary": "RRGGBB", "accent": "RRGGBB"}},\n'
         ' "slides": [{"type": "...", "topic": "...", '
         '"talking_points": ["...", "..."]}]}'
+        + load_guide("style") + load_guide("color_theme")
     )
     user = (
         f"Available slide types:\n{json.dumps(capacity, ensure_ascii=False)}\n\n"

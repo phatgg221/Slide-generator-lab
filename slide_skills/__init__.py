@@ -11,7 +11,7 @@ Skills:
     SlideGeneratorAgent -- orchestrates the four skills end to end
 """
 
-__version__ = "0.2.4"
+__version__ = "0.2.6"
 
 from .template_parser import parse_template, TemplateSpec, SlideSpec, TextElement, ImageElement
 from .content_generator import generate_content, GeneratedDeckContent
@@ -25,6 +25,7 @@ from .assembler import build_deck_from_library, load_library_types, DEFAULT_LIBR
 from .agent import SlideGeneratorAgent
 from .pipeline import CourseDeckPipeline
 from .usage import tracker as usage_tracker, UsageSnapshot
+from .config import use_keys
 from .transitions import apply_transitions, EFFECTS as TRANSITION_EFFECTS
 from .animations import add_animations, ENTRANCE_EFFECTS
 from .template_maker import clean_template, auto_manifest, prepare_template, list_templates
@@ -72,6 +73,7 @@ __all__ = [
     "CourseDeckPipeline",
     "usage_tracker",
     "UsageSnapshot",
+    "use_keys",
     "apply_transitions",
     "TRANSITION_EFFECTS",
     "add_animations",

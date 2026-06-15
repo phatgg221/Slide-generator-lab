@@ -24,7 +24,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Union
 
-from .config import get_client, TEXT_MODEL
+from .config import get_client, TEXT_MODEL, load_guide
 from .usage import tracker
 
 # Palettes as (primary=dark, secondary=light, accent=vivid). Role order
@@ -167,6 +167,7 @@ def propose_palette(
                 "distinct hues than the original.\n"
                 'Return ONLY JSON: {"mapping": {"RRGGBB": "RRGGBB", ...}, '
                 '"rationale": "one sentence"}'
+                + load_guide("color_theme")
             )},
             {"role": "user", "content": (
                 f"Brief:\n{brief}\n\nCurrent palette:\n{json.dumps(current)}"

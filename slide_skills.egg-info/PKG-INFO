@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: slide-skills
-Version: 0.2.4
+Version: 0.2.6
 Summary: AI slide generation skills — fill .pptx/SVG templates with AI text, images, themes, and animations
 Author: Phat Huynh
 Requires-Python: >=3.9
@@ -77,6 +77,7 @@ OPENAI_IMAGE_MODEL=gpt-image-1   # skip image-model auto-detection
 TAVILY_API_KEY=tvly-...          # enables Tavily web search (pip install "slide-skills[search]")
 SLIDE_TEMPLATES_DIR=/path/to/svg/templates   # where your SVG collections/categories live
 SLIDE_LIBRARY_DIR=/path/to/pptx/templates    # where your .pptx templates live
+SLIDE_GUIDES_DIR=/path/to/guides             # design-taste markdown injected into prompts
 ```
 The two `*_DIR` vars are the key to using this as an installed package: set
 them once and the library finds your templates wherever you keep them — your
@@ -219,22 +220,36 @@ before = usage_tracker.snapshot()
 print((usage_tracker.snapshot() - before).report())
 ```
 
-In a **FastAPI** app, wrap blocking calls in a thread:
+**Per-user API keys** (multi-tenant service — each user supplies their own
+OpenAI/Tavily key): wrap calls in `use_keys`. It's async-task-local, so keys
+never leak across concurrent requests. Without it, keys come from the env.
+```python
+from slide_skills import use_keys, generate_web_deck
+
+with use_keys(openai_key=user_openai_key, tavily_key=user_tavily_key):
+    generate_web_deck("starter", topic, "out/deck.html")
+```
+
+In a **FastAPI** app, wrap blocking calls in a thread and scope keys per request:
 ```python
 import asyncio
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
-from slide_skills import generate_web_deck
+from slide_skills import generate_web_deck, use_keys
 
 app = FastAPI()
 
+def _run(topic, collection, openai_key):
+    with use_keys(openai_key=openai_key):       # set inside the worker thread
+        return generate_web_deck(collection, topic, "out/deck.html")
+
 @app.post("/generate")
-async def generate(topic: str, collection: str = "starter"):
-    out = "out/deck.html"
-    await asyncio.to_thread(generate_web_deck, collection, topic, out)
-    return FileResponse(out, media_type="text/html")
+async def generate(topic: str, openai_key: str, collection: str = "starter"):
+    await asyncio.to_thread(_run, topic, collection, openai_key)
+    return FileResponse("out/deck.html", media_type="text/html")
 ```
-(Set `SLIDE_TEMPLATES_DIR` so the app finds your collections.)
+(Set `SLIDE_TEMPLATES_DIR` so the app finds your collections. Set keys inside
+the thread/worker that runs the generation, not only on the request coroutine.)
 
 ---
 
@@ -287,6 +302,28 @@ Rules (see `svg_templates/README.md` for the full guide):
 - Name files by function (`title`, `statistic`, `quote`…); use common fonts.
 
 Then `web_deck.py check` / `demo` your folder before spending on generation.
+
+---
+
+## Tuning the AI's taste (design guides)
+
+The agents' design sense lives in editable markdown, injected into the prompts
+at runtime — change the deck's aesthetic without touching code:
+
+```
+guides/
+  color_theme.md   # palette principles, contrast rules, topic→palette table
+  style.md         # deck structure, layout choice, writing style, what to avoid
+```
+
+- `color_theme.md` → injected into `propose_palette` and `plan_deck`
+- `style.md` → injected into `plan_deck`, the SVG content writer, and the
+  variant-selecting agent
+
+Edit a guide and the next generation follows the new rules — no rebuild. Guides
+are optional (a missing file is simply ignored). Point `SLIDE_GUIDES_DIR` at a
+different folder to swap in a per-brand guide set. Keep them crisp — every line
+costs prompt tokens on each call.
 
 ---
 
@@ -452,6 +489,6 @@ Fixed by design: your layout, and (for now) fonts.
 rm -rf dist && python -m build
 twine upload dist/*          # username: __token__   password: your pypi-... token
 # 3. tag it
-git tag v0.2.4 && git push origin main --tags
+git tag v0.2.6 && git push origin main --tags
 ```
 PyPI versions are permanent — never reuse a number; bump to the next one.
