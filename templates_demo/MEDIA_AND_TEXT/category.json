@@ -1,0 +1,4 @@
+{
+  "description": "A visual slide: heading + short text on one side, a generated image on the other. Use for concepts, examples, or anything that benefits from an illustration.",
+  "variants": { "image_right": "Text left, large image on the right. Use when a concept needs a supporting visual." }
+}

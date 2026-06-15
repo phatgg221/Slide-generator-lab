@@ -33,7 +33,9 @@ from pathlib import Path
 from typing import Union
 
 from .config import get_client, TEXT_MODEL, load_guide
-from .svg_collections import _scan_svg, fill_svg, retheme_svg
+from .svg_collections import (
+    _scan_svg, embed_image, fill_svg, retheme_svg, scan_image_placeholders,
+)
 from .theme import (
     PRESETS, PaletteColor, _luminance, _norm, _saturation, auto_map_palette,
 )
@@ -65,6 +67,7 @@ class Variant:
     path: str
     description: str = ""            # "when to use this design" (from category.json)
     placeholders: dict = field(default_factory=dict)   # name -> {max_chars, lines, font_pt}
+    image_placeholders: list = field(default_factory=list)   # <image> slot names
 
     def slot_summary(self) -> dict:
         """Compact description for the selection prompt: what it's for + slots."""
@@ -129,13 +132,15 @@ def scan_template_library(base_dir: Union[str, Path]) -> TemplateLibrary:
 
         variants = []
         for svg_file in sorted(cat_dir.glob("*.svg")):
+            svg_text = svg_file.read_text(encoding="utf-8")
             variants.append(Variant(
                 category=cat_dir.name,
                 name=svg_file.stem,
                 file=svg_file.name,
                 path=str(svg_file),
                 description=str(var_desc.get(svg_file.stem, "")),
-                placeholders=_scan_svg(svg_file.read_text(encoding="utf-8")),
+                placeholders=_scan_svg(svg_text),
+                image_placeholders=scan_image_placeholders(svg_text),
             ))
         if variants:
             lib.categories[cat_dir.name] = variants
@@ -196,7 +201,13 @@ Rules:
 - NEVER exceed a placeholder's max_chars (text is clipped otherwise).
 - A placeholder with lines > 1 takes an ARRAY of up to that many short
   strings; you may supply fewer.
-- Fill every placeholder. Write in the content's language.
+- Fill EVERY placeholder with meaningful content — never leave one empty or
+  blank (an empty slot renders as a broken empty box).
+- A placeholder named like a number/stat (stat, value, number, metric, kpi,
+  percent) MUST contain an actual figure (e.g. "78%", "3×", "12M"). If the
+  content lacks one, derive a reasonable, clearly-rounded number from the
+  topic (prefix "~" if approximate). Never put a non-number there or leave it blank.
+- Write in the content's language.
 
 Return ONLY JSON:
 {"variant": "<variant name>", "texts": {"<placeholder>": "..." | ["...", "..."]}}
@@ -242,6 +253,36 @@ def select_and_fill_slide(variants: list[Variant], slide_content: dict,
     return {"variant": variant, "texts": texts}
 
 
+def _image_prompt(slide: dict, name: str) -> str:
+    """Build an image prompt that REPRESENTS the slide's content (concrete
+    subject), not generic decoration."""
+    topic = slide.get("topic") or slide.get("heading") or ""
+    points = slide.get("talking_points") or slide.get("points") or []
+    pts = "; ".join(str(p) for p in points) if isinstance(points, (list, tuple)) else ""
+    return (
+        f"A clear, representational flat-style illustration that visually "
+        f"explains this slide's concept: \"{topic}\". "
+        f"Depict concrete subjects, objects, or a scene a viewer would "
+        f"associate with: {pts}. Modern editorial vector look, cohesive color "
+        f"palette, simple background. No text, no words, no letters, no labels."
+    ).strip()
+
+
+def _fill_images(svg, variant, slide, image_source, warnings, idx):
+    """Generate + embed a picture for each image placeholder in the variant."""
+    if image_source == "ai":
+        from .image_generator import generate_image as _gen
+    else:
+        from .svg_image_generator import generate_svg_image as _gen
+    for name in variant.image_placeholders:
+        try:
+            png = _gen(_image_prompt(slide, name), aspect_ratio=1.4)
+            svg = embed_image(svg, name, png)
+        except Exception as exc:
+            warnings.append(f"Slide {idx}: image {name!r} failed ({exc}); slot left empty.")
+    return svg
+
+
 def generate_deck_from_plan(
     plan: Union[list, dict],
     library_dir: Union[str, Path],
@@ -250,6 +291,8 @@ def generate_deck_from_plan(
     palette: Union[str, tuple, None] = None,
     language: str | None = None,
     animation: str = "rise",
+    images: bool = False,
+    image_source: str = "svg",      # "svg" (cheap vector) | "ai" (photo model)
     title: str | None = None,
 ) -> dict:
     """Build an animated web deck from a category-named plan.
@@ -257,6 +300,9 @@ def generate_deck_from_plan(
     plan: list of slides, each {"category": "<folder/label>", ...content...}
           (or {"slides": [...], "title": ...}). Content keys like
           "topic"/"talking_points"/"data" guide the agent.
+    images=True fills any <image> placeholders in the chosen variants with a
+    generated picture (image_source "svg" = GPT-4o vector ~$0.005, "ai" =
+    gpt-image-1 photo).
     """
     from .html_deck import build_html_deck
 
@@ -291,6 +337,8 @@ def generate_deck_from_plan(
         variant = result["variant"]
         svg = Path(variant.path).read_text(encoding="utf-8")
         svg = fill_svg(svg, result["texts"])
+        if images and variant.image_placeholders:
+            svg = _fill_images(svg, variant, slide, image_source, warnings, i)
         if mapping:
             svg = retheme_svg(svg, mapping)
         filled_svgs.append(svg)

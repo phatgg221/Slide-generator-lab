@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 810">
+  <rect width="1440" height="810" fill="#F6F1E7"/>
+  <rect x="760" y="90" width="600" height="630" rx="24" fill="#E4654F" fill-opacity="0.12"/>
+  <!-- generated image fills this slot -->
+  <clipPath id="imgclip"><rect x="780" y="110" width="560" height="590" rx="18"/></clipPath>
+  <image x="780" y="110" width="560" height="590" preserveAspectRatio="xMidYMid slice"
+         clip-path="url(#imgclip)" href="{{media.image}}"/>
+  <rect x="780" y="110" width="560" height="590" rx="18" fill="none" stroke="#1F2A44" stroke-opacity="0.15" stroke-width="2"/>
+  <text x="90" y="200" font-family="Georgia, serif" font-size="58" font-weight="bold" fill="#1F2A44">{{heading|28}}</text>
+  <text x="90" y="300" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#2F3A4A">{{body.1|46}}</text>
+  <text x="90" y="346" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#2F3A4A">{{body.2|46}}</text>
+  <text x="90" y="392" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#2F3A4A">{{body.3|46}}</text>
+  <text x="90" y="720" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#E4654F">{{caption|40}}</text>
+</svg>

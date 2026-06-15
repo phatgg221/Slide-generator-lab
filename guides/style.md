@@ -17,7 +17,18 @@ the planning and variant-selection agents. Keep edits crisp.
   striking line → a quote layout.
 - Prefer a variant with the **right number of slots** over a prettier one that
   doesn't fit — empty or overflowing slots look broken.
-- Use stat/chart layouts only when there are real numbers to show.
+- **Only choose a stat/KPI/number layout when the content has at least 2–3
+  CONCRETE numbers.** A section with vague figures ("thousands", "a lot",
+  "by 2026") is NOT a stat slide — use a bullets or section layout instead.
+
+## Completeness — never leave a slot empty
+- Fill EVERY placeholder of the chosen layout with meaningful content. A blank
+  slot renders as an empty box and looks broken.
+- **Stat/number slots must contain an actual number** (e.g. "78%", "3×",
+  "12M"). If the source text lacks one, derive a reasonable, clearly-rounded
+  figure from the topic/research (prefix "~" if approximate) — never leave a
+  stat slot blank, and never put a non-number there.
+- Each number needs a short label saying what it measures.
 
 ## Writing within a layout
 - **Titles**: punchy, 2–6 words. **Section headers**: a short phrase.

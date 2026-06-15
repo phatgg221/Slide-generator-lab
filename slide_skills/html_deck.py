@@ -124,6 +124,22 @@ def _animation_css(animation: str, stagger_s: float, duration_s: float) -> str:
     return "\n  ".join(rules)
 
 
+_ID_DEF_RE = re.compile(r'\bid\s*=\s*"([^"]+)"')
+_ID_URL_RE = re.compile(r'url\(\s*#([^)\s]+)\s*\)')
+_ID_HREF_RE = re.compile(r'((?:xlink:)?href)\s*=\s*"#([^"]+)"')
+
+
+def _namespace_ids(svg: str, i: int) -> str:
+    """Prefix every element id (and its references) with the slide index, so
+    inlining many SVGs into one page can't collide on shared ids — clipPaths,
+    gradients, masks, filters. Fragment refs only; data: URIs are untouched."""
+    p = f"s{i}_"
+    svg = _ID_DEF_RE.sub(lambda m: f'id="{p}{m.group(1)}"', svg)
+    svg = _ID_URL_RE.sub(lambda m: f'url(#{p}{m.group(1)})', svg)
+    svg = _ID_HREF_RE.sub(lambda m: f'{m.group(1)}="#{p}{m.group(2)}"', svg)
+    return svg
+
+
 def build_html_deck(
     svgs: list[str],
     output_path: Union[str, Path],
@@ -139,6 +155,7 @@ def build_html_deck(
     for i, svg in enumerate(svgs):
         if not _SVG_OPEN_RE.search(svg):
             raise ValueError(f"slide {i} is not an SVG")
+        svg = _namespace_ids(svg, i)
         sections.append(f'<section class="slide" data-i="{i}">{svg}</section>')
 
     page = _PAGE.format(

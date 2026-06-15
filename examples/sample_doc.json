@@ -35,6 +35,15 @@
     {
       "type": "heading",
       "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "How a Model Learns" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "A model is shown many labelled examples, measures its mistakes, and adjusts until its predictions improve — like a student practising with an answer key." }]
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
       "content": [{ "type": "text", "text": "A Voice from the Field" }]
     },
     {

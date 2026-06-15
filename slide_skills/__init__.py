@@ -11,7 +11,7 @@ Skills:
     SlideGeneratorAgent -- orchestrates the four skills end to end
 """
 
-__version__ = "0.2.8"
+__version__ = "0.2.12"
 
 from .template_parser import parse_template, TemplateSpec, SlideSpec, TextElement, ImageElement
 from .content_generator import generate_content, GeneratedDeckContent

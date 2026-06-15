@@ -117,7 +117,12 @@ Also choose an overall theme that fits the content's subject and mood.
 
 Rules:
 - Use ONLY category names from the available list. Don't invent categories.
-- Keep the document's order and narrative. One idea per slide.
+- Create ONE slide per document section, in order (don't drop sections).
+- Only use a stat/KPI/number category when the section has at least 2-3
+  CONCRETE numbers. A section with vague figures ("thousands", "by 2026") is
+  NOT a stat slide — use a bullets or section category instead.
+- Make talking_points specific and complete — they become the slide's text,
+  so give enough for the chosen layout's slots to be filled, never empty.
 - Write in the document's language unless told otherwise.
 
 Return ONLY JSON:
@@ -208,11 +213,15 @@ def generate_deck_from_document(
     language: str | None = None,
     animation: str = "rise",
     research: bool = False,
+    images: bool = False,
+    image_source: str = "svg",
     title: str | None = None,
 ) -> dict:
     """Editor document -> animated web deck. palette="auto" lets the agent pick
     a theme from the content; a preset/tuple forces one; None keeps template
-    colors. research=True enriches the content with web facts first."""
+    colors. research=True enriches the content with web facts first.
+    images=True fills <image> slots in the templates (image_source "svg" =
+    cheap GPT-4o vector, "ai" = gpt-image-1 photo)."""
     usage_before = tracker.snapshot()
 
     sections = parse_document(doc)
@@ -241,6 +250,7 @@ def generate_deck_from_document(
     result = generate_deck_from_plan(
         plan, library_dir, output_path,
         palette=target, language=language, animation=animation,
+        images=images, image_source=image_source,
         title=title or plan.get("title"),
     )
 

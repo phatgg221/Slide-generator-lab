@@ -231,6 +231,30 @@ def fill_svg(svg: str, data: dict) -> str:
     return _PLACEHOLDER_RE.sub(sub, svg)
 
 
+# Image placeholders: an <image> whose href is {{name}} (or xlink:href).
+_IMAGE_PH_RE = re.compile(r'(?:xlink:)?href\s*=\s*"\{\{([^}]+)\}\}"')
+
+
+def scan_image_placeholders(svg: str) -> list[str]:
+    """Names of image placeholders — <image href="{{name}}"> slots to fill
+    with a generated picture (distinct from text placeholders)."""
+    seen, out = set(), []
+    for m in _IMAGE_PH_RE.finditer(svg):
+        name = m.group(1).strip()
+        if name not in seen:
+            seen.add(name)
+            out.append(name)
+    return out
+
+
+def embed_image(svg: str, name: str, png_bytes: bytes) -> str:
+    """Replace the {{name}} href of an <image> slot with a PNG data URI."""
+    import base64
+    data_uri = "data:image/png;base64," + base64.b64encode(png_bytes).decode()
+    pattern = re.compile(r'(\{\{' + re.escape(name) + r'\}\})')
+    return pattern.sub(data_uri, svg)
+
+
 def retheme_svg(svg: str, mapping: dict[str, str]) -> str:
     """Remap hex colors ({old: new}, no '#')."""
     mapping = {_norm(k): _norm(v) for k, v in mapping.items()}
