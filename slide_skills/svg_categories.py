@@ -279,30 +279,51 @@ def select_and_fill_slide(variants: list[Variant], slide_content: dict,
     return {"variant": variant, "texts": texts}
 
 
-def _image_prompt(slide: dict, name: str) -> str:
-    """Build an image prompt that REPRESENTS the slide's content (concrete
-    subject), not generic decoration."""
+def _flat(v) -> str:
+    if isinstance(v, (list, tuple)):
+        return " ".join(str(x) for x in v if str(x).strip())
+    return str(v or "")
+
+
+def _image_prompt(slide: dict, name: str, texts: dict | None = None) -> str:
+    """Build an image prompt that REPRESENTS the content. For a numbered image
+    slot (image_2) it uses THAT panel's own label_2/caption_2 so each panel
+    depicts its own subject — not the whole slide crammed together."""
+    texts = texts or {}
+    m = re.search(r"(\d+)$", name)
+    if m:
+        idx = m.group(1)
+        label = _flat(texts.get(f"label_{idx}") or texts.get(f"title_{idx}"))
+        caption = _flat(texts.get(f"caption_{idx}") or texts.get(f"desc_{idx}"))
+        subject = " — ".join(s for s in (label, caption) if s)
+        if subject:
+            return (
+                f"A clear, representational flat-style illustration of a single "
+                f"subject: {subject}. One concrete object or scene, modern "
+                f"editorial vector look, simple background. No text, no words, "
+                f"no letters."
+            )
     topic = slide.get("topic") or slide.get("heading") or ""
-    points = slide.get("talking_points") or slide.get("points") or []
-    pts = "; ".join(str(p) for p in points) if isinstance(points, (list, tuple)) else ""
+    pts = _flat(slide.get("talking_points") or slide.get("points"))
     return (
         f"A clear, representational flat-style illustration that visually "
         f"explains this slide's concept: \"{topic}\". "
-        f"Depict concrete subjects, objects, or a scene a viewer would "
-        f"associate with: {pts}. Modern editorial vector look, cohesive color "
-        f"palette, simple background. No text, no words, no letters, no labels."
+        f"Depict concrete subjects a viewer would associate with: {pts}. "
+        f"Modern editorial vector look, simple background. No text, no words, "
+        f"no letters, no labels."
     ).strip()
 
 
-def _fill_images(svg, variant, slide, image_source, warnings, idx):
-    """Generate + embed a picture for each image placeholder in the variant."""
+def _fill_images(svg, variant, slide, texts, image_source, warnings, idx):
+    """Generate + embed a picture for each image placeholder in the variant.
+    Per-panel prompts come from each slot's own label/caption in `texts`."""
     if image_source == "ai":
         from .image_generator import generate_image as _gen
     else:
         from .svg_image_generator import generate_svg_image as _gen
     for name in variant.image_placeholders:
         try:
-            png = _gen(_image_prompt(slide, name), aspect_ratio=1.4)
+            png = _gen(_image_prompt(slide, name, texts), aspect_ratio=1.4)
             svg = embed_image(svg, name, png)
         except Exception as exc:
             warnings.append(f"Slide {idx}: image {name!r} failed ({exc}); slot left empty.")
@@ -367,7 +388,7 @@ def generate_deck_from_plan(
         # images first: embed_image needs the {{image}} placeholder, which
         # fill_svg would otherwise wipe to empty (it's not in the text data).
         if images and variant.image_placeholders:
-            svg = _fill_images(svg, variant, slide, image_source, warnings, i)
+            svg = _fill_images(svg, variant, slide, result["texts"], image_source, warnings, i)
         svg = fill_svg(svg, result["texts"])
         if mapping:
             svg = retheme_svg(svg, mapping)
