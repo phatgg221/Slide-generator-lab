@@ -83,16 +83,21 @@ def _guides_dir() -> Path:
 
 def load_guide(name: str) -> str:
     """Read a guidance markdown file (e.g. 'color_theme', 'style') to inject
-    into an agent's system prompt. Returns '' if the file is absent, so guides
-    are always optional. Re-read each call so edits take effect live."""
-    path = _guides_dir() / f"{name}.md"
-    try:
-        text = path.read_text(encoding="utf-8").strip()
-    except OSError:
-        return ""
-    if not text:
-        return ""
-    return f"\n\n--- {name} guidance ---\n{text}\n--- end guidance ---\n"
+    into an agent's system prompt. Returns '' if absent (guides are optional).
+
+    Resolution order:
+      1. SLIDE_GUIDES_DIR / <name>.md   — your override (per-brand taste)
+      2. packaged slide_skills/guides/<name>.md — ships with the library, so a
+         bare `pip install` already has sensible defaults.
+    Re-read each call so edits take effect live."""
+    for base in (_guides_dir(), Path(__file__).resolve().parent / "guides"):
+        try:
+            text = (base / f"{name}.md").read_text(encoding="utf-8").strip()
+        except OSError:
+            continue
+        if text:
+            return f"\n\n--- {name} guidance ---\n{text}\n--- end guidance ---\n"
+    return ""
 
 
 @lru_cache(maxsize=16)

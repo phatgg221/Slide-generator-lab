@@ -29,6 +29,8 @@ slide_skills.egg-info/SOURCES.txt
 slide_skills.egg-info/dependency_links.txt
 slide_skills.egg-info/requires.txt
 slide_skills.egg-info/top_level.txt
+slide_skills/guides/color_theme.md
+slide_skills/guides/style.md
 tests/test_assembler.py
 tests/test_offline_pipeline.py
 tests/test_svg_collections.py
