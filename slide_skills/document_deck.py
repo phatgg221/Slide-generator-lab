@@ -123,6 +123,9 @@ Rules:
   NOT a stat slide — use a bullets or section category instead.
 - Make talking_points specific and complete — they become the slide's text,
   so give enough for the chosen layout's slots to be filled, never empty.
+- Prefer VARIETY: when several categories fit a section, favor one not yet
+  used, so the deck uses a diverse range of layouts (don't repeat the same
+  category back-to-back unless the content truly calls for it).
 - Write in the document's language unless told otherwise.
 
 Return ONLY JSON:

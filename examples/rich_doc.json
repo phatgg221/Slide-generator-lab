@@ -1,0 +1,54 @@
+{
+  "type": "doc",
+  "content": [
+    { "type": "heading", "attrs": { "level": 1 }, "content": [{ "type": "text", "text": "LearnLoop: AI Tutoring for Vietnamese Students" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "An investor overview of a mobile-first AI tutor helping high-schoolers master math and English. Prepared by the LearnLoop founding team." }] },
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "What We'll Cover" }] },
+    { "type": "bulletList", "content": [
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "The problem and the market" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Our product and how it works" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Traction, roadmap, and the ask" }] }] }
+    ]},
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "The Problem" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "Private tutoring is expensive and unevenly distributed. Rural students rarely access quality teachers, and parents spend heavily for inconsistent results." }] },
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Market by the Numbers" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "The opportunity is large and growing fast: a 2.4 billion USD tutoring market, 18 million students, and 32% annual growth in online learning." }] },
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "How LearnLoop Works" }] },
+    { "type": "bulletList", "content": [
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Step 1: Student takes a 5-minute diagnostic quiz" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Step 2: AI builds a personalized learning path" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Step 3: Daily practice with instant feedback" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Step 4: Weekly progress report for parents" }] }] }
+    ]},
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Us vs Traditional Tutoring" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "Compared with a human tutor: LearnLoop costs a tenth as much, is available 24/7, and adapts in real time — while traditional tutoring offers human rapport and is limited to scheduled hours." }] },
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "A Voice from a Parent" }] },
+    { "type": "blockquote", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "For the first time my daughter looks forward to studying, and her math scores jumped a full grade in two months." }] }] },
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Our Roadmap" }] },
+    { "type": "bulletList", "content": [
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Q1 2026: Launch math module" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Q3 2026: Add English and 50k users" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Q1 2027: Expand to Southeast Asia" }] }] }
+    ]},
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Key Takeaways" }] },
+    { "type": "bulletList", "content": [
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Huge, fast-growing market" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Proven early results" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Clear path to scale" }] }] }
+    ]},
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Join Us" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "We're raising a seed round to launch and grow. Partner with us to bring affordable, personalized education to every student." }] },
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Get in Touch" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "Email hello@learnloop.vn, visit learnloop.vn, or follow @learnloop on social media." }] }
+  ]
+}
