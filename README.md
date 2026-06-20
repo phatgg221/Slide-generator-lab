@@ -367,6 +367,27 @@ Category names match plan labels ignoring case/spaces/`&`/`-`/`_`
 (`"KPI & Big Numbers"` → `KPI_BIG_NUMBERS`), but not plurals — name folders to
 match your plan labels.
 
+### Optional per-variant schema (richer field specs)
+
+By default the AI receives each slot's name + budget, inferring meaning from
+the name. To make generation more accurate, drop a `<variant>.schema.json`
+(or `<variant>_schema.json`) next to the SVG describing each field:
+
+```json
+{
+  "fields": {
+    "heading": {"type": "title",  "desc": "Section heading"},
+    "stat_1":  {"type": "number", "desc": "First key metric, e.g. 78%"},
+    "label_1": {"type": "text",   "desc": "What stat_1 measures"}
+  }
+}
+```
+
+The AI then knows a field is a *number* vs a *label* (fixing empty/wrong
+stat cards). Budgets (`max_chars`/`lines`) still come from the SVG, so you
+never hand-maintain them. Entirely optional — without it, the spec is derived
+from the SVG as before. The AI reads this small spec, never the SVG markup.
+
 ---
 
 ## Quick start — PowerPoint deck from a .pptx template
@@ -486,6 +507,6 @@ Fixed by design: your layout, and (for now) fonts.
 rm -rf dist && python -m build
 twine upload dist/*          # username: __token__   password: your pypi-... token
 # 3. tag it
-git tag v0.2.12 && git push origin main --tags
+git tag v0.2.13 && git push origin main --tags
 ```
 PyPI versions are permanent — never reuse a number; bump to the next one.

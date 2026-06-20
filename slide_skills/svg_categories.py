@@ -68,14 +68,23 @@ class Variant:
     description: str = ""            # "when to use this design" (from category.json)
     placeholders: dict = field(default_factory=dict)   # name -> {max_chars, lines, font_pt}
     image_placeholders: list = field(default_factory=list)   # <image> slot names
+    field_specs: dict = field(default_factory=dict)    # name -> {type, desc} from schema.json
 
     def slot_summary(self) -> dict:
-        """Compact description for the selection prompt: what it's for + slots."""
-        return {
-            "description": self.description,
-            "slots": {name: {"max_chars": m["max_chars"], "lines": m["lines"]}
-                      for name, m in self.placeholders.items()},
-        }
+        """Compact spec for the selection prompt: what it's for + each slot's
+        budget, plus type/desc when a <variant> schema.json provides them
+        (so the model knows what each field MEANS, not just its length)."""
+        slots = {}
+        for name, m in self.placeholders.items():
+            entry = {"max_chars": m["max_chars"], "lines": m["lines"]}
+            spec = self.field_specs.get(name)
+            if spec:
+                if spec.get("type"):
+                    entry["type"] = spec["type"]
+                if spec.get("desc"):
+                    entry["desc"] = spec["desc"]
+            slots[name] = entry
+        return {"description": self.description, "slots": slots}
 
 
 @dataclass
@@ -114,6 +123,21 @@ def _canon(s: str) -> str:
     return re.sub(r"[\s&/_-]+", "", s).lower()
 
 
+def _load_field_specs(svg_file: Path) -> dict:
+    """Optional per-variant schema: <stem>.schema.json or <stem>_schema.json
+    next to the SVG. Returns {field_name: {type, desc}} or {} if absent.
+    Budgets (max_chars/lines) always come from the SVG, so they stay in sync."""
+    for cand in (svg_file.with_suffix(".schema.json"),
+                 svg_file.with_name(svg_file.stem + "_schema.json")):
+        if cand.exists():
+            try:
+                data = json.loads(cand.read_text(encoding="utf-8"))
+            except (ValueError, OSError):
+                return {}
+            return {str(k): v for k, v in (data.get("fields") or {}).items()}
+    return {}
+
+
 def scan_template_library(base_dir: Union[str, Path]) -> TemplateLibrary:
     """Discover categories (subfolders) and their variant SVGs."""
     base = Path(base_dir)
@@ -141,6 +165,7 @@ def scan_template_library(base_dir: Union[str, Path]) -> TemplateLibrary:
                 description=str(var_desc.get(svg_file.stem, "")),
                 placeholders=_scan_svg(svg_text),
                 image_placeholders=scan_image_placeholders(svg_text),
+                field_specs=_load_field_specs(svg_file),
             ))
         if variants:
             lib.categories[cat_dir.name] = variants

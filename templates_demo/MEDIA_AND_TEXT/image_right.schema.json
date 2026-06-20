@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "heading": {
+      "type": "title",
+      "desc": "heading / title",
+      "max_chars": 28
+    },
+    "body": {
+      "type": "text",
+      "desc": "body point — concise, parallel phrasing",
+      "max_chars": 46,
+      "lines": 3
+    },
+    "caption": {
+      "type": "caption",
+      "desc": "source, footnote, or small caption",
+      "max_chars": 40
+    }
+  }
+}
