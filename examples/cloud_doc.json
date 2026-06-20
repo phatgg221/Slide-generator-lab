@@ -1,0 +1,35 @@
+{
+  "type": "doc",
+  "content": [
+    { "type": "heading", "attrs": { "level": 1 }, "content": [{ "type": "text", "text": "Introduction to Cloud Computing" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "Cloud computing has revolutionized how businesses operate, offering scalable resources over the internet. This lesson covers its definition, benefits, and basic components." }] },
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "What is Cloud Computing?" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "Cloud computing is the delivery of computing services — servers, storage, databases, networking, software, and analytics — over the internet ('the cloud'), enabling faster innovation, flexible resources, and economies of scale." }] },
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Benefits of Cloud Computing" }] },
+    { "type": "bulletList", "content": [
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Cost-efficiency: lower total cost, no on-premise hardware" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Scalability: adjust resources to match demand" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Accessibility: reach services from anywhere online" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Disaster recovery: better redundancy and backups" }] }] }
+    ]},
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Types of Cloud Services" }] },
+    { "type": "bulletList", "content": [
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "IaaS — Infrastructure as a Service: virtualized computing resources" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "PaaS — Platform as a Service: hardware and software tools online" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "SaaS — Software as a Service: applications delivered over the internet" }] }] }
+    ]},
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Cloud Deployment Models" }] },
+    { "type": "bulletList", "content": [
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Public cloud: infrastructure offered off-site over the internet" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Private cloud: dedicated infrastructure for one organization" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Hybrid cloud: a mix of on-premise and cloud resources" }] }] }
+    ]},
+
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Summary" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "Understanding the core concepts of cloud computing is essential for grasping architecture, service integration, and strategic implementation in future lessons." }] }
+  ]
+}

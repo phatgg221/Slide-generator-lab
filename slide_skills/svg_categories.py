@@ -34,7 +34,8 @@ from typing import Union
 
 from .config import get_client, TEXT_MODEL, load_guide
 from .svg_collections import (
-    _scan_svg, embed_image, fill_svg, retheme_svg, scan_image_placeholders,
+    _scan_svg, embed_image, fill_svg, prune_empty_groups, retheme_svg,
+    scan_image_placeholders,
 )
 from .theme import (
     PRESETS, PaletteColor, _luminance, _norm, _saturation, auto_map_palette,
@@ -318,6 +319,7 @@ def generate_deck_from_plan(
     animation: str = "rise",
     images: bool = False,
     image_source: str = "svg",      # "svg" (cheap vector) | "ai" (photo model)
+    append_svgs: list | None = None,  # pre-filled SVG strings added at the end
     title: str | None = None,
 ) -> dict:
     """Build an animated web deck from a category-named plan.
@@ -361,9 +363,12 @@ def generate_deck_from_plan(
             continue
         variant = result["variant"]
         svg = Path(variant.path).read_text(encoding="utf-8")
-        svg = fill_svg(svg, result["texts"])
+        svg = prune_empty_groups(svg, result["texts"])   # drop unfilled repeatable units
+        # images first: embed_image needs the {{image}} placeholder, which
+        # fill_svg would otherwise wipe to empty (it's not in the text data).
         if images and variant.image_placeholders:
             svg = _fill_images(svg, variant, slide, image_source, warnings, i)
+        svg = fill_svg(svg, result["texts"])
         if mapping:
             svg = retheme_svg(svg, mapping)
         filled_svgs.append(svg)
@@ -371,6 +376,12 @@ def generate_deck_from_plan(
 
     if not filled_svgs:
         raise ValueError(f"No slides could be built. Warnings: {warnings}")
+
+    for s in (append_svgs or []):
+        if not s:
+            continue
+        filled_svgs.append(retheme_svg(s, mapping) if mapping else s)
+        chosen.append({"category": "REFERENCES", "variant": "appended"})
 
     out = build_html_deck(filled_svgs, output_path,
                           title=title or "Presentation", animation=animation)

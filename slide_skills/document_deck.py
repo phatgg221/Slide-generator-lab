@@ -188,6 +188,25 @@ def map_document_to_plan(
     return plan
 
 
+def build_references_slide(library, sources: list, *, heading: str = "References"):
+    """Fill a REFERENCES_LIST template with real research sources (deterministic
+    — no AI). Returns a filled SVG string, or None if the library has no
+    references category or there are no sources."""
+    from .svg_collections import fill_svg, prune_empty_groups, scan_image_placeholders
+
+    key = library.resolve("references_list") or library.resolve("references")
+    if not key or not sources:
+        return None
+    variant = library.categories[key][0]
+    data = {"heading": heading}
+    for i, src in enumerate(sources[:3], 1):
+        data[f"source_title_{i}"] = (src.get("title") or src.get("url") or "")[:70]
+        data[f"source_url_{i}"] = (src.get("url") or "")[:80]
+    svg = Path(variant.path).read_text(encoding="utf-8")
+    svg = prune_empty_groups(svg, data)
+    return fill_svg(svg, data)
+
+
 def _theme_to_palette(theme: dict):
     """Convert the planner's theme object into a palette arg."""
     if not isinstance(theme, dict):
@@ -234,11 +253,14 @@ def generate_deck_from_document(
     library = scan_template_library(library_dir)
 
     research_summary = ""
+    research_sources = []
     if research:
         from .research import extract_keywords, web_research
         doc_text = "\n\n".join(s["text"] for s in sections)
         keywords = extract_keywords(doc_text)
-        research_summary = web_research(doc_text, keywords).summary
+        research_result = web_research(doc_text, keywords)
+        research_summary = research_result.summary
+        research_sources = research_result.sources or []
 
     plan = map_document_to_plan(
         sections, library, research_summary=research_summary, language=language)
@@ -250,12 +272,17 @@ def generate_deck_from_document(
     # palette: "auto" -> use the theme the agent chose; else honor the caller
     target = _theme_to_palette(plan.get("theme")) if palette == "auto" else palette
 
+    # references slide from real research sources (Tavily/web_search only)
+    refs_svg = build_references_slide(library, research_sources) if research_sources else None
+
     result = generate_deck_from_plan(
         plan, library_dir, output_path,
         palette=target, language=language, animation=animation,
         images=images, image_source=image_source,
+        append_svgs=[refs_svg] if refs_svg else None,
         title=title or plan.get("title"),
     )
+    result["sources"] = research_sources
 
     usage = tracker.snapshot() - usage_before
     result["usage"] = {

@@ -124,9 +124,14 @@ def auto_map_palette(
     for color in palette:
         if color.hex in ("000000", "FFFFFF"):
             continue
-        if color.saturation >= 0.6 and color.luminance >= 0.3:
-            new = accent
-        elif color.luminance < 0.45:
+        # Vivid colors are accents BY INTENT (e.g. neon highlights on a dark
+        # deck) — map them to the target accent VERBATIM, keeping them vivid.
+        # Luminance-clamping them would darken a low-luminance accent like
+        # hot-pink into the background and make it vanish.
+        if color.saturation >= 0.55:
+            mapping[color.hex] = accent
+            continue
+        if color.luminance < 0.45:
             new = primary
         elif color.luminance > 0.75:
             new = secondary

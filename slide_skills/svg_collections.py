@@ -255,6 +255,53 @@ def embed_image(svg: str, name: str, png_bytes: bytes) -> str:
     return pattern.sub(data_uri, svg)
 
 
+def prune_empty_groups(svg: str, data: dict) -> str:
+    """Remove any <g> whose every placeholder ends up empty — so a template's
+    fixed repeatable units (milestone 4, step 4…) don't leave orphan
+    decorations (dots, cards) when the content has fewer items. A group is
+    removed only if it contains placeholders AND none of them have data; groups
+    with at least one filled field, or no placeholders at all, are kept."""
+    filled = set()
+    for k, v in (data or {}).items():
+        if isinstance(v, (list, tuple)):
+            if any(str(x).strip() for x in v):
+                filled.add(k)
+        elif str(v).strip():
+            filled.add(k)
+
+    try:
+        from lxml import etree
+        root = etree.fromstring(svg.encode("utf-8"))
+    except Exception:
+        return svg
+
+    def base_names(text: str) -> set:
+        names = set()
+        for m in _PLACEHOLDER_RE.finditer(text):
+            raw = m.group(1).split("|")[0].strip()
+            head, _, tail = raw.rpartition(".")
+            names.add(head if tail.isdigit() and head else raw)
+        return names
+
+    to_remove = []
+    for g in root.iter("{http://www.w3.org/2000/svg}g"):
+        text = etree.tostring(g, encoding="unicode")
+        # Never prune a group with an image slot — images are filled in a
+        # separate step, so they won't appear in `data` here.
+        if _IMAGE_PH_RE.search(text):
+            continue
+        names = base_names(text)
+        if names and not (names & filled):
+            to_remove.append(g)
+    if not to_remove:
+        return svg
+    for g in to_remove:
+        parent = g.getparent()
+        if parent is not None:
+            parent.remove(g)
+    return etree.tostring(root, encoding="unicode")
+
+
 def retheme_svg(svg: str, mapping: dict[str, str]) -> str:
     """Remap hex colors ({old: new}, no '#')."""
     mapping = {_norm(k): _norm(v) for k, v in mapping.items()}

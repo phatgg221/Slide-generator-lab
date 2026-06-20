@@ -25,23 +25,23 @@ _SVG_RE = re.compile(r"<svg\b.*?</svg>", re.DOTALL | re.IGNORECASE)
 _FORBIDDEN = re.compile(r"<\s*(script|foreignObject|image)\b", re.IGNORECASE)
 
 _SYSTEM = """\
-You are a vector artist for presentation slides. Produce ONE self-contained
-SVG: an ABSTRACT GEOMETRIC composition that evokes the requested theme —
-not a literal drawing of objects (literal objects render clumsy; abstraction
-looks professional).
+You are a flat-vector ICON illustrator for presentation slides. Produce ONE
+self-contained SVG that clearly ILLUSTRATES the requested concept — a simple,
+recognizable flat illustration built from basic shapes (like a high-quality
+app icon or spot illustration), NOT an abstract decoration.
 
-Think: overlapping translucent circles, flowing curves, layered arcs,
-scattered dots, diagonal bands, concentric rings — arranged to suggest the
-theme's mood and energy.
+Approach: pick 1-3 concrete symbols that represent the concept (e.g. a
+graduation cap for education, an upward bar chart for growth, a phone for an
+app, a lightbulb for an idea) and compose them simply and boldly.
 
 Rules:
-- viewBox="0 0 {w} {h}" exactly; fill the whole canvas (background first).
-- 12-25 shapes. Vary sizes dramatically (a few large anchors, many small
-  accents). Use fill-opacity 0.3-0.8 on overlapping shapes for depth.
-- 3-6 colors from one family plus an accent. Linear gradients allowed.
-- Off-center, asymmetric composition with one clear focal area.
+- viewBox="0 0 {w} {h}" exactly; clean solid or subtle-gradient background.
+- Build recognizable objects from rects, circles, paths, polygons. Bold,
+  simple, centered — readable at a glance. Flat design, minimal detail.
+- 3-6 cohesive colors plus one accent; use a clear silhouette.
 - No <text>, no <script>, no <image>, no external refs, no CSS classes —
-  inline fill/stroke attributes only.
+  inline fill/stroke attributes only. (Avoid tiny fiddly details that render
+  poorly; favor clean bold shapes.)
 Return ONLY the SVG markup, nothing else.
 """
 

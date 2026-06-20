@@ -28,6 +28,9 @@
     { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Us vs Traditional Tutoring" }] },
     { "type": "paragraph", "content": [{ "type": "text", "text": "Compared with a human tutor: LearnLoop costs a tenth as much, is available 24/7, and adapts in real time — while traditional tutoring offers human rapport and is limited to scheduled hours." }] },
 
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "The App in Action" }] },
+    { "type": "paragraph", "content": [{ "type": "text", "text": "A clean mobile interface guides each student through bite-sized lessons, progress streaks, and friendly AI hints — making daily study feel like a game." }] },
+
     { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "A Voice from a Parent" }] },
     { "type": "blockquote", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "For the first time my daughter looks forward to studying, and her math scores jumped a full grade in two months." }] }] },
 

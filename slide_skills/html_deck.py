@@ -107,15 +107,26 @@ _PAGE = """<!DOCTYPE html>
 
 
 def _animation_css(animation: str, stagger_s: float, duration_s: float) -> str:
+    """Entrance animation that never breaks SVG layout.
+
+    CSS `transform` on an SVG child OVERRIDES that element's own
+    `transform="translate(...)"` attribute, which silently relocates any
+    positioned group to the origin. So the rise/scale motion is applied to the
+    whole <svg> (a normal flex item — safe), and the per-element stagger uses
+    OPACITY ONLY, which can never disturb positioning."""
     if animation not in ANIMATIONS:
         raise ValueError(f"Unknown animation {animation!r}. Available: {sorted(ANIMATIONS)}")
     if animation == "none":
         return ""
-    hidden = ANIMATIONS[animation]
+    svg_hidden = ANIMATIONS[animation]      # rise/scale/fade applied to the whole SVG
     rules = [
-        f".slide svg > * {{ {hidden} }}",
-        f".slide.active svg > * {{ animation: enter {duration_s}s ease-out forwards; }}",
-        "@keyframes enter { to { opacity:1; transform:none; } }",
+        f".slide svg {{ {svg_hidden} }}",
+        f".slide.active svg {{ animation: deckenter {duration_s}s ease-out forwards; }}",
+        "@keyframes deckenter { to { opacity:1; transform:none; } }",
+        # per-element stagger — opacity only, never transform
+        ".slide svg > * { opacity:0; }",
+        f".slide.active svg > * {{ animation: elenter {duration_s}s ease-out forwards; }}",
+        "@keyframes elenter { to { opacity:1; } }",
     ]
     for n in range(1, _MAX_STAGGERED + 1):
         rules.append(
