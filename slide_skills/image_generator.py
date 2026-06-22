@@ -116,7 +116,8 @@ def generate_image(
             raise
         globals()["_working_model"] = model
         tracker.record_image(used_kwargs["size"],
-                             used_kwargs.get("quality", "standard"))
+                             used_kwargs.get("quality", "standard"),
+                             usage=getattr(response, "usage", None))
 
         data = response.data[0]
         if getattr(data, "b64_json", None):

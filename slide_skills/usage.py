@@ -103,8 +103,23 @@ class UsageTracker:
             self._totals.output_tokens += out_tok or 0
             self._totals.requests += 1
 
-    def record_image(self, size: str, quality: str) -> None:
-        cost = _PRICES["image"].get((size, quality), 0.080)
+    def record_image(self, size: str, quality: str, usage=None) -> None:
+        """Cost from the API's ACTUAL returned token usage when available
+        (gpt-image-1 returns it: $5/1M text-in, $10/1M image-in, $40/1M
+        image-out); otherwise the flat size+quality estimate (dall-e)."""
+        cost = None
+        if usage is not None:
+            out_tok = getattr(usage, "output_tokens", 0) or 0
+            in_tok = getattr(usage, "input_tokens", 0) or 0
+            details = getattr(usage, "input_tokens_details", None)
+            text_in = getattr(details, "text_tokens", None) if details else None
+            img_in = getattr(details, "image_tokens", 0) if details else 0
+            if out_tok:
+                if text_in is None:
+                    text_in, img_in = in_tok, 0
+                cost = (text_in * 5 + img_in * 10 + out_tok * 40) / 1_000_000
+        if cost is None:
+            cost = _PRICES["image"].get((size, quality), 0.080)
         with self._lock:
             self._totals.images += 1
             self._totals.image_cost += cost
