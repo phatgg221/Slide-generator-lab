@@ -507,6 +507,6 @@ Fixed by design: your layout, and (for now) fonts.
 rm -rf dist && python -m build
 twine upload dist/*          # username: __token__   password: your pypi-... token
 # 3. tag it
-git tag v0.2.21 && git push origin main --tags
+git tag v0.2.22 && git push origin main --tags
 ```
 PyPI versions are permanent — never reuse a number; bump to the next one.

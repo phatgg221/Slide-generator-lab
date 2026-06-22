@@ -5,13 +5,17 @@ web_research      -- searches the web for facts/stats/sources on those topics
 
 Search backend priority (first available wins):
   1. Tavily        -- if TAVILY_API_KEY is set (LLM-grade search, any account)
-  2. OpenAI web_search / web_search_preview -- if the account has the tool
-  3. model-knowledge -- GPT-4o's own knowledge, so the pipeline never blocks
+  2. model-knowledge -- the model's own knowledge, so the pipeline never blocks
+
+The OpenAI hosted web_search tool is OFF by default (it can pull large page
+content into the prompt and inflate tokens). Re-enable with the env var
+SLIDE_ENABLE_OPENAI_WEBSEARCH=1.
 """
 
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 
 from .config import get_client, TEXT_MODEL, resolve_tavily_key
@@ -99,9 +103,10 @@ def _tavily_research(content: str, keywords: list[str], prompt: str) -> Research
 def web_research(content: str, keywords: list[str]) -> ResearchResult:
     """Gather facts, statistics, definitions, and sources for the keywords.
 
-    Backend priority: Tavily (TAVILY_API_KEY) -> OpenAI web-search tool ->
-    GPT-4o's own knowledge. Always returns a ResearchResult; the .method field
-    says which backend was used."""
+    Backend priority: Tavily (TAVILY_API_KEY) -> GPT model knowledge.
+    The OpenAI hosted web-search tool is DISABLED by default (set
+    SLIDE_ENABLE_OPENAI_WEBSEARCH=1 to re-enable). Always returns a
+    ResearchResult; the .method field says which backend was used."""
     client = get_client()
     prompt = (
         "Research the following topics to prepare a presentation.\n"
@@ -116,17 +121,20 @@ def web_research(content: str, keywords: list[str]) -> ResearchResult:
     if tavily is not None:
         return tavily
 
-    for tool_type in ("web_search", "web_search_preview"):
-        try:
-            response = client.responses.create(
-                model=TEXT_MODEL,
-                tools=[{"type": tool_type}],
-                input=prompt,
-            )
-            tracker.record_chat(getattr(response, "usage", None))
-            return ResearchResult(summary=response.output_text, method=tool_type)
-        except Exception:
-            continue
+    # OpenAI hosted web_search tool is opt-in only (it can pull large amounts
+    # of page content into the prompt, inflating tokens). Off unless asked.
+    if os.getenv("SLIDE_ENABLE_OPENAI_WEBSEARCH") == "1":
+        for tool_type in ("web_search", "web_search_preview"):
+            try:
+                response = client.responses.create(
+                    model=TEXT_MODEL,
+                    tools=[{"type": tool_type}],
+                    input=prompt,
+                )
+                tracker.record_chat(getattr(response, "usage", None))
+                return ResearchResult(summary=response.output_text, method=tool_type)
+            except Exception:
+                continue
 
     response = client.chat.completions.create(
         model=TEXT_MODEL,
