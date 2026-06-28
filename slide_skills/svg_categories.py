@@ -242,9 +242,11 @@ Return ONLY JSON:
 
 def select_and_fill_slide(variants: list[Variant], slide_content: dict,
                           *, language: str | None = None,
-                          shortlist_k: int = 4) -> dict:
+                          shortlist_k: int = 4,
+                          research_context: str = "") -> dict:
     """Schema-fit shortlist + one GPT-4o call -> {"variant", "texts"} for the
-    chosen variant. Returns {} if no variant can be selected."""
+    chosen variant. Returns {} if no variant can be selected.
+    research_context (optional) grounds the writing in real facts/figures."""
     if not variants:
         return {}
     finalists = shortlist_variants(variants, slide_content, k=shortlist_k)
@@ -255,6 +257,9 @@ def select_and_fill_slide(variants: list[Variant], slide_content: dict,
         f"Candidate variants and their placeholders:\n"
         f"{json.dumps(candidates, ensure_ascii=False)}"
     )
+    if research_context:
+        user += (f"\n\nResearch facts (use the relevant ones; keep numbers "
+                 f"accurate):\n{research_context[:2000]}")
     if language:
         user += f"\n\nWrite all text in {language}."
 
@@ -340,6 +345,7 @@ def generate_deck_from_plan(
     animation: str = "rise",
     images: bool = False,
     image_source: str = "svg",      # "svg" (cheap vector) | "ai" (photo model)
+    research: bool = False,
     append_svgs: list | None = None,  # pre-filled SVG strings added at the end
     title: str | None = None,
 ) -> dict:
@@ -351,6 +357,8 @@ def generate_deck_from_plan(
     images=True fills any <image> placeholders in the chosen variants with a
     generated picture (image_source "svg" = GPT-4o vector ~$0.005, "ai" =
     gpt-image-1 photo).
+    research=True researches the plan's topics first (keywords + web search),
+    grounds each slide's text in the findings, and appends a references slide.
     """
     from .html_deck import build_html_deck
 
@@ -362,6 +370,19 @@ def generate_deck_from_plan(
         slides = plan
 
     lib = scan_template_library(library_dir)
+
+    # optional research from the plan's own topics/points
+    research_context, research_sources = "", []
+    if research and slides:
+        from .research import extract_keywords, web_research
+        topic_text = "\n".join(
+            f"{s.get('topic', s.get('category',''))}: "
+            f"{'; '.join(map(str, s.get('talking_points', s.get('points', []))))}"
+            for s in slides if isinstance(s, dict))
+        if title:
+            topic_text = f"{title}\n{topic_text}"
+        result = web_research(topic_text, extract_keywords(topic_text))
+        research_context, research_sources = result.summary, result.sources or []
 
     # color mapping computed once from the whole library's palette.
     # Unknown preset names (incl. "auto") are ignored -> keep template colors.
@@ -378,7 +399,8 @@ def generate_deck_from_plan(
             warnings.append(f"Slide {i}: no category matches {label!r}; skipped.")
             continue
         result = select_and_fill_slide(
-            lib.categories[key], slide, language=language)
+            lib.categories[key], slide, language=language,
+            research_context=research_context)
         if not result:
             warnings.append(f"Slide {i} ({label}): no variant selected; skipped.")
             continue
@@ -398,7 +420,14 @@ def generate_deck_from_plan(
     if not filled_svgs:
         raise ValueError(f"No slides could be built. Warnings: {warnings}")
 
-    for s in (append_svgs or []):
+    # auto-append a references slide from research sources (Tavily/web_search)
+    extra = list(append_svgs or [])
+    if research_sources:
+        from .document_deck import build_references_slide
+        refs = build_references_slide(lib, research_sources)
+        if refs:
+            extra.append(refs)
+    for s in extra:
         if not s:
             continue
         filled_svgs.append(retheme_svg(s, mapping) if mapping else s)
@@ -419,4 +448,5 @@ def generate_deck_from_plan(
             "estimated_cost_usd": round(usage.estimated_cost, 4),
             "report": usage.report(),
         },
+        "sources": research_sources,
     }
