@@ -1,0 +1,31 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title summarizing the evaluation.",
+      "max_chars": 20
+    },
+    "title_2": {
+      "type": "text",
+      "desc": "Section for achievements.",
+      "max_chars": 20
+    },
+    "title_3": {
+      "type": "text",
+      "desc": "Section for areas needing improvement.",
+      "max_chars": 21
+    },
+    "title_4": {
+      "type": "text",
+      "desc": "Details of achievements.",
+      "max_chars": 144,
+      "lines": 3
+    },
+    "title_5": {
+      "type": "text",
+      "desc": "Details of limitations or challenges.",
+      "max_chars": 82,
+      "lines": 2
+    }
+  }
+}

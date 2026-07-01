@@ -1,0 +1,54 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title for the action plan.",
+      "max_chars": 26
+    },
+    "title_2": {
+      "type": "text",
+      "desc": "Focus area: Product.",
+      "max_chars": 20
+    },
+    "title_3": {
+      "type": "text",
+      "desc": "Focus area: Human Resources.",
+      "max_chars": 20
+    },
+    "title_4": {
+      "type": "text",
+      "desc": "Focus area: Market.",
+      "max_chars": 20
+    },
+    "title_5": {
+      "type": "text",
+      "desc": "Numerical representation of the first focus area.",
+      "max_chars": 20
+    },
+    "title_6": {
+      "type": "text",
+      "desc": "Numerical representation of the second focus area.",
+      "max_chars": 20
+    },
+    "title_7": {
+      "type": "text",
+      "desc": "Numerical representation of the third focus area.",
+      "max_chars": 20
+    },
+    "title_8": {
+      "type": "text",
+      "desc": "Action plan for the product focus area.",
+      "max_chars": 45
+    },
+    "title_9": {
+      "type": "text",
+      "desc": "Action plan for the human resources focus area.",
+      "max_chars": 54
+    },
+    "title_10": {
+      "type": "text",
+      "desc": "Action plan for the market focus area.",
+      "max_chars": 61
+    }
+  }
+}

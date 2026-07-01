@@ -1,0 +1,400 @@
+{
+  "template": "workreport_template",
+  "categories": [
+    {
+      "category": "TITLE_SLIDE",
+      "purpose": "Use this slide to introduce the presentation with a main title and a brief description.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title of the presentation.",
+          "max_chars": 20
+        },
+        "title_2": {
+          "type": "title",
+          "desc": "A secondary title providing additional context.",
+          "max_chars": 20
+        },
+        "title_3": {
+          "type": "title",
+          "desc": "A tertiary title, often used for specifying the time period.",
+          "max_chars": 20
+        },
+        "body": {
+          "type": "text",
+          "desc": "A brief description or summary of the presentation.",
+          "max_chars": 131
+        }
+      }
+    },
+    {
+      "category": "AGENDA",
+      "purpose": "Use this slide to outline the main topics or sections of the presentation.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title of the agenda slide.",
+          "max_chars": 20
+        },
+        "title_2": {
+          "type": "title",
+          "desc": "First agenda item.",
+          "max_chars": 20
+        },
+        "title_3": {
+          "type": "title",
+          "desc": "Second agenda item.",
+          "max_chars": 20
+        },
+        "title_4": {
+          "type": "title",
+          "desc": "Third agenda item.",
+          "max_chars": 20
+        },
+        "title_5": {
+          "type": "title",
+          "desc": "Fourth agenda item.",
+          "max_chars": 20
+        },
+        "title_6": {
+          "type": "title",
+          "desc": "Numerical representation of the first agenda item.",
+          "max_chars": 20
+        },
+        "title_7": {
+          "type": "title",
+          "desc": "Numerical representation of the second agenda item.",
+          "max_chars": 20
+        },
+        "title_8": {
+          "type": "title",
+          "desc": "Numerical representation of the third agenda item.",
+          "max_chars": 20
+        },
+        "title_9": {
+          "type": "title",
+          "desc": "Numerical representation of the fourth agenda item.",
+          "max_chars": 20
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Description of the first agenda item.",
+          "max_chars": 34
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Description of the second agenda item.",
+          "max_chars": 28
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Description of the third agenda item.",
+          "max_chars": 20
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "Description of the fourth agenda item.",
+          "max_chars": 20
+        }
+      }
+    },
+    {
+      "category": "SECTION_HEADER",
+      "purpose": "Use this slide to introduce a new section focused on key results.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title of the section.",
+          "max_chars": 20
+        },
+        "title_2": {
+          "type": "title",
+          "desc": "Numerical representation of the section.",
+          "max_chars": 20
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Key metrics and results for this section.",
+          "max_chars": 75
+        }
+      }
+    },
+    {
+      "category": "KPI_STATS",
+      "purpose": "Use this slide to highlight key performance indicators and metrics.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title highlighting key metrics.",
+          "max_chars": 31
+        },
+        "title_2": {
+          "type": "number",
+          "desc": "A key metric value, such as revenue.",
+          "max_chars": 20
+        },
+        "title_3": {
+          "type": "number",
+          "desc": "Another key metric value, such as customer count.",
+          "max_chars": 20
+        },
+        "title_4": {
+          "type": "number",
+          "desc": "A percentage growth metric.",
+          "max_chars": 20
+        },
+        "title_5": {
+          "type": "text",
+          "desc": "Currency or unit for the first metric.",
+          "max_chars": 20
+        },
+        "title_6": {
+          "type": "text",
+          "desc": "Currency or unit for the second metric.",
+          "max_chars": 20
+        },
+        "title_7": {
+          "type": "text",
+          "desc": "Description of the revenue metric.",
+          "max_chars": 26
+        },
+        "title_8": {
+          "type": "text",
+          "desc": "Description of the customer metric.",
+          "max_chars": 20
+        },
+        "title_9": {
+          "type": "text",
+          "desc": "Description of the growth metric.",
+          "max_chars": 26
+        }
+      }
+    },
+    {
+      "category": "MEDIA_TEXT",
+      "purpose": "Use this slide to present monthly revenue trends with descriptions.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title describing the chart or graph.",
+          "max_chars": 28
+        },
+        "title_2": {
+          "type": "text",
+          "desc": "Description of the revenue trend for July.",
+          "max_chars": 80
+        },
+        "title_3": {
+          "type": "text",
+          "desc": "Description of the revenue trend for August.",
+          "max_chars": 99
+        }
+      }
+    },
+    {
+      "category": "COMPARISON",
+      "purpose": "Use this slide to compare different cost structures and their changes.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title describing the cost structure.",
+          "max_chars": 20
+        },
+        "title_2": {
+          "type": "text",
+          "desc": "Categories of costs.",
+          "max_chars": 29
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Description of changes in costs.",
+          "max_chars": 74
+        },
+        "title_3": {
+          "type": "number",
+          "desc": "Percentage breakdown of costs.",
+          "max_chars": 20
+        }
+      }
+    },
+    {
+      "category": "TIMELINE",
+      "purpose": "Use this slide to show the timeline and progress of a key project.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title describing the project timeline.",
+          "max_chars": 24
+        },
+        "title_2": {
+          "type": "text",
+          "desc": "Month for the first phase.",
+          "max_chars": 20
+        },
+        "title_3": {
+          "type": "text",
+          "desc": "Month for the second phase.",
+          "max_chars": 20
+        },
+        "title_4": {
+          "type": "text",
+          "desc": "Month for the third phase.",
+          "max_chars": 20
+        },
+        "title_5": {
+          "type": "text",
+          "desc": "Month for the fourth phase.",
+          "max_chars": 20
+        },
+        "title_6": {
+          "type": "text",
+          "desc": "Description of the first phase.",
+          "max_chars": 20
+        },
+        "title_7": {
+          "type": "text",
+          "desc": "Description of the second phase.",
+          "max_chars": 20
+        },
+        "title_8": {
+          "type": "text",
+          "desc": "Description of the third phase.",
+          "max_chars": 20
+        },
+        "title_9": {
+          "type": "text",
+          "desc": "Description of the fourth phase.",
+          "max_chars": 20
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Additional details for the first phase.",
+          "max_chars": 24
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Additional details for the second phase.",
+          "max_chars": 24
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Additional details for the third phase.",
+          "max_chars": 20
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "Additional details for the fourth phase.",
+          "max_chars": 21
+        }
+      }
+    },
+    {
+      "category": "SUMMARY",
+      "purpose": "Use this slide to summarize achievements and areas for improvement.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title summarizing the evaluation.",
+          "max_chars": 20
+        },
+        "title_2": {
+          "type": "text",
+          "desc": "Section for achievements.",
+          "max_chars": 20
+        },
+        "title_3": {
+          "type": "text",
+          "desc": "Section for areas needing improvement.",
+          "max_chars": 21
+        },
+        "title_4": {
+          "type": "text",
+          "desc": "Details of achievements.",
+          "max_chars": 144
+        },
+        "title_5": {
+          "type": "text",
+          "desc": "Details of limitations or challenges.",
+          "max_chars": 82
+        }
+      }
+    },
+    {
+      "category": "CTA",
+      "purpose": "Use this slide to outline the action plan for the next quarter.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "The main title for the action plan.",
+          "max_chars": 26
+        },
+        "title_2": {
+          "type": "text",
+          "desc": "Focus area: Product.",
+          "max_chars": 20
+        },
+        "title_3": {
+          "type": "text",
+          "desc": "Focus area: Human Resources.",
+          "max_chars": 20
+        },
+        "title_4": {
+          "type": "text",
+          "desc": "Focus area: Market.",
+          "max_chars": 20
+        },
+        "title_5": {
+          "type": "text",
+          "desc": "Numerical representation of the first focus area.",
+          "max_chars": 20
+        },
+        "title_6": {
+          "type": "text",
+          "desc": "Numerical representation of the second focus area.",
+          "max_chars": 20
+        },
+        "title_7": {
+          "type": "text",
+          "desc": "Numerical representation of the third focus area.",
+          "max_chars": 20
+        },
+        "title_8": {
+          "type": "text",
+          "desc": "Action plan for the product focus area.",
+          "max_chars": 45
+        },
+        "title_9": {
+          "type": "text",
+          "desc": "Action plan for the human resources focus area.",
+          "max_chars": 54
+        },
+        "title_10": {
+          "type": "text",
+          "desc": "Action plan for the market focus area.",
+          "max_chars": 61
+        }
+      }
+    },
+    {
+      "category": "CONTACT",
+      "purpose": "Use this slide to provide contact information and express gratitude.",
+      "fields": {
+        "title": {
+          "type": "title",
+          "desc": "Expression of gratitude.",
+          "max_chars": 20
+        },
+        "title_2": {
+          "type": "text",
+          "desc": "Contact email address.",
+          "max_chars": 25
+        },
+        "title_3": {
+          "type": "text",
+          "desc": "Contact phone number.",
+          "max_chars": 20
+        }
+      }
+    }
+  ]
+}

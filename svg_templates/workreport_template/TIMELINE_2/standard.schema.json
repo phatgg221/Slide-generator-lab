@@ -1,0 +1,70 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title of the project timeline slide.",
+      "max_chars": 24
+    },
+    "title_2": {
+      "type": "text",
+      "desc": "Month label for the first phase.",
+      "max_chars": 20
+    },
+    "title_3": {
+      "type": "text",
+      "desc": "Month label for the second phase.",
+      "max_chars": 20
+    },
+    "title_4": {
+      "type": "text",
+      "desc": "Month label for the third phase.",
+      "max_chars": 20
+    },
+    "title_5": {
+      "type": "text",
+      "desc": "Month label for the fourth phase.",
+      "max_chars": 20
+    },
+    "title_6": {
+      "type": "text",
+      "desc": "Description of the first phase.",
+      "max_chars": 20
+    },
+    "title_7": {
+      "type": "text",
+      "desc": "Description of the second phase.",
+      "max_chars": 20
+    },
+    "title_8": {
+      "type": "text",
+      "desc": "Description of the third phase.",
+      "max_chars": 20
+    },
+    "title_9": {
+      "type": "text",
+      "desc": "Description of the fourth phase.",
+      "max_chars": 20
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Additional details for the first phase.",
+      "max_chars": 24
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Additional details for the second phase.",
+      "max_chars": 24
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Additional details for the third phase.",
+      "max_chars": 20,
+      "lines": 2
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "Additional details for the fourth phase.",
+      "max_chars": 21
+    }
+  }
+}

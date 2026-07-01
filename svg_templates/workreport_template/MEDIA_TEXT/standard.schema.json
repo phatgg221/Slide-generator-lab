@@ -1,0 +1,19 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title describing the chart or graph.",
+      "max_chars": 28
+    },
+    "title_2": {
+      "type": "text",
+      "desc": "Description of the revenue trend for July.",
+      "max_chars": 80
+    },
+    "title_3": {
+      "type": "text",
+      "desc": "Description of the revenue trend for August.",
+      "max_chars": 99
+    }
+  }
+}

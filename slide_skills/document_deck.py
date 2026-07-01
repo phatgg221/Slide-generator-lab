@@ -264,6 +264,18 @@ def generate_deck_from_document(
 
     plan = map_document_to_plan(
         sections, library, research_summary=research_summary, language=language)
+
+    # An agenda should list the deck's real sections. Feed the section headings
+    # into any agenda slide's talking points so its cards are always populated
+    # with the actual outline (not left to the fill agent to invent).
+    section_titles = [s["heading"] for s in sections if s.get("heading")]
+    for sl in plan["slides"]:
+        if "agenda" in str(sl.get("category", "")).lower():
+            items = [h for h in section_titles
+                     if h.strip().lower() != str(sl.get("topic", "")).strip().lower()]
+            if items:
+                sl["talking_points"] = items
+
     if not plan["slides"]:
         raise ValueError(
             "No sections could be mapped to a category. Check that your "

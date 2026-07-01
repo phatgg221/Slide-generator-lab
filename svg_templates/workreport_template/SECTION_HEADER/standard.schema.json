@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title of the section.",
+      "max_chars": 20
+    },
+    "title_2": {
+      "type": "title",
+      "desc": "Numerical representation of the section.",
+      "max_chars": 20
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Key metrics and results for this section.",
+      "max_chars": 75,
+      "lines": 3
+    }
+  }
+}

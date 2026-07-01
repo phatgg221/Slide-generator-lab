@@ -1,0 +1,50 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title highlighting key metrics.",
+      "max_chars": 31,
+      "lines": 2
+    },
+    "title_2": {
+      "type": "number",
+      "desc": "A key metric value, such as revenue.",
+      "max_chars": 20
+    },
+    "title_3": {
+      "type": "number",
+      "desc": "Another key metric value, such as customer count.",
+      "max_chars": 20
+    },
+    "title_4": {
+      "type": "number",
+      "desc": "A percentage growth metric.",
+      "max_chars": 20
+    },
+    "title_5": {
+      "type": "text",
+      "desc": "Currency or unit for the first metric.",
+      "max_chars": 20
+    },
+    "title_6": {
+      "type": "text",
+      "desc": "Currency or unit for the second metric.",
+      "max_chars": 20
+    },
+    "title_7": {
+      "type": "text",
+      "desc": "Description of the revenue metric.",
+      "max_chars": 26
+    },
+    "title_8": {
+      "type": "text",
+      "desc": "Description of the customer metric.",
+      "max_chars": 20
+    },
+    "title_9": {
+      "type": "text",
+      "desc": "Description of the growth metric.",
+      "max_chars": 26
+    }
+  }
+}

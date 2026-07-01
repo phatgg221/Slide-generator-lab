@@ -1,0 +1,73 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title of the agenda slide.",
+      "max_chars": 20
+    },
+    "title_2": {
+      "type": "title",
+      "desc": "First agenda item.",
+      "max_chars": 20,
+      "lines": 2
+    },
+    "title_3": {
+      "type": "title",
+      "desc": "Second agenda item.",
+      "max_chars": 20,
+      "lines": 2
+    },
+    "title_4": {
+      "type": "title",
+      "desc": "Third agenda item.",
+      "max_chars": 20,
+      "lines": 2
+    },
+    "title_5": {
+      "type": "title",
+      "desc": "Fourth agenda item.",
+      "max_chars": 20,
+      "lines": 2
+    },
+    "title_6": {
+      "type": "title",
+      "desc": "Numerical representation of the first agenda item.",
+      "max_chars": 20
+    },
+    "title_7": {
+      "type": "title",
+      "desc": "Numerical representation of the second agenda item.",
+      "max_chars": 20
+    },
+    "title_8": {
+      "type": "title",
+      "desc": "Numerical representation of the third agenda item.",
+      "max_chars": 20
+    },
+    "title_9": {
+      "type": "title",
+      "desc": "Numerical representation of the fourth agenda item.",
+      "max_chars": 20
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Description of the first agenda item.",
+      "max_chars": 34
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Description of the second agenda item.",
+      "max_chars": 28
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Description of the third agenda item.",
+      "max_chars": 20
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "Description of the fourth agenda item.",
+      "max_chars": 20
+    }
+  }
+}

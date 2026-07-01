@@ -8,12 +8,14 @@ slide_skills/config.py
 slide_skills/content_generator.py
 slide_skills/document_deck.py
 slide_skills/html_deck.py
+slide_skills/html_theme.py
 slide_skills/image_generator.py
 slide_skills/merge_template.py
 slide_skills/pipeline.py
 slide_skills/planner.py
 slide_skills/research.py
 slide_skills/slide_filler.py
+slide_skills/smart_template.py
 slide_skills/svg_categories.py
 slide_skills/svg_collections.py
 slide_skills/svg_image_generator.py

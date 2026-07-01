@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "Expression of gratitude.",
+      "max_chars": 20,
+      "lines": 2
+    },
+    "title_2": {
+      "type": "text",
+      "desc": "Contact email address.",
+      "max_chars": 25
+    },
+    "title_3": {
+      "type": "text",
+      "desc": "Contact phone number.",
+      "max_chars": 20
+    }
+  }
+}

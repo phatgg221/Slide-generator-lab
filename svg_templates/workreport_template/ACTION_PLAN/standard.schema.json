@@ -1,0 +1,54 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title of the action plan slide.",
+      "max_chars": 26
+    },
+    "title_2": {
+      "type": "text",
+      "desc": "Focus area for the action plan.",
+      "max_chars": 20
+    },
+    "title_3": {
+      "type": "text",
+      "desc": "Another focus area for the action plan.",
+      "max_chars": 20
+    },
+    "title_4": {
+      "type": "text",
+      "desc": "A third focus area for the action plan.",
+      "max_chars": 20
+    },
+    "title_5": {
+      "type": "text",
+      "desc": "Numerical label for the first action item.",
+      "max_chars": 20
+    },
+    "title_6": {
+      "type": "text",
+      "desc": "Numerical label for the second action item.",
+      "max_chars": 20
+    },
+    "title_7": {
+      "type": "text",
+      "desc": "Numerical label for the third action item.",
+      "max_chars": 20
+    },
+    "title_8": {
+      "type": "text",
+      "desc": "Details of the first action item.",
+      "max_chars": 45
+    },
+    "title_9": {
+      "type": "text",
+      "desc": "Details of the second action item.",
+      "max_chars": 54
+    },
+    "title_10": {
+      "type": "text",
+      "desc": "Details of the third action item.",
+      "max_chars": 61
+    }
+  }
+}

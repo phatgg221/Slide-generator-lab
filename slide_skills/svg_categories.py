@@ -34,8 +34,8 @@ from typing import Union
 
 from .config import get_client, TEXT_MODEL, load_guide
 from .svg_collections import (
-    _scan_svg, embed_image, fill_svg, prune_empty_groups, retheme_svg,
-    scan_image_placeholders,
+    _scan_svg, embed_image, fill_svg, fit_text_to_boxes, prune_empty_groups,
+    retheme_svg, scan_image_placeholders,
 )
 from .theme import (
     PRESETS, PaletteColor, _luminance, _norm, _saturation, auto_map_palette,
@@ -105,16 +105,28 @@ class TemplateLibrary:
                 return key
         return None
 
-    def category_map(self) -> list[dict]:
+    def category_map(self, *, include_fields: bool = False) -> list[dict]:
         """Registry of every category + its variants — feed this to the
         planner so it only picks categories that exist, and to a UI so users
-        see what's available."""
+        see what's available. Set include_fields=True to also list each
+        variant's fillable slots (name -> type/desc/budget), so an agent knows
+        not just WHICH slide to use but WHAT content each one needs."""
+        def variant_entry(v):
+            e = {"name": v.name, "description": v.description}
+            if include_fields:
+                e["fields"] = {
+                    name: {"type": (v.field_specs.get(name) or {}).get("type"),
+                           "desc": (v.field_specs.get(name) or {}).get("desc"),
+                           "max_chars": m.get("max_chars"),
+                           "lines": m.get("lines")}
+                    for name, m in v.placeholders.items()
+                }
+            return e
         return [
             {
                 "category": cat,
                 "purpose": self.descriptions.get(cat, ""),
-                "variants": [{"name": v.name, "description": v.description}
-                             for v in variants],
+                "variants": [variant_entry(v) for v in variants],
             }
             for cat, variants in self.categories.items()
         ]
@@ -290,6 +302,42 @@ def _flat(v) -> str:
     return str(v or "")
 
 
+_NUM_HINT = re.compile(r"number|index|\bstep\b|\bno\.?\b|order|rank|count", re.I)
+_NUM_TYPES = {"stat", "number", "percent", "metric", "value", "kpi"}
+
+
+def _backfill_slots(texts: dict, variant: "Variant", slide: dict) -> dict:
+    """Ensure no text slot is left blank. On raster-extracted templates the
+    cards/chips/dividers are baked into the background image, so an empty slot
+    shows an empty card (can't be pruned). Fill every empty text placeholder:
+    number-ish slots get a sequence (01, 02…), the rest cycle through the
+    slide's own talking points (or its topic) so a card is never blank."""
+    out = dict(texts or {})
+    pool = [p for p in (_flat(x).strip()
+                        for x in (slide.get("talking_points")
+                                  or slide.get("points") or []))
+            if p]
+    topic = (slide.get("topic") or slide.get("heading") or "").strip()
+    n_num, p_i = 0, 0
+    for name, meta in variant.placeholders.items():
+        if name in variant.image_placeholders:
+            continue
+        if _flat(out.get(name)).strip():
+            continue
+        spec = variant.field_specs.get(name, {})
+        typ = str(spec.get("type", "")).lower()
+        desc = str(spec.get("desc", ""))
+        if typ in _NUM_TYPES or _NUM_HINT.search(desc) or _NUM_HINT.search(name):
+            n_num += 1
+            out[name] = f"{n_num:02d}"
+        elif pool:
+            out[name] = pool[p_i % len(pool)]
+            p_i += 1
+        elif topic:
+            out[name] = topic
+    return out
+
+
 def _image_prompt(slide: dict, name: str, texts: dict | None = None) -> str:
     """Build an image prompt that REPRESENTS the content. For a numbered image
     slot (image_2) it uses THAT panel's own label_2/caption_2 so each panel
@@ -407,11 +455,18 @@ def generate_deck_from_plan(
         variant = result["variant"]
         svg = Path(variant.path).read_text(encoding="utf-8")
         svg = prune_empty_groups(svg, result["texts"])   # drop unfilled repeatable units
+        texts = result["texts"]
+        # raster-extracted templates bake cards into the background image, so an
+        # empty slot can't be pruned away -> backfill so no card renders blank.
+        if 'data-w="' in svg:
+            texts = _backfill_slots(texts, variant, slide)
         # images first: embed_image needs the {{image}} placeholder, which
         # fill_svg would otherwise wipe to empty (it's not in the text data).
         if images and variant.image_placeholders:
-            svg = _fill_images(svg, variant, slide, result["texts"], image_source, warnings, i)
-        svg = fill_svg(svg, result["texts"])
+            svg = _fill_images(svg, variant, slide, texts, image_source, warnings, i)
+        svg = fill_svg(svg, texts)
+        svg = fit_text_to_boxes(svg)   # clamp long text to its box so it can't
+        #                                overflow sideways into neighbouring cards
         if mapping:
             svg = retheme_svg(svg, mapping)
         filled_svgs.append(svg)

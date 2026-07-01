@@ -1,0 +1,26 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title describing the cost structure.",
+      "max_chars": 20
+    },
+    "title_2": {
+      "type": "text",
+      "desc": "Categories of costs.",
+      "max_chars": 29,
+      "lines": 4
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Description of changes in costs.",
+      "max_chars": 74
+    },
+    "title_3": {
+      "type": "number",
+      "desc": "Percentage breakdown of costs.",
+      "max_chars": 20,
+      "lines": 4
+    }
+  }
+}

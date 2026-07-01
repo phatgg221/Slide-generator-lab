@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: slide-skills
-Version: 0.2.23
+Version: 0.2.27
 Summary: AI slide generation skills — fill .pptx/SVG templates with AI text, images, themes, and animations
 Author: Phat Huynh
 Requires-Python: >=3.9

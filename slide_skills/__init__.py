@@ -11,7 +11,7 @@ Skills:
     SlideGeneratorAgent -- orchestrates the four skills end to end
 """
 
-__version__ = "0.2.23"
+__version__ = "0.2.27"
 
 from .template_parser import parse_template, TemplateSpec, SlideSpec, TextElement, ImageElement
 from .content_generator import generate_content, GeneratedDeckContent
@@ -33,6 +33,7 @@ from .merge_template import (
     make_placeholder_template, render_placeholders, generate_merge_data, load_schema,
 )
 from .svg_template_maker import make_svg_templates
+from .smart_template import extract_template_smart
 from .svg_slide_renderer import render_svg_slide, render_svg_deck
 from .svg_collections import (
     scan_collection, list_collections, import_collection, fill_svg, retheme_svg,
@@ -45,6 +46,9 @@ from .svg_categories import (
 )
 from .document_deck import (
     parse_document, map_document_to_plan, generate_deck_from_document,
+)
+from .html_theme import (
+    generate_html_deck_from_document, propose_theme, THEMES, Theme, LAYOUTS,
 )
 
 __all__ = [
@@ -107,4 +111,9 @@ __all__ = [
     "parse_document",
     "map_document_to_plan",
     "generate_deck_from_document",
+    "generate_html_deck_from_document",
+    "propose_theme",
+    "THEMES",
+    "Theme",
+    "LAYOUTS",
 ]

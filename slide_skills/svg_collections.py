@@ -231,6 +231,46 @@ def fill_svg(svg: str, data: dict) -> str:
     return _PLACEHOLDER_RE.sub(sub, svg)
 
 
+# <text ...> overlays carry data-w="<box width in px>" (emitted by
+# extract_template_smart). After filling, any line whose text is wider than its
+# box would overflow into neighbouring cards. fit_text_to_boxes shrinks the
+# FONT SIZE of each such line until it fits — keeping the letters at their
+# natural proportions (no condensed/"stiff" glyphs) instead of squeezing them.
+_TEXT_TAG_RE = re.compile(r'<text\b([^>]*?)>(.*?)</text>', re.DOTALL)
+_FONTSIZE_RE = re.compile(r'font-size="([\d.]+)"')
+_DATAW_RE = re.compile(r'data-w="([\d.]+)"')
+
+
+def fit_text_to_boxes(svg: str, *, char_ratio: float = 0.56,
+                      min_pt: float = 7.0) -> str:
+    """Keep every <text data-w="W"> inside its box by REDUCING its font size
+    (not condensing the glyphs) when the filled text would be too wide. The
+    text stays naturally proportioned, just smaller — down to min_pt."""
+
+    def shrink(m: "re.Match") -> str:
+        attrs, inner = m.group(1), m.group(2)
+        dw = _DATAW_RE.search(attrs)
+        fs = _FONTSIZE_RE.search(attrs)
+        if not dw or not fs:
+            return m.group(0)
+        text = re.sub(r'<[^>]+>', '', inner)          # strip any nested tags
+        text = re.sub(r'&[a-z]+;', 'x', text).strip()  # entities ~1 glyph
+        if not text:
+            return m.group(0)
+        box_w = float(dw.group(1))
+        font_pt = float(fs.group(1))
+        est_w = len(text) * font_pt * char_ratio
+        if est_w <= box_w:
+            return m.group(0)
+        new_pt = max(min_pt, font_pt * box_w / est_w)
+        if new_pt >= font_pt:
+            return m.group(0)
+        new_attrs = attrs[:fs.start()] + f'font-size="{new_pt:.1f}"' + attrs[fs.end():]
+        return f'<text{new_attrs}>{inner}</text>'
+
+    return _TEXT_TAG_RE.sub(shrink, svg)
+
+
 # Image placeholders: an <image> whose href is {{name}} (or xlink:href).
 _IMAGE_PH_RE = re.compile(r'(?:xlink:)?href\s*=\s*"\{\{([^}]+)\}\}"')
 

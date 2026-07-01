@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "title": {
+      "type": "title",
+      "desc": "The main title of the presentation.",
+      "max_chars": 20
+    },
+    "title_2": {
+      "type": "title",
+      "desc": "A secondary title providing additional context.",
+      "max_chars": 20
+    },
+    "title_3": {
+      "type": "title",
+      "desc": "A tertiary title, often used for specifying the time period.",
+      "max_chars": 20
+    },
+    "body": {
+      "type": "text",
+      "desc": "A brief description or summary of the presentation.",
+      "max_chars": 131
+    }
+  }
+}

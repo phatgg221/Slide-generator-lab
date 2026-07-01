@@ -59,16 +59,26 @@ def _blank_fillable(src: Path, dst: Path, spec) -> None:
 
 
 def _pptx_to_pdf(src: Path, dst: Path) -> None:
-    soffice = shutil.which("soffice")
+    soffice = shutil.which("soffice") or (
+        "/Applications/LibreOffice.app/Contents/MacOS/soffice"
+        if Path("/Applications/LibreOffice.app").exists() else None)
     if soffice:
-        subprocess.run(
-            [soffice, "--headless", "--convert-to", "pdf",
+        # -env:UserInstallation gives headless LibreOffice its own writable
+        # profile (without it, first-run fails with "Unspecified Application
+        # Error" on macOS).
+        profile = Path.home() / ".slide_skills_lo_profile"
+        result = subprocess.run(
+            [soffice, f"-env:UserInstallation=file://{profile}",
+             "--headless", "--convert-to", "pdf",
              "--outdir", str(dst.parent), str(src)],
-            check=True, capture_output=True, timeout=300)
+            capture_output=True, text=True, timeout=300)
         produced = dst.parent / (src.stem + ".pdf")
-        if produced != dst:
-            produced.rename(dst)
-        return
+        if produced.exists():
+            if produced != dst:
+                produced.rename(dst)
+            return
+        # LibreOffice choked (some complex Canva exports) -> fall through to
+        # PowerPoint below rather than failing outright.
     script = _APPLESCRIPT.format(src=src, dst=dst)
     result = subprocess.run(["osascript", "-e", script],
                             capture_output=True, text=True, timeout=300)

@@ -38,7 +38,8 @@
     { "type": "bulletList", "content": [
       { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Q1 2026: Launch math module" }] }] },
       { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Q3 2026: Add English and 50k users" }] }] },
-      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Q1 2027: Expand to Southeast Asia" }] }] }
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Q1 2027: Expand to Southeast Asia" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Q2 2027: Expand to EU" }] }] }
     ]},
 
     { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Key Takeaways" }] },
