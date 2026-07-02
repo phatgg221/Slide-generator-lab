@@ -301,9 +301,16 @@ def prune_empty_groups(svg: str, data: dict) -> str:
     decorations (dots, cards) when the content has fewer items. A group is
     removed only if it contains placeholders AND none of them have data; groups
     with at least one filled field, or no placeholders at all, are kept."""
+    # exact filled names: a list under "bullets" fills bullets.1..bullets.N
+    # for its non-empty items (NOT bullets.5 when only 2 items are given) —
+    # collapsing indexed names to the base made every "bullets.*" group look
+    # filled, so trailing empty units (orphan dots/cards) were never pruned.
     filled = set()
     for k, v in (data or {}).items():
         if isinstance(v, (list, tuple)):
+            for i, item in enumerate(v, 1):
+                if str(item).strip():
+                    filled.add(f"{k}.{i}")
             if any(str(x).strip() for x in v):
                 filled.add(k)
         elif str(v).strip():
@@ -315,13 +322,9 @@ def prune_empty_groups(svg: str, data: dict) -> str:
     except Exception:
         return svg
 
-    def base_names(text: str) -> set:
-        names = set()
-        for m in _PLACEHOLDER_RE.finditer(text):
-            raw = m.group(1).split("|")[0].strip()
-            head, _, tail = raw.rpartition(".")
-            names.add(head if tail.isdigit() and head else raw)
-        return names
+    def placeholder_names(text: str) -> set:
+        return {m.group(1).split("|")[0].strip()
+                for m in _PLACEHOLDER_RE.finditer(text)}
 
     to_remove = []
     for g in root.iter("{http://www.w3.org/2000/svg}g"):
@@ -330,7 +333,7 @@ def prune_empty_groups(svg: str, data: dict) -> str:
         # separate step, so they won't appear in `data` here.
         if _IMAGE_PH_RE.search(text):
             continue
-        names = base_names(text)
+        names = placeholder_names(text)
         if names and not (names & filled):
             to_remove.append(g)
     if not to_remove:

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "slide-skills"
-version = "0.2.27"
+version = "0.2.28"
 description = "AI slide generation skills — fill .pptx/SVG templates with AI text, images, themes, and animations"
 readme = "README.md"
 requires-python = ">=3.9"
