@@ -1,0 +1,94 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'HOW IT WORKS'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A summary of the process, e.g., 'From verified revenue to funded growth'.",
+      "max_chars": 38
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "A step in the process, e.g., 'SME'.",
+      "max_chars": 20
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "A step in the process, e.g., 'Needs working capital'.",
+      "max_chars": 21
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Step number, e.g., '1'.",
+      "max_chars": 20
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Description of the step, e.g., 'Apply & Connect'.",
+      "max_chars": 20
+    },
+    "body_4": {
+      "type": "text",
+      "desc": "Description of the step, e.g., 'SME submits a capital request and connects verified revenue '.",
+      "max_chars": 94
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Step number, e.g., '2'.",
+      "max_chars": 20
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "Description of the step, e.g., 'Assess & Grade'.",
+      "max_chars": 20
+    },
+    "body_5": {
+      "type": "text",
+      "desc": "Description of the step, e.g., 'FundLok scores repayment capacity and assigns a risk grade f'.",
+      "max_chars": 71
+    },
+    "subtitle_5": {
+      "type": "subtitle",
+      "desc": "Step number, e.g., '3'.",
+      "max_chars": 20
+    },
+    "subtitle_6": {
+      "type": "subtitle",
+      "desc": "Description of the step, e.g., 'Fund'.",
+      "max_chars": 20
+    },
+    "body_6": {
+      "type": "text",
+      "desc": "Description of the step, e.g., 'Investors review transparent listings and fund the deal.'.",
+      "max_chars": 56
+    },
+    "subtitle_7": {
+      "type": "subtitle",
+      "desc": "Step number, e.g., '4'.",
+      "max_chars": 20
+    },
+    "subtitle_8": {
+      "type": "subtitle",
+      "desc": "Description of the step, e.g., 'Repay from revenue'.",
+      "max_chars": 20
+    },
+    "body_7": {
+      "type": "text",
+      "desc": "Description of the step, e.g., 'SME repays a share of monthly revenue until the return cap i'.",
+      "max_chars": 70
+    },
+    "body_8": {
+      "type": "text",
+      "desc": "A step in the process, e.g., 'INVESTOR'.",
+      "max_chars": 20
+    },
+    "body_9": {
+      "type": "text",
+      "desc": "A step in the process, e.g., 'Earns transparent yield'.",
+      "max_chars": 23
+    }
+  }
+}

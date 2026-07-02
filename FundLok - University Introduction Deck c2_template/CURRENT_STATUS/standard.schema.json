@@ -1,0 +1,69 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'WHERE WE ARE TODAY'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A summary of the current status, e.g., 'Momentum, building toward pilot'.",
+      "max_chars": 31
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "A specific achievement or milestone, e.g., 'Incubated at SIHUB HCMC'.",
+      "max_chars": 23
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "Details of the achievement, e.g., 'Network, office and regulatory introductions.'.",
+      "max_chars": 45
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "A specific achievement or milestone, e.g., 'Accelerator & investor interest'.",
+      "max_chars": 31
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "Details of the achievement, e.g., 'Engaged with Expara's international network and EV+ Capital.'.",
+      "max_chars": 60
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "A specific achievement or milestone, e.g., 'Backed by Cloudflare for Startups'.",
+      "max_chars": 33
+    },
+    "body_4": {
+      "type": "text",
+      "desc": "Details of the achievement, e.g., 'Technical foundations for a secure, scalable platform.'.",
+      "max_chars": 54
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "A specific achievement or milestone, e.g., 'SME interviews completed'.",
+      "max_chars": 24
+    },
+    "body_5": {
+      "type": "text",
+      "desc": "Details of the achievement, e.g., 'Strong demand confirmed for revenue-based financing.'.",
+      "max_chars": 52
+    },
+    "subtitle_5": {
+      "type": "subtitle",
+      "desc": "A specific achievement or milestone, e.g., 'Toward first pilot deals'.",
+      "max_chars": 24
+    },
+    "body_6": {
+      "type": "text",
+      "desc": "Details of the achievement, e.g., 'Building toward our first funded pilots.'.",
+      "max_chars": 40
+    },
+    "title_2": {
+      "type": "title",
+      "desc": "A statement of readiness, e.g., 'Ready for Go-To-Market'.",
+      "max_chars": 22
+    }
+  }
+}

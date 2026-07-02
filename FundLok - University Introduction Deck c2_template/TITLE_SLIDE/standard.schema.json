@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or introduction, e.g., 'COMPANY INTRODUCTION'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "The main title of the presentation, e.g., 'Capital that adapts to your business.'",
+      "max_chars": 37
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "A brief description or tagline, e.g., 'Revenue-based financing and cash-flow underwriting — connect'.",
+      "max_chars": 120
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "Location information, e.g., 'Ho Chi Minh City, Vietnam'.",
+      "max_chars": 25
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "A separator or additional detail, e.g., '/'.",
+      "max_chars": 20
+    },
+    "body_4": {
+      "type": "text",
+      "desc": "A year or date, e.g., '2026'.",
+      "max_chars": 20
+    }
+  }
+}

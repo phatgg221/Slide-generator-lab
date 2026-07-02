@@ -1,0 +1,59 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'WHAT MAKES US DIFFERENT'.",
+      "max_chars": 23
+    },
+    "title": {
+      "type": "title",
+      "desc": "A summary of the company's unique aspects, e.g., 'Where banks stop, FundLok fits'.",
+      "max_chars": 30
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Point number, e.g., '01'.",
+      "max_chars": 20
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Description of the unique aspect, e.g., 'Fair by design'.",
+      "max_chars": 20
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Further explanation, e.g., 'Repayment is anchored in real revenue capacity, not investor'.",
+      "max_chars": 76
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "Point number, e.g., '02'.",
+      "max_chars": 20
+    },
+    "subtitle_5": {
+      "type": "subtitle",
+      "desc": "Description of the unique aspect, e.g., 'Verified over declared'.",
+      "max_chars": 22
+    },
+    "subtitle_6": {
+      "type": "subtitle",
+      "desc": "Further explanation, e.g., 'We underwrite on verified operating data, not self-reported '.",
+      "max_chars": 67
+    },
+    "subtitle_7": {
+      "type": "subtitle",
+      "desc": "Point number, e.g., '03'.",
+      "max_chars": 20
+    },
+    "subtitle_8": {
+      "type": "subtitle",
+      "desc": "Description of the unique aspect, e.g., 'Transparent to all sides'.",
+      "max_chars": 24
+    },
+    "subtitle_9": {
+      "type": "subtitle",
+      "desc": "Further explanation, e.g., 'Every listing shows repayment source, risk grade, data fresh'.",
+      "max_chars": 85
+    }
+  }
+}

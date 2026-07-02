@@ -1,0 +1,69 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'COMPANY INFORMATION'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A summary of the section, e.g., 'For the record'.",
+      "max_chars": 20
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "A specific detail, e.g., 'LEGAL NAME'.",
+      "max_chars": 20
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "The legal name of the company, e.g., 'FundLok Joint Stock Company'.",
+      "max_chars": 27
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "A specific detail, e.g., 'TAX CODE'.",
+      "max_chars": 20
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "The tax code of the company, e.g., '1501167629'.",
+      "max_chars": 20
+    },
+    "body_4": {
+      "type": "text",
+      "desc": "A specific detail, e.g., 'INCORPORATED'.",
+      "max_chars": 20
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "The incorporation date, e.g., '11 March 2026'.",
+      "max_chars": 20
+    },
+    "body_5": {
+      "type": "text",
+      "desc": "A specific detail, e.g., 'LEGAL REPRESENTATIVE'.",
+      "max_chars": 20
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "The legal representative's name and title, e.g., 'Vuong Vinh Loc· General Director'.",
+      "max_chars": 32
+    },
+    "body_6": {
+      "type": "text",
+      "desc": "A specific detail, e.g., 'OFFICE ADDRESS:'.",
+      "max_chars": 20
+    },
+    "subtitle_5": {
+      "type": "subtitle",
+      "desc": "The office address, e.g., 'SIHUB (Startup & Innovation Hub HCMC)'.",
+      "max_chars": 37
+    },
+    "subtitle_6": {
+      "type": "subtitle",
+      "desc": "The office address, e.g., '123 Truong Dinh, Xuan Hoa Ward, Ho Chi Minh City, Vietnam'.",
+      "max_chars": 57
+    }
+  }
+}

@@ -1,0 +1,712 @@
+{
+  "template": "FundLok - University Introduction Deck c2_template",
+  "categories": [
+    {
+      "category": "TITLE_SLIDE",
+      "purpose": "To introduce the company and its core message.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or introduction, e.g., 'COMPANY INTRODUCTION'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "The main title of the presentation, e.g., 'Capital that adapts to your business.'",
+          "max_chars": 37
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "A brief description or tagline, e.g., 'Revenue-based financing and cash-flow underwriting — connect'.",
+          "max_chars": 120
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "Location information, e.g., 'Ho Chi Minh City, Vietnam'.",
+          "max_chars": 25
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "A separator or additional detail, e.g., '/'.",
+          "max_chars": 20
+        },
+        "body_4": {
+          "type": "text",
+          "desc": "A year or date, e.g., '2026'.",
+          "max_chars": 20
+        }
+      }
+    },
+    {
+      "category": "KPI_STATS",
+      "purpose": "To highlight key statistics and opportunities in the market.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'THE OPPORTUNITY'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A key statement or fact, e.g., 'The backbone of Vietnam's economy'.",
+          "max_chars": 33
+        },
+        "title_2": {
+          "type": "title",
+          "desc": "A significant statistic, e.g., '~900k'.",
+          "max_chars": 20
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Explanation of the statistic, e.g., 'operational businesses in Vietnam'.",
+          "max_chars": 33
+        },
+        "title_3": {
+          "type": "title",
+          "desc": "Another significant statistic, e.g., '97%+'.",
+          "max_chars": 20
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Explanation of the statistic, e.g., 'of them are SMEs'.",
+          "max_chars": 20
+        },
+        "title_4": {
+          "type": "title",
+          "desc": "Another significant statistic, e.g., '45%'.",
+          "max_chars": 20
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Explanation of the statistic, e.g., 'of GDP, with 5M+ workers employed'.",
+          "max_chars": 33
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "Additional context or information, e.g., 'The backbone of Vietnam's economy — yet most can't access th'.",
+          "max_chars": 88
+        },
+        "title_5": {
+          "type": "title",
+          "desc": "A financial statistic or gap, e.g., '$24 Billion Funding Gap in Vietnam'.",
+          "max_chars": 34
+        }
+      }
+    },
+    {
+      "category": "ABOUT_US",
+      "purpose": "To describe the company's identity and what it offers.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'WHO WE ARE'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A description of the company's role, e.g., 'An infrastructure layer for SME growth capital'.",
+          "max_chars": 46
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Further explanation of the company's function, e.g., 'FundLok is a Vietnam-based fintech platform unlocking flexib'.",
+          "max_chars": 110
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Additional details on the company's approach, e.g., 'We use revenue-based financing and cash-flow underwriting to'.",
+          "max_chars": 115
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "A contrasting section title, e.g., 'WHAT WE ARE'.",
+          "max_chars": 20
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Further explanation of the company's function, e.g., 'An infrastructure and marketplace layer connecting SMEs and '.",
+          "max_chars": 79
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "A contrasting section title, e.g., 'WHAT WE ARE NOT'.",
+          "max_chars": 20
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "Clarification of what the company is not, e.g., 'Not a bank. Not a lender. Not a pawn shop.'.",
+          "max_chars": 42
+        }
+      }
+    },
+    {
+      "category": "PROBLEM_STATEMENT",
+      "purpose": "To outline the problems faced by SMEs in the current system.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'THE PROBLEM'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A summary of the issues, e.g., 'Four ways the system fails SMEs'.",
+          "max_chars": 31
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "A specific problem area, e.g., '01 · ACCESS'.",
+          "max_chars": 20
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Description of the problem, e.g., 'SMEs are creditworthy but locked out of collateral-heavy ban'.",
+          "max_chars": 122
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "A specific problem area, e.g., '02 · UNDERWRITING'.",
+          "max_chars": 20
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Description of the problem, e.g., 'Banks rely on collateral and historical statements, not the '.",
+          "max_chars": 121
+        },
+        "body_4": {
+          "type": "text",
+          "desc": "A specific problem area, e.g., '03 · REPAYMENT'.",
+          "max_chars": 20
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Description of the problem, e.g., 'Rigid fixed monthly payments don't match revenue that rises '.",
+          "max_chars": 96
+        },
+        "body_5": {
+          "type": "text",
+          "desc": "A specific problem area, e.g., '04 · LIQUIDITY'.",
+          "max_chars": 20
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "Description of the problem, e.g., 'Investors lack a transparent, structured way to access SME y'.",
+          "max_chars": 104
+        }
+      }
+    },
+    {
+      "category": "SOLUTION_OVERVIEW",
+      "purpose": "To present the company's solutions to the identified problems.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'WHAT WE DO · OUR SOLUTION'.",
+          "max_chars": 25
+        },
+        "title": {
+          "type": "title",
+          "desc": "A summary of the solutions, e.g., 'An answer to each, by design'.",
+          "max_chars": 28
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "A specific solution area, e.g., 'ACCESS'.",
+          "max_chars": 20
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Description of the solution, e.g., 'A marketplace that connects verified SMEs directly with inve'.",
+          "max_chars": 66
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "A specific solution area, e.g., 'UNDERWRITING'.",
+          "max_chars": 20
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Description of the solution, e.g., 'Cash-flow, data-driven scoring built on verified tax records'.",
+          "max_chars": 106
+        },
+        "body_4": {
+          "type": "text",
+          "desc": "A specific solution area, e.g., 'REPAYMENT'.",
+          "max_chars": 20
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Description of the solution, e.g., 'Revenue-based repayment: SMEs repay a percentage of verified'.",
+          "max_chars": 134
+        },
+        "body_5": {
+          "type": "text",
+          "desc": "A specific solution area, e.g., 'LIQUIDITY'.",
+          "max_chars": 20
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "Description of the solution, e.g., 'An investor yield product with risk grades, repayment scenar'.",
+          "max_chars": 103
+        }
+      }
+    },
+    {
+      "category": "PROCESS_FLOW",
+      "purpose": "To explain the step-by-step process of how the company operates.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'HOW IT WORKS'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A summary of the process, e.g., 'From verified revenue to funded growth'.",
+          "max_chars": 38
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "A step in the process, e.g., 'SME'.",
+          "max_chars": 20
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "A step in the process, e.g., 'Needs working capital'.",
+          "max_chars": 21
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Step number, e.g., '1'.",
+          "max_chars": 20
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Description of the step, e.g., 'Apply & Connect'.",
+          "max_chars": 20
+        },
+        "body_4": {
+          "type": "text",
+          "desc": "Description of the step, e.g., 'SME submits a capital request and connects verified revenue '.",
+          "max_chars": 94
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Step number, e.g., '2'.",
+          "max_chars": 20
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "Description of the step, e.g., 'Assess & Grade'.",
+          "max_chars": 20
+        },
+        "body_5": {
+          "type": "text",
+          "desc": "Description of the step, e.g., 'FundLok scores repayment capacity and assigns a risk grade f'.",
+          "max_chars": 71
+        },
+        "subtitle_5": {
+          "type": "subtitle",
+          "desc": "Step number, e.g., '3'.",
+          "max_chars": 20
+        },
+        "subtitle_6": {
+          "type": "subtitle",
+          "desc": "Description of the step, e.g., 'Fund'.",
+          "max_chars": 20
+        },
+        "body_6": {
+          "type": "text",
+          "desc": "Description of the step, e.g., 'Investors review transparent listings and fund the deal.'.",
+          "max_chars": 56
+        },
+        "subtitle_7": {
+          "type": "subtitle",
+          "desc": "Step number, e.g., '4'.",
+          "max_chars": 20
+        },
+        "subtitle_8": {
+          "type": "subtitle",
+          "desc": "Description of the step, e.g., 'Repay from revenue'.",
+          "max_chars": 20
+        },
+        "body_7": {
+          "type": "text",
+          "desc": "Description of the step, e.g., 'SME repays a share of monthly revenue until the return cap i'.",
+          "max_chars": 70
+        },
+        "body_8": {
+          "type": "text",
+          "desc": "A step in the process, e.g., 'INVESTOR'.",
+          "max_chars": 20
+        },
+        "body_9": {
+          "type": "text",
+          "desc": "A step in the process, e.g., 'Earns transparent yield'.",
+          "max_chars": 23
+        }
+      }
+    },
+    {
+      "category": "DIFFERENTIATORS",
+      "purpose": "To highlight what makes the company unique compared to competitors.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'WHAT MAKES US DIFFERENT'.",
+          "max_chars": 23
+        },
+        "title": {
+          "type": "title",
+          "desc": "A summary of the company's unique aspects, e.g., 'Where banks stop, FundLok fits'.",
+          "max_chars": 30
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Point number, e.g., '01'.",
+          "max_chars": 20
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Description of the unique aspect, e.g., 'Fair by design'.",
+          "max_chars": 20
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Further explanation, e.g., 'Repayment is anchored in real revenue capacity, not investor'.",
+          "max_chars": 76
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "Point number, e.g., '02'.",
+          "max_chars": 20
+        },
+        "subtitle_5": {
+          "type": "subtitle",
+          "desc": "Description of the unique aspect, e.g., 'Verified over declared'.",
+          "max_chars": 22
+        },
+        "subtitle_6": {
+          "type": "subtitle",
+          "desc": "Further explanation, e.g., 'We underwrite on verified operating data, not self-reported '.",
+          "max_chars": 67
+        },
+        "subtitle_7": {
+          "type": "subtitle",
+          "desc": "Point number, e.g., '03'.",
+          "max_chars": 20
+        },
+        "subtitle_8": {
+          "type": "subtitle",
+          "desc": "Description of the unique aspect, e.g., 'Transparent to all sides'.",
+          "max_chars": 24
+        },
+        "subtitle_9": {
+          "type": "subtitle",
+          "desc": "Further explanation, e.g., 'Every listing shows repayment source, risk grade, data fresh'.",
+          "max_chars": 85
+        }
+      }
+    },
+    {
+      "category": "MISSION_GOAL",
+      "purpose": "To communicate the company's mission and long-term goals.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'OUR MISSION'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A statement of the company's mission, e.g., 'To turn verified revenue into financeable growth capital — b'.",
+          "max_chars": 118
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "A section title for goals, e.g., 'OUR GOAL'.",
+          "max_chars": 20
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Description of the company's goal, e.g., 'Become the trusted infrastructure layer connecting SME cash-'.",
+          "max_chars": 109
+        }
+      }
+    },
+    {
+      "category": "CURRENT_STATUS",
+      "purpose": "To provide an update on the company's current status and progress.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'WHERE WE ARE TODAY'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A summary of the current status, e.g., 'Momentum, building toward pilot'.",
+          "max_chars": 31
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "A specific achievement or milestone, e.g., 'Incubated at SIHUB HCMC'.",
+          "max_chars": 23
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "Details of the achievement, e.g., 'Network, office and regulatory introductions.'.",
+          "max_chars": 45
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "A specific achievement or milestone, e.g., 'Accelerator & investor interest'.",
+          "max_chars": 31
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "Details of the achievement, e.g., 'Engaged with Expara's international network and EV+ Capital.'.",
+          "max_chars": 60
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "A specific achievement or milestone, e.g., 'Backed by Cloudflare for Startups'.",
+          "max_chars": 33
+        },
+        "body_4": {
+          "type": "text",
+          "desc": "Details of the achievement, e.g., 'Technical foundations for a secure, scalable platform.'.",
+          "max_chars": 54
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "A specific achievement or milestone, e.g., 'SME interviews completed'.",
+          "max_chars": 24
+        },
+        "body_5": {
+          "type": "text",
+          "desc": "Details of the achievement, e.g., 'Strong demand confirmed for revenue-based financing.'.",
+          "max_chars": 52
+        },
+        "subtitle_5": {
+          "type": "subtitle",
+          "desc": "A specific achievement or milestone, e.g., 'Toward first pilot deals'.",
+          "max_chars": 24
+        },
+        "body_6": {
+          "type": "text",
+          "desc": "Details of the achievement, e.g., 'Building toward our first funded pilots.'.",
+          "max_chars": 40
+        },
+        "title_2": {
+          "type": "title",
+          "desc": "A statement of readiness, e.g., 'Ready for Go-To-Market'.",
+          "max_chars": 22
+        }
+      }
+    },
+    {
+      "category": "TEAM",
+      "purpose": "To introduce the founding team and their roles.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'OUR TEAM'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A summary of the team's composition, e.g., 'An international founding team'.",
+          "max_chars": 30
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "Name of a team member, e.g., 'Loc Vuong'.",
+          "max_chars": 20
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "Role and location of the team member, e.g., 'FOUNDER & CEO · VIETNAM'.",
+          "max_chars": 23
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "Responsibilities of the team member, e.g., 'Drives vision, strategy, and SME and partner relationships.'.",
+          "max_chars": 59
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "Name of a team member, e.g., 'Edward Wong'.",
+          "max_chars": 20
+        },
+        "body_4": {
+          "type": "text",
+          "desc": "Role and location of the team member, e.g., 'CO-FOUNDER & CTO · USA'.",
+          "max_chars": 22
+        },
+        "body_5": {
+          "type": "text",
+          "desc": "Responsibilities of the team member, e.g., 'Leads platform, data, and AI-driven underwriting engineering'.",
+          "max_chars": 61
+        },
+        "body_6": {
+          "type": "text",
+          "desc": "Placeholder for a headshot image.",
+          "max_chars": 20
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "Name of a team member, e.g., 'Dr. Huy Pham'.",
+          "max_chars": 20
+        },
+        "body_7": {
+          "type": "text",
+          "desc": "Role and location of the team member, e.g., 'CO-FOUNDER & CFO · AUSTRALIA'.",
+          "max_chars": 28
+        },
+        "body_8": {
+          "type": "text",
+          "desc": "Responsibilities of the team member, e.g., 'Leads financial strategy, modeling, and investor discipline.'.",
+          "max_chars": 60
+        },
+        "body_9": {
+          "type": "text",
+          "desc": "Additional support or advisory roles, e.g., 'Supported by advisors across fundraising, regulatory, and fi'.",
+          "max_chars": 77
+        }
+      }
+    },
+    {
+      "category": "COMPANY_DETAILS",
+      "purpose": "To provide detailed company information for reference.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'COMPANY INFORMATION'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A summary of the section, e.g., 'For the record'.",
+          "max_chars": 20
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "A specific detail, e.g., 'LEGAL NAME'.",
+          "max_chars": 20
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "The legal name of the company, e.g., 'FundLok Joint Stock Company'.",
+          "max_chars": 27
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "A specific detail, e.g., 'TAX CODE'.",
+          "max_chars": 20
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "The tax code of the company, e.g., '1501167629'.",
+          "max_chars": 20
+        },
+        "body_4": {
+          "type": "text",
+          "desc": "A specific detail, e.g., 'INCORPORATED'.",
+          "max_chars": 20
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "The incorporation date, e.g., '11 March 2026'.",
+          "max_chars": 20
+        },
+        "body_5": {
+          "type": "text",
+          "desc": "A specific detail, e.g., 'LEGAL REPRESENTATIVE'.",
+          "max_chars": 20
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "The legal representative's name and title, e.g., 'Vuong Vinh Loc· General Director'.",
+          "max_chars": 32
+        },
+        "body_6": {
+          "type": "text",
+          "desc": "A specific detail, e.g., 'OFFICE ADDRESS:'.",
+          "max_chars": 20
+        },
+        "subtitle_5": {
+          "type": "subtitle",
+          "desc": "The office address, e.g., 'SIHUB (Startup & Innovation Hub HCMC)'.",
+          "max_chars": 37
+        },
+        "subtitle_6": {
+          "type": "subtitle",
+          "desc": "The office address, e.g., '123 Truong Dinh, Xuan Hoa Ward, Ho Chi Minh City, Vietnam'.",
+          "max_chars": 57
+        }
+      }
+    },
+    {
+      "category": "CONTACT",
+      "purpose": "To provide contact information and encourage collaboration.",
+      "fields": {
+        "body": {
+          "type": "text",
+          "desc": "The main topic or section title, e.g., 'CONNECT WITH US'.",
+          "max_chars": 20
+        },
+        "title": {
+          "type": "title",
+          "desc": "A call to action or invitation, e.g., 'Let's build Vietnam's SME financing future — together.'.",
+          "max_chars": 54
+        },
+        "subtitle": {
+          "type": "subtitle",
+          "desc": "A brief message or encouragement, e.g., 'We'd love to find the right way to work together — and we'll'.",
+          "max_chars": 102
+        },
+        "body_2": {
+          "type": "text",
+          "desc": "A specific contact method, e.g., 'WEBSITE'.",
+          "max_chars": 20
+        },
+        "subtitle_2": {
+          "type": "subtitle",
+          "desc": "The website URL, e.g., 'fundlok.com'.",
+          "max_chars": 20
+        },
+        "body_3": {
+          "type": "text",
+          "desc": "A specific contact method, e.g., 'EMAIL'.",
+          "max_chars": 20
+        },
+        "subtitle_3": {
+          "type": "subtitle",
+          "desc": "The email address, e.g., 'loc.vuong@fundlok.com'.",
+          "max_chars": 21
+        },
+        "body_4": {
+          "type": "text",
+          "desc": "A specific contact method, e.g., 'OFFICE'.",
+          "max_chars": 20
+        },
+        "subtitle_4": {
+          "type": "subtitle",
+          "desc": "The office location, e.g., 'Ho Chi Minh City, Vietnam'.",
+          "max_chars": 25
+        },
+        "body_5": {
+          "type": "text",
+          "desc": "A specific contact method, e.g., 'SCAN TO VISIT'.",
+          "max_chars": 20
+        },
+        "subtitle_5": {
+          "type": "subtitle",
+          "desc": "A call to action or tagline, e.g., 'Capital that adapts to your business.'.",
+          "max_chars": 37
+        }
+      }
+    }
+  ]
+}

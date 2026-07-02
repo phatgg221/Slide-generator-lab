@@ -1,0 +1,59 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'CONNECT WITH US'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A call to action or invitation, e.g., 'Let's build Vietnam's SME financing future — together.'.",
+      "max_chars": 54
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "A brief message or encouragement, e.g., 'We'd love to find the right way to work together — and we'll'.",
+      "max_chars": 102
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "A specific contact method, e.g., 'WEBSITE'.",
+      "max_chars": 20
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "The website URL, e.g., 'fundlok.com'.",
+      "max_chars": 20
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "A specific contact method, e.g., 'EMAIL'.",
+      "max_chars": 20
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "The email address, e.g., 'loc.vuong@fundlok.com'.",
+      "max_chars": 21
+    },
+    "body_4": {
+      "type": "text",
+      "desc": "A specific contact method, e.g., 'OFFICE'.",
+      "max_chars": 20
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "The office location, e.g., 'Ho Chi Minh City, Vietnam'.",
+      "max_chars": 25
+    },
+    "body_5": {
+      "type": "text",
+      "desc": "A specific contact method, e.g., 'SCAN TO VISIT'.",
+      "max_chars": 20
+    },
+    "subtitle_5": {
+      "type": "subtitle",
+      "desc": "A call to action or tagline, e.g., 'Capital that adapts to your business.'.",
+      "max_chars": 37
+    }
+  }
+}

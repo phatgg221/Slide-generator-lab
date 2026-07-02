@@ -1,0 +1,44 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'WHO WE ARE'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A description of the company's role, e.g., 'An infrastructure layer for SME growth capital'.",
+      "max_chars": 46
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Further explanation of the company's function, e.g., 'FundLok is a Vietnam-based fintech platform unlocking flexib'.",
+      "max_chars": 110
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Additional details on the company's approach, e.g., 'We use revenue-based financing and cash-flow underwriting to'.",
+      "max_chars": 115
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "A contrasting section title, e.g., 'WHAT WE ARE'.",
+      "max_chars": 20
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Further explanation of the company's function, e.g., 'An infrastructure and marketplace layer connecting SMEs and '.",
+      "max_chars": 79
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "A contrasting section title, e.g., 'WHAT WE ARE NOT'.",
+      "max_chars": 20
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "Clarification of what the company is not, e.g., 'Not a bank. Not a lender. Not a pawn shop.'.",
+      "max_chars": 42
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'OUR MISSION'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A statement of the company's mission, e.g., 'To turn verified revenue into financeable growth capital — b'.",
+      "max_chars": 118
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "A section title for goals, e.g., 'OUR GOAL'.",
+      "max_chars": 20
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Description of the company's goal, e.g., 'Become the trusted infrastructure layer connecting SME cash-'.",
+      "max_chars": 109
+    }
+  }
+}

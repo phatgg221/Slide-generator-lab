@@ -1,0 +1,54 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'THE PROBLEM'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A summary of the issues, e.g., 'Four ways the system fails SMEs'.",
+      "max_chars": 31
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "A specific problem area, e.g., '01 · ACCESS'.",
+      "max_chars": 20
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Description of the problem, e.g., 'SMEs are creditworthy but locked out of collateral-heavy ban'.",
+      "max_chars": 122
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "A specific problem area, e.g., '02 · UNDERWRITING'.",
+      "max_chars": 20
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Description of the problem, e.g., 'Banks rely on collateral and historical statements, not the '.",
+      "max_chars": 121
+    },
+    "body_4": {
+      "type": "text",
+      "desc": "A specific problem area, e.g., '03 · REPAYMENT'.",
+      "max_chars": 20
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Description of the problem, e.g., 'Rigid fixed monthly payments don't match revenue that rises '.",
+      "max_chars": 96
+    },
+    "body_5": {
+      "type": "text",
+      "desc": "A specific problem area, e.g., '04 · LIQUIDITY'.",
+      "max_chars": 20
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "Description of the problem, e.g., 'Investors lack a transparent, structured way to access SME y'.",
+      "max_chars": 104
+    }
+  }
+}

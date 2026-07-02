@@ -1,0 +1,69 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'OUR TEAM'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A summary of the team's composition, e.g., 'An international founding team'.",
+      "max_chars": 30
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Name of a team member, e.g., 'Loc Vuong'.",
+      "max_chars": 20
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "Role and location of the team member, e.g., 'FOUNDER & CEO · VIETNAM'.",
+      "max_chars": 23
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "Responsibilities of the team member, e.g., 'Drives vision, strategy, and SME and partner relationships.'.",
+      "max_chars": 59
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Name of a team member, e.g., 'Edward Wong'.",
+      "max_chars": 20
+    },
+    "body_4": {
+      "type": "text",
+      "desc": "Role and location of the team member, e.g., 'CO-FOUNDER & CTO · USA'.",
+      "max_chars": 22
+    },
+    "body_5": {
+      "type": "text",
+      "desc": "Responsibilities of the team member, e.g., 'Leads platform, data, and AI-driven underwriting engineering'.",
+      "max_chars": 61
+    },
+    "body_6": {
+      "type": "text",
+      "desc": "Placeholder for a headshot image.",
+      "max_chars": 20
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Name of a team member, e.g., 'Dr. Huy Pham'.",
+      "max_chars": 20
+    },
+    "body_7": {
+      "type": "text",
+      "desc": "Role and location of the team member, e.g., 'CO-FOUNDER & CFO · AUSTRALIA'.",
+      "max_chars": 28
+    },
+    "body_8": {
+      "type": "text",
+      "desc": "Responsibilities of the team member, e.g., 'Leads financial strategy, modeling, and investor discipline.'.",
+      "max_chars": 60
+    },
+    "body_9": {
+      "type": "text",
+      "desc": "Additional support or advisory roles, e.g., 'Supported by advisors across fundraising, regulatory, and fi'.",
+      "max_chars": 77
+    }
+  }
+}

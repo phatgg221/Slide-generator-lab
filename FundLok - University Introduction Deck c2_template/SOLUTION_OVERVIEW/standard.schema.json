@@ -1,0 +1,54 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'WHAT WE DO · OUR SOLUTION'.",
+      "max_chars": 25
+    },
+    "title": {
+      "type": "title",
+      "desc": "A summary of the solutions, e.g., 'An answer to each, by design'.",
+      "max_chars": 28
+    },
+    "body_2": {
+      "type": "text",
+      "desc": "A specific solution area, e.g., 'ACCESS'.",
+      "max_chars": 20
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Description of the solution, e.g., 'A marketplace that connects verified SMEs directly with inve'.",
+      "max_chars": 66
+    },
+    "body_3": {
+      "type": "text",
+      "desc": "A specific solution area, e.g., 'UNDERWRITING'.",
+      "max_chars": 20
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Description of the solution, e.g., 'Cash-flow, data-driven scoring built on verified tax records'.",
+      "max_chars": 106
+    },
+    "body_4": {
+      "type": "text",
+      "desc": "A specific solution area, e.g., 'REPAYMENT'.",
+      "max_chars": 20
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Description of the solution, e.g., 'Revenue-based repayment: SMEs repay a percentage of verified'.",
+      "max_chars": 134
+    },
+    "body_5": {
+      "type": "text",
+      "desc": "A specific solution area, e.g., 'LIQUIDITY'.",
+      "max_chars": 20
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "Description of the solution, e.g., 'An investor yield product with risk grades, repayment scenar'.",
+      "max_chars": 103
+    }
+  }
+}

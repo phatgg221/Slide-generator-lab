@@ -1,0 +1,54 @@
+{
+  "fields": {
+    "body": {
+      "type": "text",
+      "desc": "The main topic or section title, e.g., 'THE OPPORTUNITY'.",
+      "max_chars": 20
+    },
+    "title": {
+      "type": "title",
+      "desc": "A key statement or fact, e.g., 'The backbone of Vietnam's economy'.",
+      "max_chars": 33
+    },
+    "title_2": {
+      "type": "title",
+      "desc": "A significant statistic, e.g., '~900k'.",
+      "max_chars": 20
+    },
+    "subtitle": {
+      "type": "subtitle",
+      "desc": "Explanation of the statistic, e.g., 'operational businesses in Vietnam'.",
+      "max_chars": 33
+    },
+    "title_3": {
+      "type": "title",
+      "desc": "Another significant statistic, e.g., '97%+'.",
+      "max_chars": 20
+    },
+    "subtitle_2": {
+      "type": "subtitle",
+      "desc": "Explanation of the statistic, e.g., 'of them are SMEs'.",
+      "max_chars": 20
+    },
+    "title_4": {
+      "type": "title",
+      "desc": "Another significant statistic, e.g., '45%'.",
+      "max_chars": 20
+    },
+    "subtitle_3": {
+      "type": "subtitle",
+      "desc": "Explanation of the statistic, e.g., 'of GDP, with 5M+ workers employed'.",
+      "max_chars": 33
+    },
+    "subtitle_4": {
+      "type": "subtitle",
+      "desc": "Additional context or information, e.g., 'The backbone of Vietnam's economy — yet most can't access th'.",
+      "max_chars": 88
+    },
+    "title_5": {
+      "type": "title",
+      "desc": "A financial statistic or gap, e.g., '$24 Billion Funding Gap in Vietnam'.",
+      "max_chars": 34
+    }
+  }
+}
