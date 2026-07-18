@@ -88,6 +88,43 @@ def _center_crop(image_bytes: bytes, aspect_ratio: float) -> bytes:
     return out.getvalue()
 
 
+def _openrouter_image(prompt: str, aspect_ratio: float) -> bytes:
+    """Generate via OpenRouter's images endpoint (POST {base}/images), which
+    returns an OpenAI-style payload: data[0].b64_json. Tries gpt-image-1
+    first (same model as the native path), then Gemini's image model.
+    Override the first choice with OPENROUTER_IMAGE_MODEL."""
+    import os
+
+    import httpx
+
+    from .config import OPENROUTER_BASE_URL, resolve_openrouter_key
+
+    key = resolve_openrouter_key()
+    if not key:
+        raise RuntimeError("No OpenRouter key available for image generation.")
+    models = list(dict.fromkeys([
+        os.getenv("OPENROUTER_IMAGE_MODEL", "openai/gpt-image-1"),
+        "google/gemini-2.5-flash-image",
+    ]))
+    last_exc: Exception | None = None
+    for model in models:
+        try:
+            r = httpx.post(
+                f"{OPENROUTER_BASE_URL}/images",
+                headers={"Authorization": f"Bearer {key}"},
+                json={"model": model, "prompt": prompt},
+                timeout=180,
+            )
+            r.raise_for_status()
+            data = r.json()["data"][0]
+            raw = base64.b64decode(data["b64_json"])
+            tracker.record_image("1024x1024", "standard")
+            return _center_crop(raw, aspect_ratio)
+        except Exception as exc:   # model unavailable / provider error -> next
+            last_exc = exc
+    raise RuntimeError(f"OpenRouter image generation failed: {last_exc}")
+
+
 def generate_image(
     prompt: str,
     aspect_ratio: float = 1.0,
@@ -98,6 +135,10 @@ def generate_image(
     """Render an image with whichever OpenAI image model the account has,
     and return PNG bytes cropped to aspect_ratio (width / height)."""
     client = get_client()
+    if getattr(client, "_is_openrouter", False):
+        # OpenRouter has its own images endpoint (POST /images, OpenAI-like
+        # response shape) — route through it instead of the OpenAI images API.
+        return _openrouter_image(prompt, aspect_ratio)
 
     if _working_model:
         candidates = [_working_model]

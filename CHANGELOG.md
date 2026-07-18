@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.2.30
+
+### OpenRouter image generation
+- `generate_image` now works with an OpenRouter key: it calls OpenRouter's
+  images endpoint (`POST /images`, OpenAI-style `data[].b64_json` response)
+  instead of raising. Model chain: `openai/gpt-image-1` then
+  `google/gemini-2.5-flash-image`; override the first choice with
+  `OPENROUTER_IMAGE_MODEL`. Aspect-ratio cropping and usage tracking
+  behave the same as the native OpenAI path.
+
+## 0.2.29
+
+### OpenRouter fallback for chat/text calls
+- Chat/text calls now fall back to `OPENROUTER_API_KEY` when `OPENAI_API_KEY`
+  is not present, with automatic `openai/` model prefixing so existing model
+  names like `gpt-4o` keep working unchanged.
+- `use_keys(...)` now accepts `openrouter_key=...` for per-request routing.
+- Image generation still requires an OpenAI API key; use `image_source="svg"`
+  when running through OpenRouter.
+
 ## 0.2.27
 
 ### Extracted templates are now self-describing

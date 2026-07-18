@@ -35,4 +35,5 @@ slide_skills/guides/color_theme.md
 slide_skills/guides/style.md
 tests/test_assembler.py
 tests/test_offline_pipeline.py
+tests/test_openrouter_support.py
 tests/test_svg_collections.py
